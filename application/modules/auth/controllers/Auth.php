@@ -76,7 +76,7 @@ class Auth extends MY_Controller {
 										'ip' => $this->enc->get_client_ip(),
 										'mac' => $MAC = exec('getmac'),
 										'id_user' => $auth[0]->id_user,
-										'nama_user' => $auth[0]->nama_user
+										'nama_user' => $auth[0]->username
 									);
 							
 							
@@ -120,5 +120,10 @@ echo json_encode($output);
 	function logout(){
 		$this->session->sess_destroy();
 		redirect(base_url('auth'));
+	}
+
+	function get_def() {
+		$cek = $pass = $this->enc->in('12345678');
+		print_r($cek);
 	}
 }

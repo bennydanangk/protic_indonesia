@@ -111,5 +111,19 @@ function get_client_browser() {
 // echo "IP anda adalah : ". get_client_ip()."<br>";
 // echo "Browser : ".get_client_browser()."<br>";
 // echo "Sistem Operasi : ".$_SERVER['HTTP_USER_AGENT'];
+function get_salt($enc,$user){
+ $encrip = $this->out($enc);
+$user = date('Y-m-d').'_'.$user;
+if($encrip != $user){
+$data['data'] = "accept";
+$data['code'] = "202";
+}else{
+$data['data'] = "OK";
+$data['code'] = "200";
+}
+return json_encode($data);
 
+
+
+}
 }

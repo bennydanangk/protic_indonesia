@@ -27,7 +27,7 @@
       <p class="login-box-msg">Login to start your session</p>
 
       <form id="login" method="POST">
-	  <!-- <form action="<?php echo base_url('auth/login') ?>" method="POST"> -->
+
         <div class="input-group mb-3">
           <input type="username"  name="username" class="form-control" placeholder="Username" required>
           <div class="input-group-append">
