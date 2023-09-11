@@ -40,7 +40,61 @@ class Pengguna extends MY_Controller {
 	}
 
 
+	function add()  {
+		$where = array(
+			'state' => 'aktif'
+		);	
+		$data['ruang'] = $this->M_Pengguna->get_ruang('ruang',$where);
+		$this->load->view('back_end/add_content',$data);
+	}
 	
+	function content()  {
+		$where = array(
+			'user.state' => 'aktif'
+		);	
+		$data['data'] = $this->M_Pengguna->get_data('user',$where);
+		$this->load->view('back_end/table_content',$data);
+	}
+
+	function add_p()  {
+		$this->load->library('enc');
+		$password = $this->enc->in($_POST['password']);
+		$data = array(
+		'nama_pengguna' => $_POST['nama_pengguna'],
+		'nip' => $_POST['nip'],
+		'username' => $_POST['username'],
+		'password' => $password,
+		'jabatan' => $_POST['jabatan'],
+		'id_ruang' => $_POST['ruang'],
+	);	
+	//cek before
+	$where = array(
+		'username' => $_POST['username']
+	);
+	 $cek = $this->M_Pengguna->get_cek('user',$where)->num_rows();
+	 $respone;
+	if ($cek > 0){
+		$respone = array(
+			'respone' => '201',
+			'data' => 'Username Sudah Ada yang Memiliki!'
+		);
+
+		
+	}else{
+		$respone  = array(
+			'respone' => '200',
+			'data' => 'Data Tersimpan!'
+		);
+
+	  $insert = $this->M_Pengguna->input_data($data,'user');
+	}
+
+	header('Content-Type: application/json');
+	echo json_encode($respone);
+
 	
 
+
+	
+	}
 }

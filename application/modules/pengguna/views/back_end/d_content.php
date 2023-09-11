@@ -27,51 +27,11 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-            <a href="#" class="btn btn-sm btn-primary" onclick="add('<?= $x_token; ?>');"> <i class="fa fa-plus"></i> Tambah</a> <hr>
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th>NIP</th>
-                    <th>Nama Pengguna</th>
-                    <th>Username</th>
-                    <th>Lokasi Ruangan</th>
-                    <th>Tools</th>
-                      
-                  </tr>
-                  </thead>
-                <tbody>
-                  <?php foreach ($data as $k) {
-                  ?>
-                 
-                  <tr>
-                      <td><?= $k->nip ?></td>
-                    <td><?= $k->nama_pengguna?></td>
-                    <td><?= $k->username ?></td>
-                    <td><?= $k->nama_ruangan?></td>
-                    <td>
-                    <a href="#" class="btn btn-sm btn-warning"  onclick='open_edit("<?= $x_token?>","<?= $k->id_ruang; ?>");'> <i class="fa fa-edit"></i></a>
-                    <a href="#" class="btn btn-sm btn-danger"  onclick='open_hapus("<?= $x_token?>","<?= $k->id_ruang; ?>");'> <i class="fa fa-trash"></i></a>
-
-                    </td>
-
-                  </tr>
-
-                  <?php
-                  } ?>
-                </tbody>
-                  <tfoot>
-                  <tr>
-                  <th>NIP</th>
-                    <th>Nama Pengguna</th>
-                    <th>Username</th> 
-                    <th>Lokasi Ruangan</th>
-                    <th>Tools</th>
-                  </tr>
-                  </tfoot>
-                </table>
-              </div>
-              <!-- /.card-body -->
-            </div>
+      <div id="content"></div>          
+ 
+ 
+ 
+    </div>
         <!-- /.row -->
       </div>
       <!-- /.container-fluid -->
@@ -97,21 +57,22 @@
 
       <div class="row">
       <div class="col-md-6 ml-auto">
-        
+        <form id="form_add" method="POST">
       <div class="form-group">
             <label for="recipient-name" class="col-form-label">Nama Pengguna:</label>
-            <input type="text" class="form-control" id="nama_pengguna" require>
+            <input type="text" name="nama_pengguna" class="form-control" id="nama_pengguna"  placeholder="Masukan Nama Anda!"  autocomplete="off" require>
+            <input type="hidden" name="x_token"  value="<?= $x_token;?>"class="form-control" id="x_token"  placeholder="Masukan Nama Anda!"  autocomplete="off" require>
           </div>
 
           
         <div class="form-group">
             <label for="recipient-name" class="col-form-label">NIP:</label>
-            <input type="text" class="form-control" id="nip" require>
+            <input type="text" name="nip" class="form-control" placeholder="Masukan NIP!" id="nip"  autocomplete="off" require>
           </div>
           
         <div class="form-group">
             <label for="recipient-name" class="col-form-label">Username:</label>
-            <input type="text" class="form-control" id="userame" require>
+            <input type="text" name="username" class="form-control" placeholder="Masukan Username!" id="userame"  autocomplete="off" require>
           </div>
           
     </div>
@@ -120,27 +81,21 @@
       
       <div class="form-group">
             <label for="recipient-name" class="col-form-label">Password:</label>
-            <input type="password" class="form-control" id="password" require>
+            <input type="password" name="password" class="form-control"placeholder="Masukan Password"  id="password"  autocomplete="off" require>
           </div>
 
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Jabatan:</label>
-            <input type="text" class="form-control" id="jabatan" require>
+            <input type="text" class="form-control" name="jabatan" placeholder="Masukan Jabatan" id="jabatan"  autocomplete="off" require>
           </div>
 
           <div class="form-group">
           <label for="recipient-name" class="col-form-label">Ruang</label>
-                  <select class="form-control select2" id="ruang" >
-                    <i id=''></i>
-                    <!-- <option selected="selected">Alabama</option>
-                    <option>Alaska</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option> -->
-                  </select>
-          </div>
+             
+      
+
+                  <select name="ruang" class="form-control select2"  id="ruang" ><option value="0"> -Kosong- </option><option value="1">Sekertariat</option><option value="2">PIAK</option><option value="3">Dafduk</option><option value="4">Produksi</option></select>
+                   </div>
 
 
     </div>
@@ -154,8 +109,9 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-primary">Simpan</button>
+        <button type="submit"  id="submit_add" class="btn btn-primary">Simpan</button>
       </div>
+      </form>
     </div>
   </div>
 </div>

@@ -79,9 +79,13 @@ select2add();
   get_menu(url);
   // $('#modal_add').modal('show');
 
-  function add(x_token) {
-    console.log('add');
-    $('#modal_add').modal('show');
+  content();
+  function content() {
+    $('#content').load('<?= base_url("pengguna/content")?>')
+  }
+
+  function add() {
+    $('#content').load('<?= base_url("pengguna/add")?>')
   }
 
   function open_edit(id,x_token) {
@@ -110,23 +114,28 @@ select2add();
   }
 
 
-  cek('ruang');
-  function cek(table) {
-    $.ajax({
-        url: "<?= base_url('Rest_api/get_tb_all')?>",
-        type: "POST",    
-        data: {
-            x_token: '<?= $x_token?>', table: table ,
-        },
-        success: function(response) {
-          
-        },
-        error: function() {
-            alert("error");
-        }    
-    });    
-    
-  }
+
+
+
+
+
+
+
+$("#form_add").submit(function(e) {
+         e.preventDefault();
+         $.ajax({
+          url: "<?= base_url('pengguna/add')?>",
+             type: 'POST',
+             data: $(this).serialize(),             
+             success: function(data) {    
+			
+				
+			console.log(data);
+             }
+         });
+     });
+
+
 </script>
 
 </body>
