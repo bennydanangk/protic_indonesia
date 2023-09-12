@@ -122,8 +122,4 @@ echo json_encode($output);
 		redirect(base_url('auth'));
 	}
 
-	function get_def() {
-		$cek = $pass = $this->enc->in('12345678');
-		print_r($cek);
-	}
 }

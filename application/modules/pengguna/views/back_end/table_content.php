@@ -29,9 +29,9 @@
                     <td><?= $k->username ?></td>
                     <td><?= $k->nama_ruangan?></td>
                     <td>
-                    <a href="#" class="btn btn-sm btn-primary"  onclick='open_state("<?= $k->id_ruang; ?>");'> <i class="fa fa-ban"></i></a>
-                    <a href="#" class="btn btn-sm btn-warning"  onclick='open_edit("<?= $k->id_ruang; ?>");'> <i class="fa fa-edit"></i></a>
-                    <a href="#" class="btn btn-sm btn-danger"  onclick='open_hapus("<?= $k->id_ruang; ?>");'> <i class="fa fa-trash"></i></a>
+                    <a href="#" class="btn btn-sm btn-primary"  onclick='open_state("<?= $k->id_user; ?>");'> <i class="fa fa-ban"></i></a>
+                    <a href="#" class="btn btn-sm btn-warning"  onclick='open_edit("<?= $k->id_user; ?>");'> <i class="fa fa-edit"></i></a>
+                    <a href="#" class="btn btn-sm btn-danger"  onclick='open_hapus("<?= $k->id_user; ?>");'> <i class="fa fa-trash"></i></a>
 
                     </td>
 

@@ -87,7 +87,13 @@
 
                 <button type="submit" class="btn btn-primary btn-block"> <i class="fa fa-save"></i> Simpan</button>
               
+               
+                <br><br><br>
+                <i>Silahkan Klik Download Database Backup Secara Berkala simpan di tempat Terpisah di USB/HARDSIK/SSD/Nvme Stick, Terimakasih</i>
+                <a class="btn btn-danger btn-block" href="<?= base_url('Rest_api/backup_db')?>" > <i class="fa fa-database"></i> Backup Database</a>
+              
                 </div>
+
                 <!-- /.form-group -->
               </div>
               <!-- /.col -->

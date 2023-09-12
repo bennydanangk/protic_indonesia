@@ -26,6 +26,11 @@ return  $this->db->insert($table,$data);
 function get_cek($table,$where){		
   return $this->db->get_where($table,$where);
 }	
+//edit Data
+function edit_data($where,$data,$table){
+  $this->db->where($where);
+  $this->db->update($table,$data);
+}
 
 
 

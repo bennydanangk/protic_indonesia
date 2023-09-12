@@ -85,11 +85,11 @@ select2add();
   }
 
   function add() {
-    $('#content').load('<?= base_url("pengguna/add")?>')
+    $('#content').load('<?= base_url("pengguna/add")?>');
   }
 
-  function open_edit(id,x_token) {
-    console.log('OK');
+  function open_edit(id) {
+    $('#content').load('<?= base_url("pengguna/edit/")?>'+id);
 
   }
 
