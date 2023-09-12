@@ -7,9 +7,9 @@
   <div class="card">
   <div class="card-body">
    
-  <a  class="btn btn-sm btn-primary" onclick="add();"> <i class="fa fa-plus"></i> Tambah</a> 
-  <a  class="btn btn-sm btn-secondary" onclick="data_sampah();"> <i class="fa fa-trash"></i> Data Sampah</a> <hr>
-                <table id="example1" class="table table-bordered table-striped">
+  <a href="#" class="btn btn-sm btn-secondary" onclick="content();"> <i class="fa fa-arrow-left"></i> Kembali</a> <hr>
+               
+  <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th>NIP</th>
@@ -30,10 +30,8 @@
                     <td><?= $k->username ?></td>
                     <td><?= $k->nama_ruangan?></td>
                     <td>
-                    <a  class="btn btn-sm btn-success"  onclick='open_state("<?= $k->id_user; ?>");'> <i class="fa fa-user"></i></a>
-                    <a  class="btn btn-sm btn-warning"  onclick='open_edit("<?= $k->id_user; ?>");'> <i class="fa fa-edit"></i></a>
-                    <a  class="btn btn-sm btn-danger"  onclick='hapus("<?= $k->id_user; ?>");'> <i class="fa fa-ban"></i></a>
-
+                    <a class="btn btn-sm btn-primary"  onclick='restore("<?= $k->id_user; ?>");'> <i class="fa fa-spin fa-cog"></i> Restore</a>
+                
                     </td>
 
                   </tr>

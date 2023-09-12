@@ -83,6 +83,11 @@ select2add();
   function content() {
     $('#content').load('<?= base_url("pengguna/content")?>')
   }
+  function data_sampah() {
+    $('#content').load('<?= base_url("pengguna/data_sampah")?>')
+  }
+
+
 
   function add() {
     $('#content').load('<?= base_url("pengguna/add")?>');
@@ -93,7 +98,14 @@ select2add();
 
   }
 
-  function open_hapus(id,x_token) {
+  function open_state(id) {
+    $('#content').load('<?= base_url("pengguna/state/")?>'+id);
+
+  }
+
+
+
+  function hapus(id) {
     Swal.fire({
   title: 'Apakah Anda Yakin?',
   text: "Apakah Anda Akan Menghapus Data Ini!",
@@ -104,6 +116,23 @@ select2add();
   confirmButtonText: 'Yes, delete it!'
 }).then((result) => {
   if (result.isConfirmed) {
+
+    $.ajax({
+    url: "<?= base_url('pengguna/hapus')?>",
+             type: 'POST',
+             data: {id:id},            
+             success: function(data) {  
+              setTimeout(function() {
+            content();
+            }, 500);
+             
+            //console.log(data);
+            // $('#password').val(data);
+            
+             }
+  });
+
+
     Swal.fire(
       'Deleted!',
       'Your file has been deleted.',
@@ -130,11 +159,50 @@ $("#form_add").submit(function(e) {
              success: function(data) {    
 			
 				
-			console.log(data);
+			// console.log(data);
              }
          });
      });
 
+
+
+
+     function restore(id) {
+    Swal.fire({
+  title: 'Apakah Anda Yakin?',
+  text: "Apakah Anda Akan Merestore Data Ini!",
+  icon: 'question',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, Restore it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+
+    $.ajax({
+    url: "<?= base_url('pengguna/restore')?>",
+             type: 'POST',
+             data: {id:id},            
+             success: function(data) {  
+              setTimeout(function() {
+            content();
+            }, 500);
+             
+            //console.log(data);
+            // $('#password').val(data);
+            
+             }
+  });
+
+
+    Swal.fire(
+      'Restore!',
+      'Your file has been Restore.',
+      'success'
+    )
+  }
+})
+  }
 
 </script>
 

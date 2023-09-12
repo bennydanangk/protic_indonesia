@@ -40,6 +40,7 @@ class Pengguna extends MY_Controller {
 	}
 
 
+//get form add
 	function add()  {
 		$where = array(
 			'state' => 'aktif'
@@ -47,6 +48,8 @@ class Pengguna extends MY_Controller {
 		$data['ruang'] = $this->M_Pengguna->get_ruang('ruang',$where);
 		$this->load->view('back_end/add_content',$data);
 	}
+
+	//get form edit
 	function edit($id)  {
 		$where = array(
 			'state' => 'aktif'
@@ -59,7 +62,7 @@ class Pengguna extends MY_Controller {
 		$data['data'] = $this->M_Pengguna->get_data('user',$where2);
 		$this->load->view('back_end/edit_content',$data);
 	}
-	
+//get Content table
 	function content()  {
 		$where = array(
 			'user.state' => 'aktif'
@@ -68,6 +71,17 @@ class Pengguna extends MY_Controller {
 		$this->load->view('back_end/table_content',$data);
 	}
 
+//restore		
+	function data_sampah()  {
+		$where = array(
+			'user.state' => 'tidak'
+		);	
+		$data['data'] = $this->M_Pengguna->get_data('user',$where);
+		$this->load->view('back_end/table_content_sampah',$data);
+	}
+
+
+//prosess add
 	function add_p()  {
 		$this->load->library('enc');
 		$password = $this->enc->in($_POST['password']);
@@ -109,7 +123,7 @@ class Pengguna extends MY_Controller {
 
 	
 	}
-
+// get password
 	function forgot_password(){
 		$this->load->library('enc');
 		$password = $this->enc->out($_POST['ps']);
@@ -118,7 +132,7 @@ class Pengguna extends MY_Controller {
 	}
 
 
-
+//proses edit
 	function edit_p()  {
 		$this->load->library('enc');
 		$password = $this->enc->in($_POST['password']);
@@ -162,6 +176,37 @@ $where2 = array(
 
 	
 	}
+//proses hapus
+	function hapus()  {
 
+		$where = array(
+			'id_user' => $_POST['id'],
+		);
+		$data = array(
+			'state' => 'tidak',
+	
+		);
+
+
+		 $this->M_Pengguna->edit_data($where,$data,'user');
+		
+	}
+
+
+//proses restore
+function restore()  {
+
+	$where = array(
+		'id_user' => $_POST['id'],
+	);
+	$data = array(
+		'state' => 'aktif',
+
+	);
+
+
+	 $this->M_Pengguna->edit_data($where,$data,'user');
+	
+}
 
 }
