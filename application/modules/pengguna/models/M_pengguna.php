@@ -32,6 +32,10 @@ function edit_data($where,$data,$table){
   $this->db->update($table,$data);
 }
 
+function get_state($table,$where){		
+  $this->db->join('role_user', 'user.id_user = role_user.id_user');
+  return $this->db->get_where($table,$where);
+}	
 
 
 }

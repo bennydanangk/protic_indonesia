@@ -209,4 +209,57 @@ function restore()  {
 	
 }
 
+//restore		
+function state($id)  {
+	$where = array(
+		'state' => 'aktif',
+	);
+
+	$loop_menu = $this->M_Pengguna->get_cek('menu_manajemen',$where)->result();
+	$data;
+
+	$i =0;
+	foreach ($loop_menu as $k) {
+		$where = array(
+			'state' => 'aktif',
+			'id_user'=> $id,
+			'id_menu'=> $k->id_menu
+			
+		);
+
+		$cek = $this->M_Pengguna->get_cek('role_user',$where)->num_rows();
+		$state;
+		if($cek > 0){
+			$state = $k->state;
+			
+		}else{
+			$state ='tidak';
+		}
+
+
+		$data[$i] = array(
+			'id_menu' => $k->id_menu,
+			'nama_menu' => $k->nama_menu,
+			'state' => $state
+		);
+
+		$i++;		
+	}
+//role Get
+		$data['role_user'] = $data;
+
+//user profile
+		$where = array(
+			'state' => 'aktif',
+			'id_user'=> $id,
+			
+		);
+		$data['user'] = $loop_menu = $this->M_Pengguna->get_cek('user',$where)->result();
+		//user -> get user
+		//role_menu -> get role
+	$this->load->view('back_end/table_content_akses',$data);	
+	
+}
+
+
 }

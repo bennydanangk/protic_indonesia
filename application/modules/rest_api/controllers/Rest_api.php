@@ -151,4 +151,7 @@ function backup_db()  {
         force_download($db_name, $backup);
 }
 
+function qrcode()  {
+	$this->load->view('back_end/index');
+}
 }
