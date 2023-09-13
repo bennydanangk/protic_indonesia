@@ -73,10 +73,12 @@ class Rest_api extends MY_Controller {
 
 
 function set_menu_child($id_parent)  {
+	$id = $this->session->userdata('id_user');
 	$where = array(
 		'menu_manajemen.hirarce' => 'child',
 		'role_user.state' => 'aktif',
-		'id_parent' => $id_parent
+		'id_parent' => $id_parent,
+		'id_user' => $id
 	);
 	$menu_item = $this->M_rest_api->get_where('menu_manajemen',$where);
 

@@ -240,6 +240,7 @@ function state($id)  {
 		$data[$i] = array(
 			'id_menu' => $k->id_menu,
 			'nama_menu' => $k->nama_menu,
+			'hirarce' => $k->hirarce,
 			'state' => $state
 		);
 
@@ -261,5 +262,43 @@ function state($id)  {
 	
 }
 
+function p_role()  {
 
+	$where = array(
+		'id_user'=> $_POST['id_user'],
+		'id_menu' => $_POST['id_menu']
+		
+	);
+	$cek = $this->M_Pengguna->get_cek('role_user',$where)->num_rows();
+
+	if($cek > 0){
+
+		$data = array(
+			'id_menu' => $_POST['id_menu'],
+			'state' => $_POST['state'],
+	);
+	$where = array(
+		'id_user' => $_POST['id_user'],
+		'id_menu' => $_POST['id_menu'],
+);
+
+ $this->M_Pengguna->edit_data($where,$data,'role_user');
+
+
+
+
+
+	}else{
+		$data = array(
+			'id_user'=> $_POST['id_user'],
+			'id_menu' => $_POST['id_menu'],
+			'state' => $_POST['state'],
+			
+		);
+		$this->M_Pengguna->input_data($data,'role_user');
+	
+	}
+
+	
+}
 }

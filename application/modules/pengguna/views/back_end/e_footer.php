@@ -120,7 +120,7 @@ select2add();
     $.ajax({
     url: "<?= base_url('pengguna/hapus')?>",
              type: 'POST',
-             data: {id:id},            
+             data: $(this).serialize(),            
              success: function(data) {  
               setTimeout(function() {
             content();
