@@ -143,7 +143,7 @@ function backup_db()  {
         ];
 
         $backup     = $this->dbutil->backup($pref);
-        $db_name    = 'backup_database__' . date("d-m-Y__H-i-s") . '.zip'; // nama backup dalam bentuk zip
+        $db_name    = 'backup_database_app__' . date("d-m-Y__H-i-s") . '.zip'; // nama backup dalam bentuk zip
         $save       = './assets/backup/' . $db_name; //folder tempat database disimpan
 
         $this->load->helper('file'); // load helper file

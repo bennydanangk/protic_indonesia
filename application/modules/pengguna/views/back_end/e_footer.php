@@ -120,7 +120,7 @@ select2add();
     $.ajax({
     url: "<?= base_url('pengguna/hapus')?>",
              type: 'POST',
-             data: $(this).serialize(),            
+             data: {id:id},            
              success: function(data) {  
               setTimeout(function() {
             content();
@@ -185,7 +185,7 @@ $("#form_add").submit(function(e) {
              data: {id:id},            
              success: function(data) {  
               setTimeout(function() {
-            content();
+            data_sampah();
             }, 500);
              
             //console.log(data);
