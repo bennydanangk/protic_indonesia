@@ -2,12 +2,12 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Opd_ruangan extends MY_Controller {
+class Barang extends MY_Controller {
 
 	public function __construct()
     {
         parent::__construct();
-        $this->load->model("M_opd_ruangan"); //load model
+        $this->load->model("M_barang"); //load model
 		if($this->session->userdata('status') != "login"){
 			redirect(base_url("auth"));
 		}
@@ -17,14 +17,13 @@ class Opd_ruangan extends MY_Controller {
 	public function index()
 	{
 	
-		$data['conf'] = $this->M_opd_ruangan->config();
+		$data['conf'] = $this->M_barang->config();
 		$data['nama_user'] = $this->session->userdata('nama_user');
-		$data['nama_menu'] = 'OPD/Ruangan/Kantor';
+		$data['nama_menu'] = 'Barang Inv';
 		$data['x_token'] = $this->session->userdata('x_token');
 		$this->load->view('back_end/a_header',$data);
 		$this->load->view('back_end/b_navbar',$data);
 		$this->load->view('back_end/c_sidebar',$data);
-		// $this->load->view('back_end/d_content',$data);
 		$this->data();
 		$this->load->view('back_end/e_footer',$data);
 	}
@@ -35,7 +34,7 @@ class Opd_ruangan extends MY_Controller {
 		$where = array(
 			'state' => 'aktif'
 		);	
-		$data['data'] = $this->M_opd_ruangan->get_data('ruang',$where);
+		$data['data'] = $this->M_barang->get_data('ruang',$where);
 		$this->load->view('back_end/d_content',$data);
 		// echo json_encode($data);
 	}
@@ -46,7 +45,14 @@ class Opd_ruangan extends MY_Controller {
 		$where = array(
 			'state' => 'aktif'
 		);	
-		$data['ruang'] = $this->M_opd_ruangan->get_ruang('ruang',$where);
+		$data['perolehan'] = $this->M_barang->get_ruang('perolehan',$where);
+		$data['jenis'] = $this->M_barang->get_ruang('jenis',$where);
+		$data['sumber_dana'] = $this->M_barang->get_ruang('sumber_dana',$where);
+		$data['distributor'] = $this->M_barang->get_ruang('distributor',$where);
+		$data['satuan'] = $this->M_barang->get_ruang('satuan',$where);
+		echo "<pre>";
+		print_r($data);
+		echo "</pre>";
 		$this->load->view('back_end/add_content',$data);
 	}
 
@@ -57,25 +63,28 @@ class Opd_ruangan extends MY_Controller {
 			'state' => 'aktif'
 		);	
 		
-		$data['ruang'] = $this->M_opd_ruangan->get_ruang('ruang',$where);
+		$data['ruang'] = $this->M_barang->get_ruang('ruang',$where);
 	
 		$this->load->view('back_end/edit_content',$data);
 	}
 //get Content table
 	function content()  {
 		$where = array(
-			'state' => 'aktif'
+			'barang.state' => 'aktif'
 		);	
-		$data['data'] = $this->M_opd_ruangan->get_data('ruang',$where);
+		$data['data'] = $this->M_barang->get_barang('barang',$where);
+		// echo "<pre>";
+		// print_r($data);
+		// echo "</pre>";
 		$this->load->view('back_end/table_content',$data);
 	}
 
 //restore		
 	function data_sampah()  {
 		$where = array(
-			'state' => 'tidak'
+			'barang.state' => 'tidak'
 		);	
-		$data['data'] = $this->M_opd_ruangan->get_data('ruang',$where);
+		$data['data'] = $this->M_barang->get_data('ruang',$where);
 		$this->load->view('back_end/table_content_sampah',$data);
 	}
 
@@ -95,7 +104,7 @@ class Opd_ruangan extends MY_Controller {
 			'data' => 'Data Tersimpan!'
 		);
 
-	  $insert = $this->M_opd_ruangan->input_data($data,'ruang');
+	  $insert = $this->M_barang->input_data($data,'ruang');
 	
 
 	header('Content-Type: application/json');
@@ -132,7 +141,7 @@ class Opd_ruangan extends MY_Controller {
 			'data' => 'Data Tersimpan!'
 		);
 
-	  $insert = $this->M_opd_ruangan->edit_data($where,$data,'ruang');
+	  $insert = $this->M_barang->edit_data($where,$data,'ruang');
 
 
 	header('Content-Type: application/json');
@@ -155,7 +164,7 @@ class Opd_ruangan extends MY_Controller {
 		);
 
 
-		 $this->M_opd_ruangan->edit_data($where,$data,'ruang');
+		 $this->M_barang->edit_data($where,$data,'ruang');
 		
 	}
 
@@ -172,7 +181,7 @@ function restore()  {
 	);
 
 
-	 $this->M_opd_ruangan->edit_data($where,$data,'ruang');
+	 $this->M_barang->edit_data($where,$data,'ruang');
 	
 }
 

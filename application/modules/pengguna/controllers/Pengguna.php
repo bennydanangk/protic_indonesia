@@ -24,7 +24,7 @@ class Pengguna extends MY_Controller {
 		$this->load->view('back_end/a_header',$data);
 		$this->load->view('back_end/b_navbar',$data);
 		$this->load->view('back_end/c_sidebar',$data);
-		$this->data();
+		$this->load->view('back_end/d_content',$data);
 		$this->load->view('back_end/e_footer',$data);
 	}
 

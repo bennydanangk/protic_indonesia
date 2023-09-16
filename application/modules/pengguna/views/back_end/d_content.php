@@ -5,7 +5,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <!-- <h1 class="m-0"><?=  "Selamat Datang, ".$nama_user; ?></h1> -->
+            <h1 class="m-0"><?=  "Selamat Datang, ".$nama_user; ?></h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -21,17 +21,36 @@
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-      <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Data <?= $nama_menu; ?> </h3>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header border-0">
+                <div class="d-flex justify-content-between">
+                  <h3 class="card-title"><?= $nama_menu; ?></h3>
+                 
+                </div>
               </div>
-              <!-- /.card-header -->
               <div class="card-body">
-            <div id="content"></div>          
- 
- 
- 
-    </div>
+             
+
+
+
+                <div class="position-relative mb-4">
+           
+                <div id="content"></div>   
+
+                </div>
+
+               
+              </div>
+            </div>
+            <!-- /.card -->
+
+         
+          </div>
+        
+          <!-- /.col-md-6 -->
+        </div>
         <!-- /.row -->
       </div>
       <!-- /.container-fluid -->
@@ -39,11 +58,6 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
-  
- 
-
-
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
