@@ -17,20 +17,20 @@
           </div>
         <div class="form-group">
             <label for="recipient-name" class="col-form-label">Kode Barang:</label>
-            <input type="text" name="kode_barang" class="form-control" placeholder="Masukan Kode Barang" id="nip"   autocomplete="off" require >
+            <input type="text" name="kode_barang" class="form-control" placeholder="Masukan Kode Barang" id="nip"   autocomplete="off" required >
           </div>
           
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Kode Ruang:</label>
-            <input type="text" name="kode_barang" class="form-control" placeholder="Masukan Kode Barang" id="nip"   autocomplete="off" require >
+            <input type="text" name="kode_lokasi" class="form-control" placeholder="Masukan Kode Lokasi" id="nip"   autocomplete="off" required >
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Nama Barang:</label>
-            <input type="text" name="nama_barang" class="form-control" placeholder="Masukan Nama Barang" id="nip"   autocomplete="off" require >
+            <input type="text" name="nama_barang" class="form-control" placeholder="Masukan Nama Barang" id="nip"   autocomplete="off" required >
           </div>
           <div class="form-group">
             <label for="recipient-name"   class="col-form-label">Perolehan:</label>
-            <select name="id_perolehan" class="form-control  select2bs4" require >
+            <select name="id_perolehan" class="form-control  select2bs4" required >
                     <option >-Kosong-</option>
                     <?php 
             
@@ -43,7 +43,7 @@
 
           <div class="form-group">
             <label for="recipient-name"   class="col-form-label">Jenis:</label>
-            <select name="id_jenis" class="form-control select2bs4" require >
+            <select name="id_jenis" class="form-control select2bs4" required >
                     <option value="" >-Kosong-</option>
                     <?php 
             
@@ -56,7 +56,7 @@
 
           <div class="form-group">
             <label for="recipient-name"   class="col-form-label">Sumber Dana:</label>
-            <select name="id_sumber_dana" class="form-control select2bs4" require >
+            <select name="id_sumber_dana" class="form-control select2bs4" required >
                     <option  value="" >-Kosong-</option>
                     <?php 
             
@@ -70,7 +70,7 @@
           
           <div class="form-group">
             <label for="recipient-name"   class="col-form-label">Distributor:</label>
-            <select name="id_distributor" class="form-control select2bs4" require  >
+            <select name="id_distributor" class="form-control select2bs4" required  >
                     <option  value="">-Kosong-</option>
                     <?php 
             
@@ -84,13 +84,13 @@
 
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Tahun Pembelian:</label>
-            <input type="date" name="tahun_pembelian" class="form-control" placeholder="Tahun Pembelian" id="nip"   autocomplete="off" require >
+            <input type="date" name="tahun_pembelian" class="form-control" placeholder="Tahun Pembelian" id="nip"   autocomplete="off" required >
           </div>
 
 
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Harga Pembelian:</label>
-            <input type="number" name="harga_pembelian" class="form-control" placeholder="Harga Pembelian" id="nip"   autocomplete="off" require >
+            <label for="recipient-name" class="col-form-label">Harga Perolehan:</label>
+            <input type="number" name="harga_perolehan" class="form-control" placeholder="Harga Pembelian" id="nip"   autocomplete="off" required >
           </div>
 
 
@@ -99,7 +99,7 @@
 
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Kondisi Barang:</label>
-            <select name="kondisi_barang" class="form-control select2bs4" require >
+            <select name="kondisi_barang" class="form-control select2bs4" required >
                     <option  value="" >-Kosong-</option>    
                     <option value ="B">B</option>      
                     <option value ="KB">KB</option>    
@@ -117,15 +117,29 @@
           </div>
 
           <div class="form-group">
+       
             <label for="recipient-name" class="col-form-label">Jumlah:</label>
-            <input type="number" name="jumlah" class="form-control" placeholder="Harga Pembelian"  id="nip"   autocomplete="off" >
+            <input type="number" name="jumlah" class="form-control" placeholder="Jumlah Pembelian"  id="nip"   autocomplete="off" required >
              <input type="hidden" name="id_user" class="form-control" placeholder="Harga Pembelian" value="<?= $id_user;?>" id="nip"   autocomplete="off" >
+             <i class='text-danger'>*Disarankan Penginputan Per Item Karean Untuk Keperluan Maintenance,Cost,History Product.</i>
+            </div>
+
+
+
+
+            <div class="form-group">
+            <label for="recipient-name"   class="col-form-label">Satuan:</label>
+            <select name="id_satuan" class="form-control select2bs4" required  >
+                    <option  value="">-Kosong-</option>
+                    <?php 
+            
+            foreach ($satuan as $k) {
+              ?>
+            <option value="<?= $k->id_satuan?>"> <?= $k->nama_satuan?> </option>   
+           <?php }?>           
+           </select>
           </div>
 
-
-
-
-          
                  <button type="submit"  id="submit_add" class="btn btn-primary btn-sm"> <i class="fa fa-save"></i> Simpan</button>
 
 
@@ -168,23 +182,23 @@ $('.select2bs4').select2({
              data: $(this).serialize()+"&ket="+ket,           
              success: function(data) {  
            console.log(data);
-//           var obj =JSON.parse(JSON.stringify(data));
-//            if(obj.respone != 201){
-//             Swal.fire({
-//               icon: 'success',
-//               title: 'yeah!',
-//               text: obj.data,
+          var obj =JSON.parse(JSON.stringify(data));
+           if(obj.respone != 201){
+            Swal.fire({
+              icon: 'success',
+              title: 'yeah!',
+              text: obj.data,
 
-//               })
-//                 content();
-//            }else{
-//             Swal.fire({
-//                 icon: 'error',
-//                 title: 'Oops...',
-//                 text: obj.data,
-// })
+              })
+                content();
+           }else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: obj.data,
+})
 
-//            }
+           }
              }
          });
      });

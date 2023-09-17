@@ -10,12 +10,12 @@ class M_barang extends CI_Model {
 }	
 
 function get_barang($table,$where){		
-  $this->db->join('perolehan', 'barang.id_perolehan = perolehan.id_perolehan');
-  $this->db->join('jenis', 'barang.id_jenis = jenis.id_jenis');
+  $this->db->join('perolehan', 'barang.id_perolehan = perolehan.id_perolehan','left');
+  $this->db->join('jenis', 'barang.id_jenis = jenis.id_jenis','left');
   // $this->db->join('sumber_dana', 'barang.id_sumber_dana = sumber_dana.id_sumber_dana');
   // $this->db->join('distributor', 'barang.id_distributor = distributor.id_distributor');
   // $this->db->join('user', 'barang.id_user = user.id_user');
-  $this->db->join('satuan', 'barang.id_satuan = satuan.id_satuan');
+  $this->db->join('satuan', 'barang.id_satuan = satuan.id_satuan','left');
   return $this->db->get_where($table,$where)->result();
 }	
 

@@ -95,24 +95,41 @@ class Barang extends MY_Controller {
 //prosess add
 	function add_p()  {
 		
-		print_r($_POST);
-		// $data = array(
-		// 'nama_ruangan' => $_POST['nama_ruangan'],
 		
-		// 	);	
+
+		
+		$data = array(
+		'kode_id_barang' => $_POST['kode_id_barang'],
+		'kode_barang' => $_POST['kode_barang'],
+		'kode_lokasi' => $_POST['kode_lokasi'],
+		'nama_barang' => $_POST['nama_barang'],
+		'id_perolehan' => $_POST['id_perolehan'],
+		'id_jenis' => $_POST['id_jenis'],
+		'id_sumber_dana' => $_POST['id_sumber_dana'],
+		'id_distributor' => $_POST['id_distributor'],
+		'tahun_pembelian' => $_POST['tahun_pembelian'],
+		'harga_perolehan' => $_POST['harga_perolehan'],
+		'kondisi_barang' => $_POST['kondisi_barang'],
+		'jumlah' => $_POST['jumlah'],
+		'id_satuan' => $_POST['id_satuan'],
+		'id_user' => $_POST['id_user'],
+		'keterangan' => $_POST['ket'],
+		'tgl_input' => date('Y-m-d H:i:s'),
+		'state' => 'aktif'
+			);	
+		
+			// print_r($data);
+
+	$respone  = array(
+			'respone' => '200',
+			'data' => 'Data Tersimpan!'
+		);
+
+	  $insert = $this->M_barang->input_data($data,'barang');
 	
 
-	
-	// $respone  = array(
-	// 		'respone' => '200',
-	// 		'data' => 'Data Tersimpan!'
-	// 	);
-
-	//   $insert = $this->M_barang->input_data($data,'ruang');
-	
-
-	// header('Content-Type: application/json');
-	// echo json_encode($respone);
+	header('Content-Type: application/json');
+	echo json_encode($respone);
 
 	
 
