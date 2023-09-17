@@ -44,7 +44,9 @@
 <script src="<?php echo base_url('assets/js/') ?>bootstrap_menu.js"></script>
 <script src="<?php echo base_url('assets/template/') ?>plugins/select2/js/select2.full.min.js"></script>
 
+
 <script>
+
 
 select2add();
  function select2add() {
@@ -52,9 +54,7 @@ select2add();
     $('.select2bs4').select2({
           theme: 'bootstrap4'
         })
-    $("#ruang").select2({
-    dropdownParent: $("#modal_add")
-  });
+  
  }
 
 
@@ -90,6 +90,7 @@ select2add();
 
 
   function add() {
+ 
     $('#content').load('<?= base_url("barang/add")?>');
   }
 

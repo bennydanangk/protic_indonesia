@@ -50,9 +50,12 @@ class Barang extends MY_Controller {
 		$data['sumber_dana'] = $this->M_barang->get_ruang('sumber_dana',$where);
 		$data['distributor'] = $this->M_barang->get_ruang('distributor',$where);
 		$data['satuan'] = $this->M_barang->get_ruang('satuan',$where);
-		echo "<pre>";
-		print_r($data);
-		echo "</pre>";
+		$data['id_user'] =  $this->session->userdata('id_user');
+		// echo "<pre>";
+		// print_r($data);
+		// echo "</pre>";
+
+		$data['kode_id_barang'] = $this->M_barang->cekkodebarang();
 		$this->load->view('back_end/add_content',$data);
 	}
 
@@ -92,23 +95,24 @@ class Barang extends MY_Controller {
 //prosess add
 	function add_p()  {
 		
-		$data = array(
-		'nama_ruangan' => $_POST['nama_ruangan'],
+		print_r($_POST);
+		// $data = array(
+		// 'nama_ruangan' => $_POST['nama_ruangan'],
 		
-			);	
+		// 	);	
 	
 
 	
-	$respone  = array(
-			'respone' => '200',
-			'data' => 'Data Tersimpan!'
-		);
+	// $respone  = array(
+	// 		'respone' => '200',
+	// 		'data' => 'Data Tersimpan!'
+	// 	);
 
-	  $insert = $this->M_barang->input_data($data,'ruang');
+	//   $insert = $this->M_barang->input_data($data,'ruang');
 	
 
-	header('Content-Type: application/json');
-	echo json_encode($respone);
+	// header('Content-Type: application/json');
+	// echo json_encode($respone);
 
 	
 

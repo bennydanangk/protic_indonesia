@@ -30,6 +30,7 @@
              type: 'POST',
              data: $(this).serialize(),             
              success: function(data) {    
+              console.log(data);
     				var obj =JSON.parse(JSON.stringify(data));
            if(obj.respone != 201){
             Swal.fire({
