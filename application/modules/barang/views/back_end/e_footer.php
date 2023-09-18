@@ -103,7 +103,10 @@ select2add();
     $('#content').load('<?= base_url("barang/state/")?>'+id);
 
   }
+  function open_detail(id) {
+    $('#content').load('<?= base_url("barang/detail/")?>'+id);
 
+  }
 
 
   function hapus(id) {
@@ -184,7 +187,7 @@ $("#form_add").submit(function(e) {
              data: {id:id},            
              success: function(data) {  
               setTimeout(function() {
-            content();
+            data_sampah();
             }, 500);
              
             //console.log(data);

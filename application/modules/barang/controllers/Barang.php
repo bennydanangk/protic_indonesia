@@ -51,10 +51,6 @@ class Barang extends MY_Controller {
 		$data['distributor'] = $this->M_barang->get_ruang('distributor',$where);
 		$data['satuan'] = $this->M_barang->get_ruang('satuan',$where);
 		$data['id_user'] =  $this->session->userdata('id_user');
-		// echo "<pre>";
-		// print_r($data);
-		// echo "</pre>";
-
 		$data['kode_id_barang'] = $this->M_barang->cekkodebarang();
 		$this->load->view('back_end/add_content',$data);
 	}
@@ -62,13 +58,14 @@ class Barang extends MY_Controller {
 	//get form edit
 	function edit($id)  {
 		$where = array(
-			'id_ruang' => $id,
-			'state' => 'aktif'
+			'id_barang' => $id,
+			'barang.state' => 'aktif'
 		);	
 		
-		$data['ruang'] = $this->M_barang->get_ruang('ruang',$where);
+		$data['barang'] = $this->M_barang->get_edit('barang',$where);
 	
-		$this->load->view('back_end/edit_content',$data);
+
+		 $this->load->view('back_end/edit_content',$data);
 	}
 //get Content table
 	function content()  {
@@ -76,9 +73,6 @@ class Barang extends MY_Controller {
 			'barang.state' => 'aktif'
 		);	
 		$data['data'] = $this->M_barang->get_barang('barang',$where);
-		// echo "<pre>";
-		// print_r($data);
-		// echo "</pre>";
 		$this->load->view('back_end/table_content',$data);
 	}
 
@@ -87,7 +81,7 @@ class Barang extends MY_Controller {
 		$where = array(
 			'barang.state' => 'tidak'
 		);	
-		$data['data'] = $this->M_barang->get_data('ruang',$where);
+		$data['data'] = $this->M_barang->get_barang('barang',$where);
 		$this->load->view('back_end/table_content_sampah',$data);
 	}
 
@@ -148,12 +142,30 @@ class Barang extends MY_Controller {
 //proses edit
 	function edit_p()  {
 	
+	
 		$data = array(
-		'nama_ruangan' => $_POST['nama_ruangan'],
-	);	
+			'kode_id_barang' => $_POST['kode_id_barang'],
+			'kode_barang' => $_POST['kode_barang'],
+			'kode_lokasi' => $_POST['kode_lokasi'],
+			'nama_barang' => $_POST['nama_barang'],
+			'id_perolehan' => $_POST['id_perolehan'],
+			'id_jenis' => $_POST['id_jenis'],
+			'id_sumber_dana' => $_POST['id_sumber_dana'],
+			'id_distributor' => $_POST['id_distributor'],
+			'tahun_pembelian' => $_POST['tahun_pembelian'],
+			'harga_perolehan' => $_POST['harga_perolehan'],
+			'kondisi_barang' => $_POST['kondisi_barang'],
+			'jumlah' => $_POST['jumlah'],
+			'id_satuan' => $_POST['id_satuan'],
+			'id_user' => $_POST['id_user'],
+			'keterangan' => $_POST['ket'],
+			'tgl_input' => date('Y-m-d H:i:s'),
+			'state' => 'aktif'
+				);
+
 	//cek before
 	$where = array(
-		'id_ruang' => $_POST['id_ruang']
+		'id_barang' => $_POST['id_barang']
 	);
 
 	
@@ -162,7 +174,7 @@ class Barang extends MY_Controller {
 			'data' => 'Data Tersimpan!'
 		);
 
-	  $insert = $this->M_barang->edit_data($where,$data,'ruang');
+	  $insert = $this->M_barang->edit_data($where,$data,'barang');
 
 
 	header('Content-Type: application/json');
@@ -177,7 +189,7 @@ class Barang extends MY_Controller {
 	function hapus()  {
 
 		$where = array(
-			'id_ruang' => $_POST['id'],
+			'id_barang' => $_POST['id'],
 		);
 		$data = array(
 			'state' => 'tidak',
@@ -185,7 +197,7 @@ class Barang extends MY_Controller {
 		);
 
 
-		 $this->M_barang->edit_data($where,$data,'ruang');
+		 $this->M_barang->edit_data($where,$data,'barang');
 		
 	}
 
@@ -194,7 +206,7 @@ class Barang extends MY_Controller {
 function restore()  {
 
 	$where = array(
-		'id_ruang' => $_POST['id'],
+		'id_barang' => $_POST['id'],
 	);
 	$data = array(
 		'state' => 'aktif',
@@ -202,9 +214,27 @@ function restore()  {
 	);
 
 
-	 $this->M_barang->edit_data($where,$data,'ruang');
+	 $this->M_barang->edit_data($where,$data,'barang');
 	
 }
+
+
+
+	//get form edit
+	function detail($id)  {
+		$where = array(
+			'id_barang' => $id,
+			'barang.state' => 'aktif'
+		);	
+		
+		$data['barang'] = $this->M_barang->get_edit('barang',$where);
+	
+		// echo "<pre>";
+		// print_r($data);
+		// echo "</pre>";
+
+		 $this->load->view('back_end/detail_content',$data);
+	}
 
 
 
