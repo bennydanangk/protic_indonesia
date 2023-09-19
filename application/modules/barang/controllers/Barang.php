@@ -62,9 +62,21 @@ class Barang extends MY_Controller {
 	//get form edit
 	function edit($id)  {
 		$where = array(
+			'state' => 'aktif'
+		);	
+
+		$data['perolehan'] = $this->M_barang->get_ruang('perolehan',$where);
+		$data['jenis'] = $this->M_barang->get_ruang('jenis',$where);
+		$data['sumber_dana'] = $this->M_barang->get_ruang('sumber_dana',$where);
+		$data['distributor'] = $this->M_barang->get_ruang('distributor',$where);
+		$data['satuan'] = $this->M_barang->get_ruang('satuan',$where);
+
+
+		$where = array(
 			'id_barang' => $id,
 			'barang.state' => 'aktif'
 		);	
+		
 		
 		$data['barang'] = $this->M_barang->get_edit('barang',$where);
 	
@@ -94,7 +106,7 @@ class Barang extends MY_Controller {
 	function add_p()  {
 		
 		
-
+$id_user =$this->session->userdata('id_user');
 		
 		$data = array(
 		'kode_id_barang' => $_POST['kode_id_barang'],
@@ -110,7 +122,7 @@ class Barang extends MY_Controller {
 		'kondisi_barang' => $_POST['kondisi_barang'],
 		'jumlah' => $_POST['jumlah'],
 		'id_satuan' => $_POST['id_satuan'],
-		'id_user' => $_POST['id_user'],
+		'id_user' => $id_user,
 		'keterangan' => $_POST['ket'],
 		'tgl_input' => date('Y-m-d H:i:s'),
 		'state' => 'aktif'
@@ -146,7 +158,7 @@ $this->qrcode($_POST['kode_id_barang']);
 //proses edit
 	function edit_p()  {
 	
-	
+		$id_user =$this->session->userdata('id_user');
 		$data = array(
 			'kode_id_barang' => $_POST['kode_id_barang'],
 			'kode_barang' => $_POST['kode_barang'],
@@ -161,7 +173,7 @@ $this->qrcode($_POST['kode_id_barang']);
 			'kondisi_barang' => $_POST['kondisi_barang'],
 			'jumlah' => $_POST['jumlah'],
 			'id_satuan' => $_POST['id_satuan'],
-			'id_user' => $_POST['id_user'],
+			'id_user' => $id_user,
 			'keterangan' => $_POST['ket'],
 			'tgl_input' => date('Y-m-d H:i:s'),
 			'state' => 'aktif'

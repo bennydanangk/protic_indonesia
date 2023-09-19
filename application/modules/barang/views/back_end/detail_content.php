@@ -63,6 +63,10 @@
 
 
     <?= $barang[0]->keterangan;?>
+  
+    <span class="badge badge-pill badge-primary"><?= $barang[0]->nama_pengguna; ?></span>
+    <span class="badge badge-pill badge-success"><?= $barang[0]->tgl_input; ?></span> <br>
+    <hr>  
      <a onclick="content();" class="btn btn-secondary"> <i class="fa fa-arrow-left"></i> Kembali</a>
   </div>
 </div>
