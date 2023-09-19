@@ -2,7 +2,7 @@
           
           <a href="#" class="btn btn-sm btn-secondary" onclick="content();"> <i class="fa fa-arrow-left"></i> Kembali</a> <hr>
  
-          <form id="form_add" method="POST">
+    <form id="form_add" method="POST">
      
           
         <div class="form-group">
@@ -46,7 +46,7 @@
           
                  <button type="submit"  id="submit_add" class="btn btn-primary btn-sm"> <i class="fa fa-save"></i> Simpan</button>
 
-   
+      </form>
 
        
 <script>

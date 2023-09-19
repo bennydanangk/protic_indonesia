@@ -2,12 +2,12 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Distributor extends MY_Controller {
+class status_barang extends MY_Controller {
 
 	public function __construct()
     {
         parent::__construct();
-        $this->load->model("M_distributor"); //load model
+        $this->load->model("M_status_barang"); //load model
 		if($this->session->userdata('status') != "login"){
 			redirect(base_url("auth"));
 		}
@@ -17,9 +17,9 @@ class Distributor extends MY_Controller {
 	public function index()
 	{
 	
-		$data['conf'] = $this->M_distributor->config();
+		$data['conf'] = $this->M_status_barang->config();
 		$data['nama_user'] = $this->session->userdata('nama_user');
-		$data['nama_menu'] = 'Distributor';
+		$data['nama_menu'] = 'Status barang';
 		$data['x_token'] = $this->session->userdata('x_token');
 		$this->load->view('back_end/a_header',$data);
 		$this->load->view('back_end/b_navbar',$data);
@@ -35,7 +35,7 @@ class Distributor extends MY_Controller {
 		$where = array(
 			'state' => 'aktif'
 		);	
-		$data['data'] = $this->M_distributor->get_data('distributor',$where);
+		$data['data'] = $this->M_status_barang->get_data('status_barang',$where);
 		$this->load->view('back_end/d_content',$data);
 		// echo json_encode($data);
 	}
@@ -46,18 +46,18 @@ class Distributor extends MY_Controller {
 		$where = array(
 			'state' => 'aktif'
 		);	
-		$data['distributor'] = $this->M_distributor->get_distributor('distributor',$where);
+		$data['status_barang'] = $this->M_status_barang->get_status_barang('status_barang',$where);
 		$this->load->view('back_end/add_content',$data);
 	}
 
 	//get form edit
 	function edit($id)  {
 		$where = array(
-			'id_distributor' => $id,
+			'id_status_barang' => $id,
 			'state' => 'aktif'
 		);	
 		
-		$data['distributor'] = $this->M_distributor->get_distributor('distributor',$where);
+		$data['status_barang'] = $this->M_status_barang->get_status_barang('status_barang',$where);
 	
 		$this->load->view('back_end/edit_content',$data);
 	}
@@ -66,7 +66,7 @@ class Distributor extends MY_Controller {
 		$where = array(
 			'state' => 'aktif'
 		);	
-		$data['data'] = $this->M_distributor->get_data('distributor',$where);
+		$data['data'] = $this->M_status_barang->get_data('status_barang',$where);
 		$this->load->view('back_end/table_content',$data);
 	}
 
@@ -75,26 +75,18 @@ class Distributor extends MY_Controller {
 		$where = array(
 			'state' => 'tidak'
 		);	
-		$data['data'] = $this->M_distributor->get_data('distributor',$where);
+		$data['data'] = $this->M_status_barang->get_data('status_barang',$where);
 		$this->load->view('back_end/table_content_sampah',$data);
 	}
 
 
 //prosess add
 	function add_p()  {
-				
+		
 		$data = array(
-		'nama_distributor' => $_POST['nama_distributor'],
-		'alamat_distributor' => $_POST['alamat_distributor'],
-		'no_telp' => $_POST['no_telp'],
-		'nama_pimpinan' => $_POST['nama_pimpinan'],
-		'nama_bank' => $_POST['nama_bank'],
-		'no_rek' => $_POST['no_rek'],
-		'state' => 'aktif'
+		'nama_status_barang' => $_POST['nama_status_barang'],
 		
 			);	
-
-			// print_r($data);
 	
 
 	
@@ -103,7 +95,7 @@ class Distributor extends MY_Controller {
 			'data' => 'Data Tersimpan!'
 		);
 
-	$insert = $this->M_distributor->input_data($data,'distributor');
+	  $insert = $this->M_status_barang->input_data($data,'status_barang');
 	
 
 	header('Content-Type: application/json');
@@ -127,19 +119,11 @@ class Distributor extends MY_Controller {
 	function edit_p()  {
 	
 		$data = array(
-			'nama_distributor' => $_POST['nama_distributor'],
-			'alamat_distributor' => $_POST['alamat_distributor'],
-			'no_telp' => $_POST['no_telp'],
-			'nama_pimpinan' => $_POST['nama_pimpinan'],
-			'nama_bank' => $_POST['nama_bank'],
-			'no_rek' => $_POST['no_rek'],
-			'state' => 'aktif'
-			
-				);	
-				
+		'nama_status_barang' => $_POST['nama_status_barang'],
+	);	
 	//cek before
 	$where = array(
-		'id_distributor' => $_POST['id_distributor']
+		'id_status_barang' => $_POST['id_status_barang']
 	);
 
 	
@@ -148,7 +132,7 @@ class Distributor extends MY_Controller {
 			'data' => 'Data Tersimpan!'
 		);
 
-	  $insert = $this->M_distributor->edit_data($where,$data,'distributor');
+	  $insert = $this->M_status_barang->edit_data($where,$data,'status_barang');
 
 
 	header('Content-Type: application/json');
@@ -163,7 +147,7 @@ class Distributor extends MY_Controller {
 	function hapus()  {
 
 		$where = array(
-			'id_distributor' => $_POST['id'],
+			'id_status_barang' => $_POST['id'],
 		);
 		$data = array(
 			'state' => 'tidak',
@@ -171,7 +155,7 @@ class Distributor extends MY_Controller {
 		);
 
 
-		 $this->M_distributor->edit_data($where,$data,'distributor');
+		 $this->M_status_barang->edit_data($where,$data,'status_barang');
 		
 	}
 
@@ -180,7 +164,7 @@ class Distributor extends MY_Controller {
 function restore()  {
 
 	$where = array(
-		'id_distributor' => $_POST['id'],
+		'id_status_barang' => $_POST['id'],
 	);
 	$data = array(
 		'state' => 'aktif',
@@ -188,7 +172,7 @@ function restore()  {
 	);
 
 
-	 $this->M_distributor->edit_data($where,$data,'distributor');
+	 $this->M_status_barang->edit_data($where,$data,'status_barang');
 	
 }
 
