@@ -57,6 +57,9 @@ function get_all($tabel) {
 function input_data($data,$table){
 return  $this->db->insert($table,$data);
 }
+function get_ruang($table,$where){		
+  return $this->db->get_where($table,$where)->result();
+}	
 function get_cek($table,$where){		
   return $this->db->get_where($table,$where);
 }	

@@ -108,6 +108,15 @@ select2add();
 
   }
 
+  function barcode(id) {
+
+    window.open("<?= base_url('barang/cetak_label/')?>"+id,"Ratting","width=550,height=170,left=150,top=200,toolbar=0,status=0,");
+
+
+    // $('#content').load('<?= base_url("barang/cetak_label/")?>'+id);
+
+  }
+
 
   function hapus(id) {
     Swal.fire({

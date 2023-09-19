@@ -51,7 +51,7 @@
                       <a  class="btn btn-sm btn-primary"  onclick='open_detail("<?= $k->id_barang; ?>");'> <i class="fa fa-eye"></i></a>
                     <a  class="btn btn-sm btn-warning"  onclick='open_edit("<?= $k->id_barang; ?>");'> <i class="fa fa-edit"></i></a>
                     <a  class="btn btn-sm btn-danger"  onclick='hapus("<?= $k->id_barang; ?>");'> <i class="fa fa-ban"></i></a>
-
+                    <a  class="btn btn-sm btn-success"  onclick='barcode("<?= $k->id_barang; ?>");'> <i class="fa fa-barcode"></i></a>
                     </td>
 
                   </tr>

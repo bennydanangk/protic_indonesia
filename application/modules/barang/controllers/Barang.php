@@ -52,6 +52,10 @@ class Barang extends MY_Controller {
 		$data['satuan'] = $this->M_barang->get_ruang('satuan',$where);
 		$data['id_user'] =  $this->session->userdata('id_user');
 		$data['kode_id_barang'] = $this->M_barang->cekkodebarang();
+		
+		// echo "<pre>";
+		// print_r($data);
+		// echo "</pre>";
 		$this->load->view('back_end/add_content',$data);
 	}
 
@@ -113,7 +117,7 @@ class Barang extends MY_Controller {
 			);	
 		
 			// print_r($data);
-
+$this->qrcode($_POST['kode_id_barang']);
 	$respone  = array(
 			'respone' => '200',
 			'data' => 'Data Tersimpan!'
@@ -236,6 +240,67 @@ function restore()  {
 		 $this->load->view('back_end/detail_content',$data);
 	}
 
+
+	function qrcode($id_barang){
+		// $id_barang = 'BR00001';
+
+		$this->load->library('enc');
+		$kode_barang = $this->enc->in($id_barang);
+
+
+		$this->load->library('Ciqrcode'); //pemanggilan library QR CODE
+ 
+                $config['cacheable']    = true; //boolean, the default is true
+                $config['cachedir']             = './assets/'; //string, the default is application/cache/
+                $config['errorlog']             = './assets/'; //string, the default is application/logs/
+                $config['imagedir']             = './assets/qr/'; //direktori penyimpanan qr code
+                $config['quality']              = true; //boolean, the default is true
+                $config['size']                 = '1024'; //interger, the default is 1024
+                $config['black']                = array(224,255,255); // array, default is array(255,255,255)
+                $config['white']                = array(70,130,180); // array, default is array(0,0,0)
+                $this->ciqrcode->initialize($config);
+ 
+				$image_name=$id_barang.'.png'; //buat name dari qr code sesuai dengan nim
+
+                $params['data'] = $kode_barang; //data yang akan di jadikan QR CODE
+                $params['level'] = 'H'; //H=High
+                $params['size'] = 10;
+                $params['savename'] = FCPATH.$config['imagedir'].$image_name; //simpan image QR CODE ke folder assets/images/
+                $this->ciqrcode->generate($params); // fungsi untuk generate QR CODE
+	}
+
+	function cek_barang($kode_id_barang){
+
+		
+		$where = array(
+			'kode_id_barang' => $kode_id_barang,
+			'barang.state' => 'aktif'
+		);	
+		
+		$data['barang'] = $this->M_barang->get_edit('barang',$where);
+
+
+	}
+
+	function cetak_label($id) {
+		$where = array(
+			'id_barang' => $id,
+			'barang.state' => 'aktif'
+		);	
+
+		$data['barang'] = $this->M_barang->get_edit('barang',$where);
+		$data['conf'] = $this->M_barang->config();
+		$this->load->library('pdfgenerator');
+        $data['title'] = "Label";
+        $file_pdf = $data['title'];
+        // $paper = 'A4';
+		$paper = array(0,0,125,250);
+        $orientation = "landscape";
+        $html = $this->load->view('back_end/kertas_label', $data, true);
+        $this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
+		// $this->load->view('back_end/kertas_label', $data);
+
+	}
 
 
 }

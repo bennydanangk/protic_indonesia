@@ -29,6 +29,8 @@
             <input type="text" name="nama_barang" class="form-control" placeholder="Masukan Nama Barang" id="nip"   autocomplete="off" required >
           </div>
           <div class="form-group">
+            
+          
             <label for="recipient-name"   class="col-form-label">Perolehan:</label>
             <select name="id_perolehan" class="form-control  select2bs4" required >
                     <option >-Kosong-</option>
