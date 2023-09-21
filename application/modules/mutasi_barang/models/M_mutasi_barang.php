@@ -9,6 +9,14 @@ class M_mutasi_barang extends CI_Model {
   return $this->db->get_where($table,$where)->result();
 }	
 
+function get_sebelum($table,$where){		
+  $this->db->join('ruang', 'ruang.id_ruang = posisi_barang  .id_ruang_sesudah','left');
+  $this->db->order_by('id_posisi_barang', 'DESC');
+  $this->db->limit(1);
+  return $this->db->get_where($table,$where);
+}	
+
+
 function get_mutasi_barang($table,$where){		
   return $this->db->get_where($table,$where)->result();
 }	
@@ -43,6 +51,18 @@ function get_barang($table,$where){
   $this->db->join('satuan', 'barang.id_satuan = satuan.id_satuan','left');
   return $this->db->get_where($table,$where)->result();
   }	
+
+  function get_posisi($table,$where){		
+    $this->db->select('*,a.nama_ruangan as nama_ruangan_sebelum,b.nama_ruangan as nama_ruangan_sesudah');
+    $this->db->join('barang', 'barang.id_barang = posisi_barang.id_barang','left');
+    $this->db->join('user', 'user.id_user = posisi_barang.id_user_mutasi','left');
+    $this->db->join('status_barang', 'status_barang.id_status_barang = posisi_barang.id_status_barang','left');
+    $this->db->join('ruang a', 'a.id_ruang = posisi_barang.id_ruang_sebelum','inner');
+    $this->db->join('ruang b', 'b.id_ruang = posisi_barang.id_ruang_sesudah','left');
+    $this->db->order_by('id_posisi_barang', 'DESC');
+    return $this->db->get_where($table,$where)->result();
+    }	
+
 
 }
 ?>

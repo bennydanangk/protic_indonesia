@@ -6,17 +6,19 @@
    
   <div class="card">
   <div class="card-body">
-  <hr>
+
   <a  class="btn btn-sm btn-danger" onclick="menu_bar();"> <i class="fa fa-arrow-left"></i> Kembali</a> 
-  <a  class="btn btn-sm btn-primary" onclick="add();"> <i class="fa fa-plus"></i> Tambah</a> 
-  <a  class="btn btn-sm btn-secondary" onclick="data_sampah();"> <i class="fa fa-trash"></i> Data Sampah</a> <hr>
-                <table id="example1" class="table table-bordered table-striped">
+<hr>                <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th>No</th>
-                    <th>Nama mutasi_barang</th>
-                     <th>Tools</th>
-                      
+                    <th>Tgl Mutasi</th>
+                    <th>Kode Barang</th>
+                    <th>Nama Barang</th>
+                    <th>Mutasi Dari</th>
+                    <th>Mutasi Ke</th>
+                    <th>Status Barang</th>
+                    <th>penanggung jawab</th>
                   </tr>
                   </thead>
                 <tbody>
@@ -28,12 +30,23 @@
                  
                   <tr>
                       <td><?= $i; ?></td>
-                      <td><?= $k->id_barang?></td>
-                    <td>
-
-                    <a  class="btn btn-sm btn-warning"  onclick='open_edit("<?= $k->id_mutasi_barang; ?>");'> <i class="fa fa-edit"></i></a>
-                    <a  class="btn btn-sm btn-danger"  onclick='hapus("<?= $k->id_mutasi_barang; ?>");'> <i class="fa fa-ban"></i></a>
-
+                      <td><?= $k->kode_id_barang?></td>
+                      <td><?= $k->tgl_input?></td>
+                      <td><?= $k->nama_barang?></td>
+                      <td>
+                        
+                      <span class="badge badge-primary"> <?= $k->nama_ruangan_sebelum?></span>
+                      
+                     </td>
+                      <td>
+                        
+                      <span class="badge badge-success"> <?= $k->nama_ruangan_sesudah?></span>
+                      
+            </td>
+                      <td>    <span class="badge badge-danger"> <?= $k->nama_status_barang?></span>
+                      </td>
+                      <td>
+                      <span class="badge badge-info">  <?= $k->nama_pengguna?></span>  
                     </td>
 
                   </tr>
@@ -43,9 +56,14 @@
                 </tbody>
                   <tfoot>
                   <tr>
-                  <th>No</th>
-                    <th>Nama mutasi_barang</th>
-                     <th>Tools</th>
+                     <th>No</th>
+                     <th>Tgl Mutasi</th>
+                    <th>Kode Barang</th>
+                    <th>Nama Barang</th>
+                    <th>Mutasi Dari</th>
+                    <th>Mutasi Ke</th>
+                    <th>Status Barang</th>
+                    <th>penanggung jawab</th>
                   </tr>
                   </tfoot>
                 </table>

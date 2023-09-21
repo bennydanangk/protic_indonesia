@@ -57,16 +57,38 @@ class Mutasi_barang extends MY_Controller {
 		$data['user'] = $this->M_mutasi_barang->get_data('user',$wheres);
 		$data['ruang'] = $this->M_mutasi_barang->get_data('ruang',$wheres);
 		$data['status_barang'] = $this->M_mutasi_barang->get_data('status_barang',$wheres);
+		
+		$where_sebelum = array(
+			'posisi_barang.state' => 'aktif',
+			'id_barang'=> $id
+
+		);
+		$cek  =  $this->M_mutasi_barang->get_sebelum('posisi_barang',$where_sebelum)->num_rows();
+
+		$id_ruang_sebelum;
+		$nama_ruang_sebelum;
+		if($cek > 0){
+			$ruang_sebelum  =  $this->M_mutasi_barang->get_sebelum('posisi_barang',$where_sebelum)->result();
+			// print_r($ruang_sebelum);
+			$id_ruang_sebelum = $ruang_sebelum[0]->id_ruang_sesudah;
+			$nama_ruang_sebelum = $ruang_sebelum[0]->nama_ruangan;
+		}else{
+			$id_ruang_sebelum = 1;
+			$nama_ruang_sebelum = 'Belum Terdistribusi';
+		}
+		$data['id_ruang_sebelum'] = $id_ruang_sebelum;
+		$data['nama_ruang_sebelum'] = $nama_ruang_sebelum;
 		// print_r($data);
 		$this->load->view('back_end/mutasi_content',$data);
 	}
 //get Content table
 	function content()  {
 		$where = array(
-			'state' => 'aktif'
+			'posisi_barang.state' => 'aktif'
 		);	
-		$data['data'] = $this->M_mutasi_barang->get_data('posisi_barang',$where);
+		$data['data'] = $this->M_mutasi_barang->get_posisi('posisi_barang',$where);
 		$this->load->view('back_end/table_content',$data);
+		// print_r($data);
 	}
 
 //restore		
@@ -85,15 +107,17 @@ class Mutasi_barang extends MY_Controller {
 $id_user = $this->session->userdata('id_user');
 $data = array(
 	'id_barang' => $_POST['id_barang'],
-	'id_user' => $id_user,
+	'id_user_create' => $id_user,
 	'id_user_mutasi' => $_POST['id_user_mutasi'],
-	'id_ruang' => $_POST['id_ruang'],
+	'id_ruang_sesudah' => $_POST['id_ruang'],
 	'id_status_barang' => $_POST['id_status_barang'],
 	'keterangan' => $_POST['keterangan'],
+	'id_ruang_sebelum' => $_POST['id_ruang_sebelum'],
 	'state' => 'aktif',
-	'tanggal_input_mutasi' => date('d-m-Y H:i:s')
+	'tanggal_input_mutasi' => date('Y-m-d H:i:s')
 );
 
+// print_r($data);
 
 	
 	$respone  = array(
@@ -197,5 +221,11 @@ function content_barang()  {
 	$this->load->view('back_end/table_content_barang',$data);
 }
 
+function qr_code()  {
+	$this->load->view('back_end/qr_content');
+}
+function qr_code2()  {
+	$this->load->view('back_end/qr_content2');
+}
   
 }

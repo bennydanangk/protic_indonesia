@@ -24,6 +24,13 @@
             <input type="text" name="tahun_pembelian" value="<?= $barang[0]->tahun_pembelian;?>" class="form-control" id="nama_pengguna"    placeholder="Masukan Nama Anda!"  autocomplete="off" readonly>
           
           </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Posisi Barang Sebelumnya:</label>
+            <input type="hidden" name="id_ruang_sebelum" value="<?= $id_ruang_sebelum;?>" class="form-control" id="nama_pengguna"    placeholder="Masukan Nama Anda!"  autocomplete="off" readonly>
+            <input type="text" name="nama_ruang_sebelum" value="<?= $nama_ruang_sebelum;?>" class="form-control" id="nama_pengguna"    placeholder="Masukan Nama Anda!"  autocomplete="off" readonly>
+          
+          </div>
         
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Info:</label>

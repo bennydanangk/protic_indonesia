@@ -110,6 +110,10 @@ select2add();
 
   }
 
+  function open_qr() {
+    $('#content').load('<?= base_url("mutasi_barang/qr_code2")?>');
+
+  }
 
 
   function hapus(id) {
