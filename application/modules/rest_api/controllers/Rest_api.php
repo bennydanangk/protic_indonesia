@@ -156,4 +156,8 @@ function backup_db()  {
 function qrcode()  {
 	$this->load->view('back_end/index');
 }
+
+function cek_bos()  {
+	$this->load->view('back_end/index');
+}
 }

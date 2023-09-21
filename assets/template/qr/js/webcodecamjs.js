@@ -62,8 +62,8 @@ var WebCodeCamJS = function(element) {
             flipVertical: false,
             flipHorizontal: false,
             zoom: 0,
-            beep: 'audio/beep.mp3',
-            decoderWorker: 'js/DecoderWorker.js',
+            beep: 'assets/qr/audio/beep.mp3',
+            decoderWorker: 'assets/qr/js/DecoderWorker.js',
             brightness: 0,
             autoBrightnessValue: 0,
             grayScale: 0,
@@ -158,7 +158,7 @@ var WebCodeCamJS = function(element) {
 
     function beep() {
         if (options.beep) {
-            beepSound.play();
+             beepSound.play();
         }
     }
 

@@ -16,37 +16,7 @@
                             <div class="scanner-laser laser-leftBottom" style="opacity: 0.5;"></div>
                             <div class="scanner-laser laser-leftTop" style="opacity: 0.5;"></div>
                         </div>
-                        <!-- <div class="well" style="width: 100%;">
-                            <label id="zoom-value" width="100">Zoom: 2</label>
-                            <input id="zoom" onchange="Page.changeZoom();" type="range" min="10" max="30" value="20">
-                            <label id="brightness-value" width="100">Brightness: 0</label>
-                            <input id="brightness" onchange="Page.changeBrightness();" type="range" min="0" max="128" value="0">
-                            <label id="contrast-value" width="100">Contrast: 0</label>
-                            <input id="contrast" onchange="Page.changeContrast();" type="range" min="0" max="64" value="0">
-                            <label id="threshold-value" width="100">Threshold: 0</label>
-                            <input id="threshold" onchange="Page.changeThreshold();" type="range" min="0" max="512" value="0">
-                            <label id="sharpness-value" width="100">Sharpness: off</label>
-                            <input id="sharpness" onchange="Page.changeSharpness();" type="checkbox">
-                            <label id="grayscale-value" width="100">grayscale: off</label>
-                            <input id="grayscale" onchange="Page.changeGrayscale();" type="checkbox">
-                            <br>
-                            <label id="flipVertical-value" width="100">Flip Vertical: off</label>
-                            <input id="flipVertical" onchange="Page.changeVertical();" type="checkbox">
-                            <label id="flipHorizontal-value" width="100">Flip Horizontal: off</label>
-                            <input id="flipHorizontal" onchange="Page.changeHorizontal();" type="checkbox">
-                        </div> -->
-                    <!-- </div> -->
-                    <!-- <div class="col-md-6">
-                        <div class="thumbnail" id="result">
-                            <div class="well" style="overflow: hidden;">
-                                <img width="320" height="240" id="scanned-img" src="">
-                            </div>
-                            <div class="caption">
-                                <h3>Scanned result</h3>
-                                <p id="scanned-QR"></p>
-                            </div>
-                        </div>
-                    </div> -->
+               
 
                     <select class="form-control" id="camera-select"></select>
 <hr>
@@ -56,7 +26,7 @@
                     <p id="scanned-QR"></p>
                 </div>
               
-        <script type="text/javascript" src="<?= base_url('assets/template/qr/');?>js/filereader.js"></script>
+        <!-- <script type="text/javascript" src="<?= base_url('assets/template/qr/');?>js/filereader.js"></script> -->
         <!-- Using jquery version: -->
         
             <script type="text/javascript" src="<?= base_url('assets/template/qr/');?>js/jquery.js"></script>
@@ -71,6 +41,13 @@
 
 <script>
 
+    /*!
+ * WebCodeCamJQuery 2.1.0 javascript Bar-Qr code decoder 
+ * Author: Tóth András
+ * Web: http://atandrastoth.co.uk
+ * email: atandrastoth@gmail.com
+ * Licensed under the MIT license
+ */
 (function(undefined) {
     var scannerLaser = $(".scanner-laser"),
         imageUrl = $("#image-url"),
@@ -106,10 +83,25 @@
                 });
             });
             scannedImg.attr("src", res.imgData);
-           
-            var data =res.code;
-            alert(data);
             scannedQR.text(res.format + ": " + res.code);
+                    qr =  res.code;
+            $.ajax({
+                    url: "<?= base_url('mutasi_barang/barang_qr')?>",
+                            type: 'POST',
+                            data: {qr:qr},            
+                            success: function(data) {  
+                            
+                            let obj = JSON.parse(JSON.stringify(data)); 
+                            // console.log(obj);
+                            s =obj['data']; 
+ 
+                            open_mutasi(s);
+                        
+                            
+                            }
+                });
+
+
         },
         getDevicesError: function(error) {
             var p, message = "Error detected with the following parameters:\n";

@@ -33,13 +33,13 @@
           </div>
           <!-- /.col -->
           <div class="col-md-3 col-sm-6 col-12">
-          <div class="info-box shadow-lg">
+          <div class="info-box shadow-lg" onclick="open_report()">
 
               <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Report</span>
-                <span class="info-box-number">Regular</span>
+                <span class="info-box-text">Riwayat</span>
+                <span class="info-box-number">Seluruh Mutasi</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -51,8 +51,8 @@
               <span class="info-box-icon bg-danger"><i class="far fa-flag"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Riwayat</span>
-                <span class="info-box-number">Barang Mutasi</span>
+                <span class="info-box-text">Laporan</span>
+                <span class="info-box-number">Mutasi Terkini</span>
               </div>
               <!-- /.info-box-content -->
             </div>

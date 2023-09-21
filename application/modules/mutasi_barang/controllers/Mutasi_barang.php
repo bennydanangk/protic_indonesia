@@ -117,16 +117,25 @@ $data = array(
 	'tanggal_input_mutasi' => date('Y-m-d H:i:s')
 );
 
-// print_r($data);
+// Hapus Dulu 
+$where  = array(
+	'id_barang' => $_POST['id_barang']
+);
+$update  = array(
+	'state' => 'tidak',
+);
+
+ $this->M_mutasi_barang->edit_data($where,$update,'posisi_barang');
 
 	
 	$respone  = array(
 			'respone' => '200',
 			'data' => 'Data Tersimpan!'
 		);
+//baru Isi
+		$this->M_mutasi_barang->input_data($data,'posisi_barang');
 
-	  $insert = $this->M_mutasi_barang->input_data($data,'posisi_barang');
-	
+	 
 
 	header('Content-Type: application/json');
 	echo json_encode($respone);
@@ -137,10 +146,27 @@ $data = array(
 	
 	}
 // get password
-	function forgot_password(){
+	function barang_qr(){
 		$this->load->library('enc');
-		$password = $this->enc->out($_POST['ps']);
-		echo $password;
+		$id_barang = $this->enc->out($_POST['qr']);
+
+		$where = array(
+			'kode_id_barang' => $id_barang,
+			'barang.state' => 'aktif'
+		);	
+
+
+		$data = $this->M_mutasi_barang->get_barang('barang',$where);
+		$id_barang = $data[0]->id_barang;
+		// $data['data']=$id_barang;
+
+		$respone  = array(
+			'respone' => '200',
+			'data' => $id_barang
+		);
+// return $data;
+		header('Content-Type: application/json');
+		echo json_encode($respone);
 	
 	}
 
@@ -173,38 +199,7 @@ $data = array(
 
 	
 	}
-//proses hapus
-	function hapus()  {
 
-		$where = array(
-			'id_mutasi_barang' => $_POST['id'],
-		);
-		$data = array(
-			'state' => 'tidak',
-	
-		);
-
-
-		 $this->M_mutasi_barang->edit_data($where,$data,'mutasi_barang');
-		
-	}
-
-
-//proses restore
-function restore()  {
-
-	$where = array(
-		'id_mutasi_barang' => $_POST['id'],
-	);
-	$data = array(
-		'state' => 'aktif',
-
-	);
-
-
-	 $this->M_mutasi_barang->edit_data($where,$data,'mutasi_barang');
-	
-}
 
 
 
@@ -221,11 +216,22 @@ function content_barang()  {
 	$this->load->view('back_end/table_content_barang',$data);
 }
 
-function qr_code()  {
-	$this->load->view('back_end/qr_content');
-}
+
 function qr_code2()  {
 	$this->load->view('back_end/qr_content2');
 }
   
+
+function report()  {
+	$where = array(
+		
+		
+	);	
+	$data['data'] = $this->M_mutasi_barang->get_posisi('posisi_barang',$where);
+	$this->load->view('back_end/table_content',$data);
+	// print_r($data);
+}
+
+
+
 }

@@ -115,6 +115,10 @@ select2add();
 
   }
 
+  function open_report() {
+    $('#content').load('<?= base_url("mutasi_barang/report")?>');
+
+  }
 
   function hapus(id) {
     Swal.fire({
@@ -213,6 +217,27 @@ $("#form_add").submit(function(e) {
 })
   }
 
+function get_barang(qr) {
+
+  $.ajax({
+    url: "<?= base_url('mutasi_barang/barang_qr')?>",
+             type: 'POST',
+             data: {qr:qr},            
+             success: function(data) {  
+            
+              let obj = JSON.parse(data); 
+            // console.log(obj);
+            s =obj['status']; 
+
+            open_mutasi(s);
+           
+            
+             }
+  });
+
+
+  
+}
 </script>
 
 </body>

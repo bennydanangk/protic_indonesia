@@ -1,10 +1,9 @@
 /*!
- * WebCodeCamJQuery 2.7.0 jQuery plugin Bar code and QR code decoder
- * Author: Tóth András
- * Web: http://atandrastoth.co.uk
- * email: atandrastoth@gmail.com
- * Licensed under the MIT license
+ * Modifed By beeny
+ 
  */
+
+
 (function($, window, document, undefined) {
     'use strict';
     var pluginName = 'WebCodeCamJQuery';
@@ -57,8 +56,8 @@
             flipVertical: false,
             flipHorizontal: false,
             zoom: 0,
-            beep: 'audio/beep.mp3',
-            decoderWorker: 'js/DecoderWorker.js',
+            beep: '../app/assets/template/qr/beep.mp3',
+            decoderWorker: '../app/assets/template/qr/js/DecoderWorker.js',
             brightness: 0,
             autoBrightnessValue: 0,
             grayScale: 0,

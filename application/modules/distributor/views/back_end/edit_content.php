@@ -26,7 +26,7 @@
               
         <div class="form-group">
             <label for="recipient-name" class="col-form-label">Email Distributor:</label>
-            <input type="email" name="nama_distributor" class="form-control" value="<?= $distributor[0]->email?>" placeholder="Email Distributor" id="nip"   autocomplete="off" required>
+            <input type="email" name="email_distributor" class="form-control" value="<?= $distributor[0]->email?>" placeholder="Email Distributor" id="nip"   autocomplete="off" required>
           </div>
               
         <div class="form-group">
