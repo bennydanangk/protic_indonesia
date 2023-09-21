@@ -41,25 +41,24 @@ class Mutasi_barang extends MY_Controller {
 	}
 
 
-//get form add
-	function add()  {
-		$where = array(
-			'state' => 'aktif'
-		);	
-		$data['mutasi_barang'] = $this->M_mutasi_barang->get_mutasi_barang('mutasi_barang',$where);
-		$this->load->view('back_end/add_content',$data);
-	}
 
-	//get form edit
-	function edit($id)  {
+
+	//get form mutasi
+	function mutasi($id)  {
 		$where = array(
-			'id_mutasi_barang' => $id,
-			'state' => 'aktif'
+			'id_barang' => $id,
+			'barang.state' => 'aktif'
 		);	
 		
-		$data['mutasi_barang'] = $this->M_mutasi_barang->get_mutasi_barang('mutasi_barang',$where);
-	
-		$this->load->view('back_end/edit_content',$data);
+		$data['barang'] = $this->M_mutasi_barang->get_barang('barang',$where);
+		$wheres = array(
+		'state' => 'aktif'
+		);
+		$data['user'] = $this->M_mutasi_barang->get_data('user',$wheres);
+		$data['ruang'] = $this->M_mutasi_barang->get_data('ruang',$wheres);
+		$data['status_barang'] = $this->M_mutasi_barang->get_data('status_barang',$wheres);
+		// print_r($data);
+		$this->load->view('back_end/mutasi_content',$data);
 	}
 //get Content table
 	function content()  {
@@ -83,11 +82,18 @@ class Mutasi_barang extends MY_Controller {
 //prosess add
 	function add_p()  {
 		
-		$data = array(
-		'nama_mutasi_barang' => $_POST['nama_mutasi_barang'],
-		
-			);	
-	
+$id_user = $this->session->userdata('id_user');
+$data = array(
+	'id_barang' => $_POST['id_barang'],
+	'id_user' => $id_user,
+	'id_user_mutasi' => $_POST['id_user_mutasi'],
+	'id_ruang' => $_POST['id_ruang'],
+	'id_status_barang' => $_POST['id_status_barang'],
+	'keterangan' => $_POST['keterangan'],
+	'state' => 'aktif',
+	'tanggal_input_mutasi' => date('d-m-Y H:i:s')
+);
+
 
 	
 	$respone  = array(
@@ -95,7 +101,7 @@ class Mutasi_barang extends MY_Controller {
 			'data' => 'Data Tersimpan!'
 		);
 
-	  $insert = $this->M_mutasi_barang->input_data($data,'mutasi_barang');
+	  $insert = $this->M_mutasi_barang->input_data($data,'posisi_barang');
 	
 
 	header('Content-Type: application/json');
@@ -178,4 +184,18 @@ function restore()  {
 
 
 
+function menu_bar() {
+	$this->load->view('back_end/menu_bar');
+}
+
+
+function content_barang()  {
+	$where = array(
+		'barang.state' => 'aktif'
+	);	
+	$data['data'] = $this->M_mutasi_barang->get_barang('barang',$where);
+	$this->load->view('back_end/table_content_barang',$data);
+}
+
+  
 }

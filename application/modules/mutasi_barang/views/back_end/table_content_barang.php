@@ -6,15 +6,21 @@
    
   <div class="card">
   <div class="card-body">
-  <hr>
+   
   <a  class="btn btn-sm btn-danger" onclick="menu_bar();"> <i class="fa fa-arrow-left"></i> Kembali</a> 
-  <a  class="btn btn-sm btn-primary" onclick="add();"> <i class="fa fa-plus"></i> Tambah</a> 
-  <a  class="btn btn-sm btn-secondary" onclick="data_sampah();"> <i class="fa fa-trash"></i> Data Sampah</a> <hr>
+<hr>
+  <!-- <a  class="btn btn-sm btn-primary" onclick="add();"> <i class="fa fa-plus"></i> Tambah</a>  -->
+  <!-- <a  class="btn btn-sm btn-secondary" onclick="data_sampah();"> <i class="fa fa-trash"></i> Data Sampah</a> <hr> -->
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th>No</th>
-                    <th>Nama mutasi_barang</th>
+                    <th>ID barang</th>
+                    <th>Kode barang | Kode Lokasi</th>
+                    <th>Nama Barang</th>
+                    <th>Jenis </th>
+                    <th>Jumlah </th>
+                    <th>Kondisi</th>
                      <th>Tools</th>
                       
                   </tr>
@@ -28,13 +34,24 @@
                  
                   <tr>
                       <td><?= $i; ?></td>
-                      <td><?= $k->id_barang?></td>
-                    <td>
+                      <td><?= $k->kode_id_barang?></td>
+                      <td><?= $k->kode_barang?> | <?= $k->kode_lokasi?></td>
+                      <td><?= $k->nama_barang?></td>
+                      <td><?= $k->nama_jenis?></td>
+                      <td><?= $k->jumlah?> <?= $k->nama_satuan?></td>
+                      <td><?php $kondisi =$k->kondisi_barang;
+                      if($kondisi == 'B'){
+                        echo '<span class="badge badge-pill badge-success">'.$kondisi.'</span>';
+                      } else if($kondisi == 'KB'){
+                        echo '<span class="badge badge-pill badge-warning">'.$kondisi.'</span>';
+                      } else{
+                        echo '<span class="badge badge-pill badge-danger">'.$kondisi.'</span>';
 
-                    <a  class="btn btn-sm btn-warning"  onclick='open_edit("<?= $k->id_mutasi_barang; ?>");'> <i class="fa fa-edit"></i></a>
-                    <a  class="btn btn-sm btn-danger"  onclick='hapus("<?= $k->id_mutasi_barang; ?>");'> <i class="fa fa-ban"></i></a>
-
-                    </td>
+                      }
+                      ?></td>
+                      <td>
+                      <a  class="btn btn-sm btn-primary"  onclick='open_mutasi("<?= $k->id_barang; ?>");'> <i class="fa fa-paper-plane"></i> Mutasi</a>
+                                       </td>
 
                   </tr>
 
@@ -43,8 +60,13 @@
                 </tbody>
                   <tfoot>
                   <tr>
-                  <th>No</th>
-                    <th>Nama mutasi_barang</th>
+                          <th>No</th>
+                    <th>ID barang</th>
+                    <th>Kode barang | Kode Lokasi</th>
+                    <th>Nama Barang</th>
+                    <th>Jenis </th>
+                    <th>Jumlah </th>
+                    <th>Kondisi</th>
                      <th>Tools</th>
                   </tr>
                   </tfoot>

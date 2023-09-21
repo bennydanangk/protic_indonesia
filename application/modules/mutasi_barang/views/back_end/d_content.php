@@ -1,9 +1,4 @@
-<style>
-  .btn-sq-lg {
-  width: 115px !important;
-  height: 115px !important;
-}
-</style>
+
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -41,27 +36,8 @@
              
 
 
+              <div class="panel panel-primary">
 
-                <div class="position-relative mb-4">
-                <a class="btn btn-sq-lg btn-primary">
-                <i class="fa fa-qrcode fa-5x"></i><br/> 
-                Quick Search 
-            </a>
-               
-            <a class="btn btn-sq-lg btn-danger">
-                <i class="fa fa-keyboard fa-5x"></i><br/> 
-                Manual 
-            </a>
-            <a class="btn btn-sq-lg btn-success">
-                <i class="fa fa-table fa-5x"></i><br/> 
-                Activity
-            </a>
-            <a class="btn btn-sq-lg btn-danger">
-                <i class="fa fa-file fa-5x"></i><br/> 
-                Laporan
-            </a>
-
-     
 
 
 

@@ -22,9 +22,7 @@ function get_all($tabel) {
 function input_data($data,$table){
 return  $this->db->insert($table,$data);
 }
-function get_cek($table,$where){		
-  return $this->db->get_where($table,$where);
-}	
+
 //edit Data
 function edit_data($where,$data,$table){
   $this->db->where($where);
@@ -36,6 +34,15 @@ function get_state($table,$where){
   return $this->db->get_where($table,$where);
 }	
 
+function get_barang($table,$where){		
+  $this->db->join('perolehan', 'barang.id_perolehan = perolehan.id_perolehan','left');
+  $this->db->join('jenis', 'barang.id_jenis = jenis.id_jenis','left');
+  $this->db->join('sumber_dana', 'barang.id_sumber_dana = sumber_dana.id_sumber_dana','left');
+  $this->db->join('distributor', 'barang.id_distributor = distributor.id_distributor','left');
+  $this->db->join('user', 'barang.id_user = user.id_user','left');
+  $this->db->join('satuan', 'barang.id_satuan = satuan.id_satuan','left');
+  return $this->db->get_where($table,$where)->result();
+  }	
 
 }
 ?>

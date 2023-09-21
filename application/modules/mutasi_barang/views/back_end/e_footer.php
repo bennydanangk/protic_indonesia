@@ -83,6 +83,13 @@ select2add();
   function content() {
     $('#content').load('<?= base_url("mutasi_barang/content")?>')
   }
+
+  menu_bar();
+  function menu_bar() {
+    $('#content').load('<?= base_url("mutasi_barang/menu_bar")?>')
+  }
+
+
   function data_sampah() {
     $('#content').load('<?= base_url("mutasi_barang/data_sampah")?>')
   }
@@ -93,13 +100,13 @@ select2add();
     $('#content').load('<?= base_url("mutasi_barang/add")?>');
   }
 
-  function open_edit(id) {
-    $('#content').load('<?= base_url("mutasi_barang/edit/")?>'+id);
+  function open_mutasi(id) {
+    $('#content').load('<?= base_url("mutasi_barang/mutasi/")?>'+id);
 
   }
 
-  function open_state(id) {
-    $('#content').load('<?= base_url("mutasi_barang/state/")?>'+id);
+  function mutasi_manual() {
+    $('#content').load('<?= base_url("mutasi_barang/content_barang")?>');
 
   }
 
