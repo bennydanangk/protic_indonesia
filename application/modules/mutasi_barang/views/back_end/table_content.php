@@ -19,6 +19,7 @@
                     <th>Mutasi Ke</th>
                     <th>Status Barang</th>
                     <th>penanggung jawab</th>
+                    <th>Berita Acara</th>
                   </tr>
                   </thead>
                 <tbody>
@@ -48,7 +49,9 @@
                       <td>
                       <span class="badge badge-info">  <?= $k->nama_pengguna?></span>  
                     </td>
-
+<td>
+  <a  onclick="open_berita(<?php echo $k->id_posisi_barang ?>)" class="btn btn-primary btn-sm"> <i class="fa fa-file"></i> BA</a>
+</td>
                   </tr>
 
                   <?php
@@ -64,6 +67,7 @@
                     <th>Mutasi Ke</th>
                     <th>Status Barang</th>
                     <th>penanggung jawab</th>
+                    <th>Berita Acara</th>
                   </tr>
                   </tfoot>
                 </table>

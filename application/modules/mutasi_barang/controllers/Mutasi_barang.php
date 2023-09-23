@@ -229,7 +229,30 @@ function report()  {
 	);	
 	$data['data'] = $this->M_mutasi_barang->get_posisi('posisi_barang',$where);
 	$this->load->view('back_end/table_content',$data);
-	// print_r($data);
+
+}
+
+function berita_acara($id)  {
+	$where = array(
+		'id_posisi_barang' => $id,
+		'barang.state' => 'aktif'
+	);	
+	
+	$data['barang'] = $this->M_mutasi_barang->get_posisi_b('posisi_barang',$where);
+
+
+	// $data['barang'] = $this->M_mutasi_barang->get_barang('posisi_barang',$where);
+	$data['conf'] = $this->M_mutasi_barang->config();
+
+
+	$this->load->library('pdfgenerator');
+	$data['title'] = "Label";
+	$file_pdf = $data['title'];
+	$paper = 'A4';
+	$orientation = "portrait";
+	$html = $this->load->view('back_end/berita_acara', $data, true);
+	$this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
+	// $this->load->view('back_end/berita_acara', $data);
 }
 
 

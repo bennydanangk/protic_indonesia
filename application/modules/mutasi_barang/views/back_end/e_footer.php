@@ -238,6 +238,15 @@ function get_barang(qr) {
 
   
 }
+
+function open_berita(id) {
+
+window.open("<?= base_url('mutasi_barang/berita_acara/')?>"+id,"Ratting","width=600,height=500,left=150,top=200,toolbar=0,status=0,");
+
+
+// $('#content').load('<?= base_url("barang/cetak_label/")?>'+id);
+}
+
 </script>
 
 </body>
