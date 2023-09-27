@@ -104,6 +104,13 @@ select2add();
   }
 
 
+     //==== Laporan Perolehan
+     function laporan_perolehan() {
+    // console.log('OK');
+    $('#content').load('<?= base_url("laporan_barang/laporan_perolehan")?>')
+  }
+
+
 
 </script>
 

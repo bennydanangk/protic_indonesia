@@ -6,15 +6,15 @@
      
           
         <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Nama Jenis:</label>
-            <input type="hidden" name="url" value="tabel_jenis">
+            <label for="recipient-name" class="col-form-label">Nama Perolehan:</label>
+            <input type="hidden" name="url" value="tabel_perolehan">
             <select name="id" id="id_distributor"  class="form-control select2bs4" required >
               <option value="">-Kosong-</option>
               <?php 
-foreach ($jenis as $k) {
+foreach ($perolehan as $k) {
   ?>
 
-  <option value="<?= $k->id_jenis ?>"> <?= $k->nama_jenis ?> </option>
+  <option value="<?= $k->id_perolehan ?>"> <?= $k->nama_perolehan ?> </option>
 
   <?php
 }
@@ -49,6 +49,7 @@ $('.select2bs4').select2({
              data: $(this).serialize(),             
              success: function(data) {    
           var obj =JSON.parse(JSON.stringify(data));
+
 
 
     $('#tabel_laporan').load(obj.data);

@@ -324,4 +324,30 @@ function tabel_jenis($id) {
 
 
 
+
+function laporan_perolehan() {
+	$where = array(
+	'state' => 'aktif'	
+	);
+
+	$data['perolehan']= $this->M_laporan_barang->get_data('perolehan',$where);
+
+	// print_r($data);
+	$this->load->view('back_end/laporan_perolehan',$data);
+
+	// echo "OK";	
+}
+//Tabel Distributor
+function tabel_perolehan($id) {
+	$where = array(
+'barang.id_perolehan' => $id,
+'posisi_barang.state' => 'aktif'
+	);
+
+	$data['data'] = $this->M_laporan_barang->get_posisi('posisi_barang',$where);
+	$this->load->view('back_end/table_content_laporan',$data);
+}
+
+
+
 }
