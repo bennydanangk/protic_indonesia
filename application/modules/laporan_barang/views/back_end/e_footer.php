@@ -90,6 +90,20 @@ select2add();
   }
 
 
+  //==== Laporan Distributor
+  function laporan_distributor() {
+    // console.log('OK');
+    $('#content').load('<?= base_url("laporan_barang/laporan_distributor")?>')
+  }
+
+
+    //==== Laporan Jenis
+    function laporan_jenis() {
+    // console.log('OK');
+    $('#content').load('<?= base_url("laporan_barang/laporan_jenis")?>')
+  }
+
+
 
 </script>
 

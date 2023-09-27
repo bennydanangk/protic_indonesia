@@ -255,6 +255,73 @@ function berita_acara($id)  {
 	// $this->load->view('back_end/berita_acara', $data);
 }
 
+//Get Form
+function laporan_distributor() {
+	$where = array(
+	'state' => 'aktif'	
+	);
+
+	$data['distributor']= $this->M_laporan_barang->get_data('distributor',$where);
+
+	// print_r($data);
+	$this->load->view('back_end/laporan_distributor',$data);
+
+	// echo "OK";	
+}
+//Tabel Distributor
+function tabel_distributor($id) {
+	$where = array(
+'barang.id_distributor' => $id,
+'posisi_barang.state' => 'aktif'
+	);
+
+	$data['data'] = $this->M_laporan_barang->get_posisi('posisi_barang',$where);
+	$this->load->view('back_end/table_content_laporan',$data);
+}
+
+
+//Conf Url
+function get_url(){
+	$id = $_POST['id'];
+	$url = $_POST['url'];
+
+	$respone  = array(
+		'respone' => '200',
+		'data' => base_url('laporan_barang/'.$url.'/'.$id)
+	);
+
+	header('Content-Type: application/json');
+	echo json_encode($respone);
+
+	
+
+}
+
+
+
+function laporan_jenis() {
+	$where = array(
+	'state' => 'aktif'	
+	);
+
+	$data['jenis']= $this->M_laporan_barang->get_data('jenis',$where);
+
+	// print_r($data);
+	$this->load->view('back_end/laporan_jenis',$data);
+
+	// echo "OK";	
+}
+//Tabel Distributor
+function tabel_jenis($id) {
+	$where = array(
+'barang.id_jenis' => $id,
+'posisi_barang.state' => 'aktif'
+	);
+
+	$data['data'] = $this->M_laporan_barang->get_posisi('posisi_barang',$where);
+	$this->load->view('back_end/table_content_laporan',$data);
+}
+
 
 
 }

@@ -3,7 +3,7 @@
               <div class="row">
         
         <div class="col-md-3 col-sm-6 col-12">
-        <div class="info-box shadow-lg" onclick="laporan_barang()">
+        <div class="info-box shadow-lg" onclick="laporan_distributor()">
 
               <span class="info-box-icon bg-info"><i class="fa fa-industry"></i></span>
 
