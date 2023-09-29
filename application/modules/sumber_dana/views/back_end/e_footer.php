@@ -52,7 +52,7 @@ select2add();
     $('.select2bs4').select2({
           theme: 'bootstrap4'
         })
-    $("#laporan_barang").select2({
+    $("#sumber_dana").select2({
     dropdownParent: $("#modal_add")
   });
  }
@@ -79,66 +79,128 @@ select2add();
   get_menu(url);
   // $('#modal_add').modal('show');
 
-  // content();
+  content();
   function content() {
-    $('#content').load('<?= base_url("laporan_barang/content")?>')
+    $('#content').load('<?= base_url("sumber_dana/content")?>')
   }
-
-  menu_bar();
-  function menu_bar() {
-    $('#content').load('<?= base_url("laporan_barang/menu_bar")?>')
-  }
-
-
-  //==== Laporan Distributor
-  function laporan_distributor() {
-    // console.log('OK');
-    $('#content').load('<?= base_url("laporan_barang/laporan_distributor")?>')
-  }
-
-
-    //==== Laporan Jenis
-    function laporan_jenis() {
-    // console.log('OK');
-    $('#content').load('<?= base_url("laporan_barang/laporan_jenis")?>')
-  }
-
-
-     //==== Laporan Perolehan
-     function laporan_perolehan() {
-    // console.log('OK');
-    $('#content').load('<?= base_url("laporan_barang/laporan_perolehan")?>')
-  }
-
-      //==== Laporan Pengguna
-      function laporan_pengguna() {
-    // console.log('OK');
-    $('#content').load('<?= base_url("laporan_barang/laporan_pengguna")?>')
-  }
-
-
-    //==== Laporan Ruang
-    function laporan_ruang() {
-    // console.log('OK');
-    $('#content').load('<?= base_url("laporan_barang/laporan_ruang")?>')
-  }
-
-     //==== Laporan Status Barang
-     function laporan_status_barang() {
-    // console.log('OK');
-    $('#content').load('<?= base_url("laporan_barang/laporan_status_barang")?>')
+  function data_sampah() {
+    $('#content').load('<?= base_url("sumber_dana/data_sampah")?>')
   }
 
 
 
-     //==== Laporan Sumber Dana
-     function laporan_sumber_dana() {
-    // console.log('OK');
-    $('#content').load('<?= base_url("laporan_barang/laporan_sumber_dana")?>')
+  function add() {
+    $('#content').load('<?= base_url("sumber_dana/add")?>');
+  }
+
+  function open_edit(id) {
+    $('#content').load('<?= base_url("sumber_dana/edit/")?>'+id);
+
+  }
+
+  function open_state(id) {
+    $('#content').load('<?= base_url("sumber_dana/state/")?>'+id);
+
   }
 
 
 
+  function hapus(id) {
+    Swal.fire({
+  title: 'Apakah Anda Yakin?',
+  text: "Apakah Anda Akan Menghapus Data Ini!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+
+    $.ajax({
+    url: "<?= base_url('sumber_dana/hapus')?>",
+             type: 'POST',
+             data: {id:id},            
+             success: function(data) {  
+              setTimeout(function() {
+            content();
+            }, 500);
+             
+          
+             }
+  });
+
+
+    Swal.fire(
+      'Deleted!',
+      'Your file has been deleted.',
+      'success'
+    )
+  }
+})
+  }
+
+
+
+
+
+
+
+
+
+$("#form_add").submit(function(e) {
+         e.preventDefault();
+         $.ajax({
+          url: "<?= base_url('sumber_dana/add')?>",
+             type: 'POST',
+             data: $(this).serialize(),             
+             success: function(data) {    
+			
+				
+			// console.log(data);
+             }
+         });
+     });
+
+
+
+
+     function restore(id) {
+    Swal.fire({
+  title: 'Apakah Anda Yakin?',
+  text: "Apakah Anda Akan Merestore Data Ini!",
+  icon: 'question',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, Restore it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+
+    $.ajax({
+    url: "<?= base_url('sumber_dana/restore')?>",
+             type: 'POST',
+             data: {id:id},            
+             success: function(data) {  
+              setTimeout(function() {
+            content();
+            }, 500);
+             
+            //console.log(data);
+            // $('#password').val(data);
+            
+             }
+  });
+
+
+    Swal.fire(
+      'Restore!',
+      'Your file has been Restore.',
+      'success'
+    )
+  }
+})
+  }
 
 </script>
 

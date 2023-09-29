@@ -350,4 +350,107 @@ function tabel_perolehan($id) {
 
 
 
+function laporan_pengguna() {
+	$where = array(
+	'state' => 'aktif'	
+	);
+
+	$data['user']= $this->M_laporan_barang->get_data('user',$where);
+
+	// print_r($data);
+	$this->load->view('back_end/laporan_pengguna',$data);
+
+	// echo "OK";	
+}
+//Tabel Distributor
+function tabel_user($id) {
+	$where = array(
+'posisi_barang.id_user_mutasi' => $id,
+'posisi_barang.state' => 'aktif'
+	);
+
+	$data['data'] = $this->M_laporan_barang->get_posisi('posisi_barang',$where);
+	$this->load->view('back_end/table_content_laporan',$data);
+}
+
+
+
+function laporan_ruang() {
+	$where = array(
+	'state' => 'aktif'	
+	);
+
+	$data['ruang']= $this->M_laporan_barang->get_data('ruang',$where);
+
+	// print_r($data);
+	$this->load->view('back_end/laporan_ruang',$data);
+
+	// echo "OK";	
+}
+//Tabel Distributor
+function tabel_ruang($id) {
+	$where = array(
+'posisi_barang.id_ruang_sesudah' => $id,
+'posisi_barang.state' => 'aktif'
+	);
+
+	$data['data'] = $this->M_laporan_barang->get_posisi('posisi_barang',$where);
+	$this->load->view('back_end/table_content_laporan',$data);
+}
+
+
+
+function laporan_status_barang() {
+	$where = array(
+	'state' => 'aktif'	
+	);
+
+	$data['status_barang']= $this->M_laporan_barang->get_data('status_barang',$where);
+
+	// print_r($data);
+	$this->load->view('back_end/laporan_status_barang',$data);
+
+	// echo "OK";	
+}
+//Tabel Distributor
+function tabel_status_barang($id) {
+	$where = array(
+'posisi_barang.id_status_barang' => $id,
+'posisi_barang.state' => 'aktif'
+	);
+
+	$data['data'] = $this->M_laporan_barang->get_posisi('posisi_barang',$where);
+	$this->load->view('back_end/table_content_laporan',$data);
+}
+
+
+
+function laporan_sumber_dana() {
+	$where = array(
+	'state' => 'aktif'	
+	);
+
+	$data['sumber_dana']= $this->M_laporan_barang->get_data('sumber_dana',$where);
+
+	// print_r($data);
+	$this->load->view('back_end/laporan_sumber_dana',$data);
+
+	// echo "OK";	
+}
+//Tabel Distributor
+function tabel_sumber_dana($id) {
+	$where = array(
+'posisi_barang.id_sumber_dana' => $id,
+'posisi_barang.state' => 'aktif'
+	);
+
+	$data['data'] = $this->M_laporan_barang->get_posisi('posisi_barang',$where);
+	$this->load->view('back_end/table_content_laporan',$data);
+}
+
+
+
+
+
+
 }
