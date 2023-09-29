@@ -7,7 +7,7 @@
           
         <div class="form-group">
             <label for="recipient-name" class="col-form-label">Nama Sumber Dana:</label>
-            <input type="hidden" name="url" value="tabel_status_barang">
+            <input type="hidden" name="url" value="tabel_sumber_dana">
             <select name="id" id="id_distributor"  class="form-control select2bs4" required >
               <option value="">-Kosong-</option>
               <?php 

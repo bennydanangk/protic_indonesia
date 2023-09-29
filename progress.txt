@@ -1,0 +1,22 @@
+App inv Progress
+
+Invertaris
+Master (Done)
+> Setting (Gambar Instansi Belum)
+> Pengguna (Done) Pengembangan (HRS)
+> OPD (Done)
+Barang inv
+> Barang (Done)
+> Perolehan (Done)
+> Jenis (Done)
+> Sumber Dana (Done)
+> Distributor (Done)
+> Satuan (Done)
+> Mutasi Barang (Done) -> BA (Digital Belum)
+> Satuan Brang (Done)
+> Status Barang (Done)
+> Laporan Barang (Done) -> (Print Format Resmi PDF Belum)
+
+NEXT PROJECT
+BHP (Seperti Retail)
+HRS (Absensi & Penjadwalan)

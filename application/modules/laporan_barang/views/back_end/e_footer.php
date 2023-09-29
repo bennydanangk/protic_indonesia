@@ -138,6 +138,12 @@ select2add();
   }
 
 
+    //==== Laporan Sumber Dana
+    function laporan_realtime() {
+    // console.log('OK');
+    $('#content').load('<?= base_url("laporan_barang/tabel_realtime")?>')
+  }
+
 
 
 </script>

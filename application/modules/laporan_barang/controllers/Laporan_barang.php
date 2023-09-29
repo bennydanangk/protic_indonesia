@@ -440,7 +440,7 @@ function laporan_sumber_dana() {
 //Tabel Distributor
 function tabel_sumber_dana($id) {
 	$where = array(
-'posisi_barang.id_sumber_dana' => $id,
+'barang.id_sumber_dana' => $id,
 'posisi_barang.state' => 'aktif'
 	);
 
@@ -448,6 +448,15 @@ function tabel_sumber_dana($id) {
 	$this->load->view('back_end/table_content_laporan',$data);
 }
 
+
+function tabel_realtime() {
+	$where = array(
+'posisi_barang.state' => 'aktif'
+	);
+
+	$data['data'] = $this->M_laporan_barang->get_posisi('posisi_barang',$where);
+	$this->load->view('back_end/table_content_laporan',$data);
+}
 
 
 
