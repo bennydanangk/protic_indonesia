@@ -19,4 +19,5 @@ Barang inv
 
 NEXT PROJECT
 BHP (Seperti Retail)
+-Barang Faktur (KODE PLU Manual) (Done)
 HRS (Absensi & Penjadwalan)
