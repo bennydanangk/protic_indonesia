@@ -272,6 +272,7 @@ function laporan_distributor() {
 function tabel_distributor($id) {
 	$where = array(
 'barang.id_distributor' => $id,
+'barang.state' => 'aktif',
 'posisi_barang.state' => 'aktif'
 	);
 
@@ -315,6 +316,7 @@ function laporan_jenis() {
 function tabel_jenis($id) {
 	$where = array(
 'barang.id_jenis' => $id,
+'barang.state' => 'aktif',
 'posisi_barang.state' => 'aktif'
 	);
 
@@ -341,6 +343,7 @@ function laporan_perolehan() {
 function tabel_perolehan($id) {
 	$where = array(
 'barang.id_perolehan' => $id,
+'barang.state' => 'aktif',
 'posisi_barang.state' => 'aktif'
 	);
 
@@ -366,6 +369,7 @@ function laporan_pengguna() {
 function tabel_user($id) {
 	$where = array(
 'posisi_barang.id_user_mutasi' => $id,
+'barang.state' => 'aktif',
 'posisi_barang.state' => 'aktif'
 	);
 
@@ -391,6 +395,7 @@ function laporan_ruang() {
 function tabel_ruang($id) {
 	$where = array(
 'posisi_barang.id_ruang_sesudah' => $id,
+'barang.state' => 'aktif',
 'posisi_barang.state' => 'aktif'
 	);
 
@@ -416,6 +421,7 @@ function laporan_status_barang() {
 function tabel_status_barang($id) {
 	$where = array(
 'posisi_barang.id_status_barang' => $id,
+'barang.state' => 'aktif',
 'posisi_barang.state' => 'aktif'
 	);
 
@@ -441,6 +447,7 @@ function laporan_sumber_dana() {
 function tabel_sumber_dana($id) {
 	$where = array(
 'barang.id_sumber_dana' => $id,
+'barang.state' => 'aktif',
 'posisi_barang.state' => 'aktif'
 	);
 
@@ -451,6 +458,7 @@ function tabel_sumber_dana($id) {
 
 function tabel_realtime() {
 	$where = array(
+		'barang.state' => 'aktif',
 'posisi_barang.state' => 'aktif'
 	);
 

@@ -69,6 +69,7 @@ function get_barang($table,$where){
       $this->db->select('*,a.nama_ruangan as nama_ruangan_sebelum,b.nama_ruangan as nama_ruangan_sesudah');
       $this->db->join('barang', 'barang.id_barang = posisi_barang.id_barang','left');
       $this->db->join('user', 'user.id_user = posisi_barang.id_user_mutasi','left');
+      // $this->db->join('perolehan', 'barang.id_perolehan = posisi_barang.id_user_mutasi','left');
       $this->db->join('status_barang', 'status_barang.id_status_barang = posisi_barang.id_status_barang','left');
       $this->db->join('ruang a', 'a.id_ruang = posisi_barang.id_ruang_sebelum','inner');
       $this->db->join('ruang b', 'b.id_ruang = posisi_barang.id_ruang_sesudah','left');

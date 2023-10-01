@@ -77,7 +77,7 @@ select2add();
 
   url = '<?php echo base_url('rest_api/set_menu/')?>';
   get_menu(url);
-  // $('#modal_add').modal('show');
+
 
   // content();
   function content() {

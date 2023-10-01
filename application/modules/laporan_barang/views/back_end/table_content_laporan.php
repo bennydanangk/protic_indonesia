@@ -11,15 +11,12 @@
 <hr>                <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>No</th>
-                    <th>Tgl Mutasi</th>
+                  <th>No</th>
                     <th>Kode Barang</th>
                     <th>Nama Barang</th>
-                    <th>Mutasi Dari</th>
-                    <th>Mutasi Ke</th>
+                    <th>Posisi Barang</th>
                     <th>Status Barang</th>
-                    <th>penanggung jawab</th>
-       
+                    <th>Penanggung jawab</th>
                   </tr>
                   </thead>
                 <tbody>
@@ -32,13 +29,8 @@
                   <tr>
                       <td><?= $i; ?></td>
                       <td><?= $k->kode_id_barang?></td>
-                      <td><?= $k->tgl_input?></td>
-                      <td><?= $k->nama_barang?></td>
-                      <td>
-                        
-                      <span class="badge badge-primary"> <?= $k->nama_ruangan_sebelum?></span>
-                      
-                     </td>
+                       <td><?= $k->nama_barang?></td>
+                       <!-- <td><?= $k->nama_satuan?></td> -->
                       <td>
                         
                       <span class="badge badge-success"> <?= $k->nama_ruangan_sesudah?></span>
@@ -60,14 +52,11 @@
                   <tfoot>
                   <tr>
                      <th>No</th>
-                     <th>Tgl Mutasi</th>
                     <th>Kode Barang</th>
                     <th>Nama Barang</th>
-                    <th>Mutasi Dari</th>
-                    <th>Mutasi Ke</th>
+                     <th>Posisi Barang</th>
                     <th>Status Barang</th>
                     <th>Penanggung jawab</th>
-                 
                   </tr>
                   </tfoot>
                 </table>
