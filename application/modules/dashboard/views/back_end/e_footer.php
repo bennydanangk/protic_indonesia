@@ -1,3 +1,9 @@
+
+
+
+
+<!-- <?php foreach ($jumlah_barang_perjenis as $k) { echo '"'.$k->nama_jenis.'",'; } ?> -->
+
 <!-- Main Footer -->
 <footer class="main-footer">
     <strong>Create By Benny Danang Kurniawan <a href="#">@ <?= date('Y');?></a>.</strong>
@@ -62,6 +68,7 @@
 
   url = '<?php echo base_url('rest_api/set_menu/')?>';
   get_menu(url);
+
 
 
 

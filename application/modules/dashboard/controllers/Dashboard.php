@@ -17,10 +17,11 @@ class Dashboard extends MY_Controller {
 	public function index()
 	{
 	
+
 		$data['conf'] = $this->M_dashboard->config();
 		$data['nama_user'] = $this->session->userdata('nama_user');
-		$data['nama_menu'] = 'Template';
-
+		$data['nama_menu'] = 'Dashboard';
+		
 	$this->load->view('back_end/a_header',$data);
 	$this->load->view('back_end/b_navbar',$data);
 	$this->load->view('back_end/c_sidebar',$data);

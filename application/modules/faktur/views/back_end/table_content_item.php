@@ -9,7 +9,7 @@
    
   <!-- <a  class="btn btn-sm btn-primary" onclick="add();"> <i class="fa fa-plus"></i> Tambah</a> 
   <a  class="btn btn-sm btn-secondary" onclick="data_sampah();"> <i class="fa fa-trash"></i> Data Sampah</a> <hr> -->
-                <table id="example1" class="table table-bordered table-striped">
+                <table  class="table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th>No</th>
@@ -38,11 +38,7 @@
                       <td><?= $k->nama_distributor?></td>
                       <td><?= $k->nama_sumber_dana?></td>
                       <td> 
-                      <a  class="btn btn-sm btn-info"  data-toggle="tooltip" data-placement="right" title="<?= $k->nama_pengguna?>"  onclick='open_modal_faktur("<?= $k->id_faktur; ?>");'>Item <span class="badge badge-light">9</span>
- </a>    
-                      <!-- <span class="badge badge-success"><?= $k->nama_pengguna?></span> </td> -->
-                   
-                          
+                
                       <td>
 
                     <a  class="btn btn-sm btn-warning"  onclick='open_edit("<?= $k->id_faktur; ?>");'> edit <i class="fa fa-edit"></i></a>
@@ -97,30 +93,3 @@
 <script src="<?php echo base_url('assets/template/') ?>plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
       <script>
 
-$("#example1").DataTable({
-       "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-
-    //  $('#faktur_modal').modal('show');
-
-    function open_modal_faktur(id) {
-    window.$('#faktur_modal').modal('show');
-    // $('#add_item').load('');
-    $('#add_item').load('<?= base_url("faktur/add_item/")?>'+id);
-      $('#tabel_item_faktur').load('<?= base_url("faktur/content_item/")?>');
-
-
-  }
-
-
-      </script>

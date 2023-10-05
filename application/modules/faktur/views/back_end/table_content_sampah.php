@@ -13,9 +13,13 @@
                   <thead>
                   <tr>
                   <th>No</th>
-                    <th>Nama Menu</th>
+                    <th>Tgl Faktur</th>
+                    <th>Tgl Input</th>
+                    <th>Nomor Faktur</th>
+                    <th>Distributor</th>
+                    <th>Sumber Dana</th>
+                    <th>PJ</th>
                      <th>Tools</th>
-                      
                   </tr>
                   </thead>
                 <tbody>
@@ -24,7 +28,12 @@
                  
                   <tr>
                       <td><?= $i; ?></td>
-                    <td><?= $k->nama_faktur?></td>
+                      <td><?= $k->tgl_faktur?></td>
+                      <td><?= $k->tgl_input?></td>
+                      <td><?= $k->nomor_faktur?></td>
+                      <td><?= $k->nama_distributor?></td>
+                      <td><?= $k->nama_sumber_dana?></td>
+                      <td> <span class="badge badge-success"><?= $k->nama_pengguna?></span> </td>
                      <td>
                     <a class="btn btn-sm btn-primary"  onclick='restore("<?= $k->id_faktur; ?>");'> <i class="fa fa-spin fa-cog"></i> Restore</a>
                 
@@ -38,7 +47,12 @@
                   <tfoot>
                   <tr>
                   <th>No</th>
-                    <th>Nama Menu</th>
+                    <th>Tgl Faktur</th>
+                    <th>Tgl Input</th>
+                    <th>Nomor Faktur</th>
+                    <th>Distributor</th>
+                    <th>Sumber Dana</th>
+                    <th>PJ</th>
                      <th>Tools</th>
                   </tr>
                   </tfoot>

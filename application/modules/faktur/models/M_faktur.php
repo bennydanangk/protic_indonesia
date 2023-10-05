@@ -6,10 +6,14 @@ class M_faktur extends CI_Model {
  }   
 
  function get_data($table,$where){		
+  $this->db->join('user', 'user.id_user = faktur.id_user');
+  $this->db->join('distributor', 'distributor.id_distributor = faktur.id_distributor');
+  $this->db->join('sumber_dana', 'sumber_dana.id_sumber_dana = faktur.id_sumber_dana');
   return $this->db->get_where($table,$where)->result();
 }	
 
 function get_faktur($table,$where){		
+  $this->db->join('user', 'user.id_user = faktur.id_user');
   return $this->db->get_where($table,$where)->result();
 }	
 
@@ -24,6 +28,10 @@ return  $this->db->insert($table,$data);
 }
 function get_cek($table,$where){		
   return $this->db->get_where($table,$where);
+}	
+
+function get_aps($table,$where){		
+  return $this->db->get_where($table,$where)->result();
 }	
 //edit Data
 function edit_data($where,$data,$table){

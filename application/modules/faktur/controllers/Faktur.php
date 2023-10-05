@@ -33,7 +33,7 @@ class faktur extends MY_Controller {
 	function data()  {
 		// header('Content-Type: application/json');
 		$where = array(
-			'state' => 'aktif'
+			'faktur.state' => 'aktif'
 		);	
 		$data['data'] = $this->M_faktur->get_data('faktur',$where);
 		$this->load->view('back_end/d_content',$data);
@@ -46,7 +46,8 @@ class faktur extends MY_Controller {
 		$where = array(
 			'state' => 'aktif'
 		);	
-		$data['faktur'] = $this->M_faktur->get_faktur('faktur',$where);
+		$data['distributor'] = $this->M_faktur->get_aps('distributor',$where);
+		$data['sumber_dana'] = $this->M_faktur->get_aps('sumber_dana',$where);
 		$this->load->view('back_end/add_content',$data);
 	}
 
@@ -54,17 +55,24 @@ class faktur extends MY_Controller {
 	function edit($id)  {
 		$where = array(
 			'id_faktur' => $id,
-			'state' => 'aktif'
+			'faktur.state' => 'aktif'
 		);	
 		
-		$data['faktur'] = $this->M_faktur->get_faktur('faktur',$where);
+		$wheres = array(
+			'state' => 'aktif'
+		);	
+		$data['distributor'] = $this->M_faktur->get_aps('distributor',$wheres);
+		$data['sumber_dana'] = $this->M_faktur->get_aps('sumber_dana',$wheres);
+
+
+		$data['faktur'] = $this->M_faktur->get_data('faktur',$where);
 	
 		$this->load->view('back_end/edit_content',$data);
 	}
 //get Content table
 	function content()  {
 		$where = array(
-			'state' => 'aktif'
+			'faktur.state' => 'aktif'
 		);	
 		$data['data'] = $this->M_faktur->get_data('faktur',$where);
 		$this->load->view('back_end/table_content',$data);
@@ -73,8 +81,8 @@ class faktur extends MY_Controller {
 //restore		
 	function data_sampah()  {
 		$where = array(
-			'state' => 'tidak'
-		);	
+			'faktur.state' => 'tidak'
+		);		
 		$data['data'] = $this->M_faktur->get_data('faktur',$where);
 		$this->load->view('back_end/table_content_sampah',$data);
 	}
@@ -82,10 +90,16 @@ class faktur extends MY_Controller {
 
 //prosess add
 	function add_p()  {
-		
+		$id = $this->session->userdata('id_user');
 		$data = array(
-		'nama_faktur' => $_POST['nama_faktur'],
-		
+		'nomor_faktur' => $_POST['nomor_faktur'],
+		'id_distributor' => $_POST['id_distributor'],
+		'id_sumber_dana' => $_POST['id_sumber_dana'],
+		'id_user' => $id,
+		'catatan' => $_POST['catatan'],
+		'tgl_faktur' => $_POST['tgl_faktur'],
+		'tgl_input' => date('Y-m-d H:i:s')
+	
 			);	
 	
 
@@ -118,9 +132,19 @@ class faktur extends MY_Controller {
 //proses edit
 	function edit_p()  {
 	
+		$id = $this->session->userdata('id_user');
 		$data = array(
-		'nama_faktur' => $_POST['nama_faktur'],
-	);	
+		'nomor_faktur' => $_POST['nomor_faktur'],
+		'id_distributor' => $_POST['id_distributor'],
+		'id_sumber_dana' => $_POST['id_sumber_dana'],
+		'id_user' => $id,
+		'catatan' => $_POST['catatan'],
+		'tgl_faktur' => $_POST['tgl_faktur'],
+		'tgl_input' => date('Y-m-d H:i:s')
+	
+			);	
+	
+			
 	//cek before
 	$where = array(
 		'id_faktur' => $_POST['id_faktur']
@@ -176,6 +200,23 @@ function restore()  {
 	
 }
 
+function add_item($id) {
 
+$data['id_faktur'] = $id;
+	$where = array(
+		'state' => 'aktif'
+	);	
+	$data['barang_faktur'] = $this->M_faktur->get_aps('barang_faktur',$where);
+	$data['satuan'] = $this->M_faktur->get_aps('satuan',$where);
+	$this->load->view('back_end/add_item',$data);
+}
+
+function content_item()  {
+	$where = array(
+		'faktur.state' => 'aktif'
+	);	
+	$data['data'] = $this->M_faktur->get_data('faktur',$where);
+	$this->load->view('back_end/table_content_item',$data);
+}
 
 }

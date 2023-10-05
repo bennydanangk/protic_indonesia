@@ -1,3 +1,5 @@
+
+
 <!-- Main Footer -->
 <footer class="main-footer">
     <strong>Create By Benny Danang Kurniawan <a href="#">@ <?= date('Y');?></a>.</strong>
@@ -12,6 +14,7 @@
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
+
 <script src="<?php echo base_url('assets/template/') ?>plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="<?php echo base_url('assets/template/') ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -44,6 +47,11 @@
 <script src="<?php echo base_url('assets/js/') ?>bootstrap_menu.js"></script>
 <script src="<?php echo base_url('assets/template/') ?>plugins/select2/js/select2.full.min.js"></script>
 
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+
+
 <script>
 
 select2add();
@@ -52,8 +60,8 @@ select2add();
     $('.select2bs4').select2({
           theme: 'bootstrap4'
         })
-    $("#faktur").select2({
-    dropdownParent: $("#modal_add")
+    $("#id_barang_faktur").select2({
+    dropdownParent: $("#faktur_modal")
   });
  }
 
@@ -77,7 +85,7 @@ select2add();
 
   url = '<?php echo base_url('rest_api/set_menu/')?>';
   get_menu(url);
-  // $('#modal_add').modal('show');
+  // $('#faktur_modal').modal('show');
 
   content();
   function content() {
@@ -97,6 +105,10 @@ select2add();
     $('#content').load('<?= base_url("faktur/edit/")?>'+id);
 
   }
+
+ 
+
+
 
   function open_state(id) {
     $('#content').load('<?= base_url("faktur/state/")?>'+id);

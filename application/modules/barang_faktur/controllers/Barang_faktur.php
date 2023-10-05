@@ -84,11 +84,12 @@ class barang_faktur extends MY_Controller {
 
 //prosess add
 	function add_p()  {
-		
+		$id = $this->session->userdata('id_user');
 		$data = array(
 			'kode_barang' => $_POST['kode_barang'],
 		'nama_barang_faktur' => $_POST['nama_barang_faktur'],
-		'kode_plu' => $_POST['kode_plu']
+		'kode_plu' => $_POST['kode_plu'],
+		'id_user' => $id
 		
 			);	
 	

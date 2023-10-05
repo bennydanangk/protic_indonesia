@@ -4,18 +4,89 @@
  
           <form id="form_add" method="POST">
      
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Nomor Faktur:</label>
+            <input type="text" name="nomor_faktur" class="form-control" placeholder="Masukan Nomor Faktur" id="nip"   autocomplete="off" required>
+          </div>
+
           
-        <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Nama jenis:</label>
-            <input type="text" name="nama_jenis" class="form-control" placeholder="Masukan Nama jenis/OPD/Kantor" id="nip"   autocomplete="off" required>
+          <div class="form-group">
+          <label for="recipient-name" class="col-form-label">Distributor</label>
+             
+      
+
+          <select name="id_distributor" class="form-control select2bs4"  id="distributor" >
+            <option value="0"> -Kosong- </option>
+            <?php 
+            
+            foreach ($distributor as $k) {
+              ?>
+            <option value="<?= $k->id_distributor?>"> <?= $k->nama_distributor?> </option>   
+           <?php }?>
+          </select>
+
+          
+          
+                   </div>
+
+
+
+          
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Tgl Faktur:</label>
+            <input type="date" name="tgl_faktur" class="form-control" placeholder="Masukan Nomor Faktur" id="nip"   autocomplete="off" required>
+          </div>
+
+         
+          <div class="form-group">
+          <label for="recipient-name" class="col-form-label">Sumber Dana</label>
+             
+      
+
+          <select name="id_sumber_dana" class="form-control select2bs4"  id="id_sumber_dana" >
+            <option value="0"> -Kosong- </option>
+            <?php 
+            
+            foreach ($sumber_dana as $k) {
+              ?>
+            <option value="<?= $k->id_sumber_dana?>"> <?= $k->nama_sumber_dana?> </option>   
+           <?php }?>
+          </select>
+
+          
+          
+                   </div>
+
+
+
+                   <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Catatan:</label>
+            <input type="text" name="catatan" class="form-control" placeholder="Masukan Catatan" id="nip"   autocomplete="off" required>
           </div>
           
+
+
                  <button type="submit"  id="submit_add" class="btn btn-primary btn-sm"> <i class="fa fa-save"></i> Simpan</button>
 
-   
+            </form>
+                 <script src="<?php echo base_url('assets/js/') ?>bootstrap_menu.js"></script>
+<script src="<?php echo base_url('assets/template/') ?>plugins/select2/js/select2.full.min.js"></script>
 
        
 <script>
+
+
+  //Initialize Select2 Elements
+  $('.select2').select2();
+
+
+//Initialize Select2 Elements
+$('.select2bs4').select2({
+  theme: 'bootstrap4'
+})
+
+ 
+
 
 
 
@@ -23,7 +94,7 @@
     
            e.preventDefault();
          $.ajax({
-          url: "<?= base_url('jenis/add_p')?>",
+          url: "<?= base_url('faktur/add_p')?>",
              type: 'POST',
              data: $(this).serialize(),             
              success: function(data) {    
