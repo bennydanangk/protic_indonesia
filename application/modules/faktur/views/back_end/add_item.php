@@ -2,7 +2,9 @@
           
           <!-- <a href="#" class="btn btn-sm btn-secondary" onclick="content();"> <i class="fa fa-arrow-left"></i> Kembali</a> <hr> -->
  
-          <form id="form_add" method="POST">
+          <div class="card">
+  <div class="card-body">
+          <form id="form_add_item" method="POST">
      
          
             <input type="hidden" name="id_faktur" class="form-control" value="<?= $id_faktur?>" placeholder="Masukan Nomor Faktur" id="nip"   autocomplete="off" required>
@@ -66,7 +68,7 @@
           
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Harga:</label>
-            <input type="date" name="harga" class="form-control" placeholder="Masukan Harga Per @ Item" id="nip"   autocomplete="off" required>
+            <input type="number" name="harga" class="form-control" placeholder="Masukan Harga Per @ Item" id="nip"   autocomplete="off" required>
           </div>
               
           <div class="form-group">
@@ -82,6 +84,9 @@
                  <button type="submit"  id="submit_add" class="btn btn-primary btn-sm"> <i class="fa fa-save"></i> Simpan</button>
 
             </form>
+
+            </div>
+            </div>
                  <script src="<?php echo base_url('assets/js/') ?>bootstrap_menu.js"></script>
 <script src="<?php echo base_url('assets/template/') ?>plugins/select2/js/select2.full.min.js"></script>
 
@@ -103,15 +108,17 @@ $('.select2bs4').select2({
 
 
 
-  $("#form_add").submit(function(e) {
+  $("#form_add_item").submit(function(e) {
     
            e.preventDefault();
          $.ajax({
-          url: "<?= base_url('faktur/add_p')?>",
+          url: "<?= base_url('faktur/add_item_p')?>",
              type: 'POST',
              data: $(this).serialize(),             
              success: function(data) {    
           var obj =JSON.parse(JSON.stringify(data));
+
+          // console.log(data);
            if(obj.respone != 201){
             Swal.fire({
               icon: 'success',

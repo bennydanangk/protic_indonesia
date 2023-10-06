@@ -213,10 +213,57 @@ $data['id_faktur'] = $id;
 
 function content_item()  {
 	$where = array(
-		'faktur.state' => 'aktif'
+		'item_faktur.state' => 'aktif'
 	);	
-	$data['data'] = $this->M_faktur->get_data('faktur',$where);
+	$data['data'] = $this->M_faktur->get_data_item('item_faktur',$where);
 	$this->load->view('back_end/table_content_item',$data);
 }
+
+
+//prosess add
+function add_item_p()  {
+	$id = $this->session->userdata('id_user');
+$qty = $_POST['qty'];
+$disc = $_POST['disc'];
+$pajak = $_POST['pajak'];
+$harga = $_POST['harga'];
+
+$sub_total =($qty * $harga)+ ($qty * $harga * $pajak/100) - ($qty * $harga * $disc/100);
+	$data = array(
+	'id_faktur' => $_POST['id_faktur'],
+	'id_barang_faktur' => $_POST['id_barang_faktur'],
+	'qty' => $_POST['qty'],
+	'id_satuan' => $_POST['id_satuan'],
+	'ed' => $_POST['ed'],
+	'harga' => $_POST['harga'],
+	'disc' => $_POST['disc'],
+	'pajak' => $_POST['pajak'],
+	'tgl_input' => date('Y-m-d H:i:s'),
+	'id_user' => $id,
+	'sub_total' => $sub_total,
+
+		);	
+
+		// print_r($data);
+
+
+$respone  = array(
+		'respone' => '200',
+		'data' => 'Data Tersimpan!'
+	);
+
+  $insert = $this->M_faktur->input_data($data,'item_faktur');
+
+
+header('Content-Type: application/json');
+echo json_encode($respone);
+
+
+
+
+
+}
+
+
 
 }

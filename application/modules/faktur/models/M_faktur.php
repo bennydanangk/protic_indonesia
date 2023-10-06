@@ -12,6 +12,14 @@ class M_faktur extends CI_Model {
   return $this->db->get_where($table,$where)->result();
 }	
 
+function get_data_item($table,$where){		
+  $this->db->join('user', 'user.id_user = item_faktur.id_user');
+  $this->db->join('satuan', 'satuan.id_satuan = item_faktur.id_satuan');
+  $this->db->join('barang_faktur', 'barang_faktur.id_barang_faktur = item_faktur.id_barang_faktur');
+  return $this->db->get_where($table,$where)->result();
+}	
+
+
 function get_faktur($table,$where){		
   $this->db->join('user', 'user.id_user = faktur.id_user');
   return $this->db->get_where($table,$where)->result();

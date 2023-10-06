@@ -13,12 +13,13 @@
                   <thead>
                   <tr>
                     <th>No</th>
-                    <th>Tgl Faktur</th>
+                    <th>Nama Barang</th>
                     <th>Tgl Input</th>
-                    <th>Nomor Faktur</th>
-                    <th>Distributor</th>
-                    <th>Sumber Dana</th>
-                    <th>Item</th>
+                    <th>Qty</th>
+                    <th>disc</th>
+                    <th>Pajak</th>
+                    <th>Harga</th>
+                    <th>Sub total</th>
                      <th>Tools</th>
                       
                   </tr>
@@ -32,16 +33,18 @@
                  
                   <tr>
                       <td><?= $i; ?></td>
-                      <td><?= $k->tgl_faktur?></td>
+                      <td><?= $k->nama_barang_faktur?></td>
                       <td><?= $k->tgl_input?></td>
-                      <td><?= $k->nomor_faktur?></td>
-                      <td><?= $k->nama_distributor?></td>
-                      <td><?= $k->nama_sumber_dana?></td>
-                      <td> 
+                      <td><?= $k->qty?> <?= $k->nama_satuan?></td>
+                      <td><?= $k->disc ?> %</td>
+                      <td><?= $k->pajak?> %</td>
+                      <td><?= $k->harga?> </td>
+                      <td><?= $k->sub_total?></td>
+                  
                 
                       <td>
 
-                    <a  class="btn btn-sm btn-warning"  onclick='open_edit("<?= $k->id_faktur; ?>");'> edit <i class="fa fa-edit"></i></a>
+                    <!-- <a  class="btn btn-sm btn-warning"  onclick='open_edit("<?= $k->id_faktur; ?>");'> edit <i class="fa fa-edit"></i></a> -->
                     <a  class="btn btn-sm btn-danger"  onclick='hapus("<?= $k->id_faktur; ?>");'> hapus <i class="fa fa-ban"></i></a>
 
                     </td>
@@ -54,12 +57,13 @@
                   <tfoot>
                   <tr>
                   <th>No</th>
-                    <th>Tgl Faktur</th>
+                    <th>Nama Barang</th>
                     <th>Tgl Input</th>
-                    <th>Nomor Faktur</th>
-                    <th>Distributor</th>
-                    <th>Sumber Dana</th>
-                    <th>Item</th>
+                    <th>Qty</th>
+                    <th>disc</th>
+                    <th>Pajak</th>
+                    <th>Harga</th>
+                    <th>Sub total</th>
                      <th>Tools</th>
                   </tr>
                   </tfoot>
