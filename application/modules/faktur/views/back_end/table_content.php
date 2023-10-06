@@ -117,7 +117,7 @@ $("#example1").DataTable({
     window.$('#faktur_modal').modal('show');
     // $('#add_item').load('');
     $('#add_item').load('<?= base_url("faktur/add_item/")?>'+id);
-      $('#tabel_item_faktur').load('<?= base_url("faktur/content_item/")?>');
+      $('#tabel_item_faktur').load('<?= base_url("faktur/content_item/")?>'+id);
 
 
   }

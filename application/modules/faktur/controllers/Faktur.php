@@ -211,9 +211,10 @@ $data['id_faktur'] = $id;
 	$this->load->view('back_end/add_item',$data);
 }
 
-function content_item()  {
+function content_item($id)  {
 	$where = array(
-		'item_faktur.state' => 'aktif'
+		'item_faktur.state' => 'aktif',
+		'item_faktur.id_faktur' => $id
 	);	
 	$data['data'] = $this->M_faktur->get_data_item('item_faktur',$where);
 	$this->load->view('back_end/table_content_item',$data);

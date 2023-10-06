@@ -7,8 +7,8 @@
           <form id="form_add_item" method="POST">
      
          
-            <input type="hidden" name="id_faktur" class="form-control" value="<?= $id_faktur?>" placeholder="Masukan Nomor Faktur" id="nip"   autocomplete="off" required>
-
+            <input type="hidden" id="id_faktur" name="id_faktur" class="form-control" value="<?= $id_faktur?>" placeholder="Masukan Nomor Faktur" id="nip"   autocomplete="off" required>
+ 
   
 
           
@@ -111,6 +111,8 @@ $('.select2bs4').select2({
   $("#form_add_item").submit(function(e) {
     
            e.preventDefault();
+
+           id = $('#id_faktur').val();
          $.ajax({
           url: "<?= base_url('faktur/add_item_p')?>",
              type: 'POST',
@@ -126,7 +128,10 @@ $('.select2bs4').select2({
               text: obj.data,
 
               })
-              content();
+
+      $('#tabel_item_faktur').load('<?= base_url("faktur/content_item/")?>'+id);
+
+              // content();
            }else{
             Swal.fire({
                 icon: 'error',
