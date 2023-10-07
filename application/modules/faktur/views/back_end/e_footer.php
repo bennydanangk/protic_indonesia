@@ -214,6 +214,48 @@ $("#form_add").submit(function(e) {
 })
   }
 
+
+
+
+
+  function hapus_item(id) {
+    id_faktur = $('#id_faktur').val();
+    Swal.fire({
+  title: 'Apakah Anda Yakin?',
+  text: "Apakah Anda Akan Menghapus Data Ini!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+
+    $.ajax({
+    url: "<?= base_url('faktur/hapus_item')?>",
+             type: 'POST',
+             data: {id:id},            
+             success: function(data) {  
+              setTimeout(function() {
+            content();
+            }, 500);
+             
+          
+             }
+  });
+
+  open_modal_faktur(id_faktur);
+    Swal.fire(
+      'Deleted!',
+      'Your file has been deleted.',
+      'success'
+    )
+  }
+})
+  }
+
+
+
 </script>
 
 </body>

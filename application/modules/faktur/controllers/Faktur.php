@@ -266,5 +266,44 @@ echo json_encode($respone);
 }
 
 
+function hapus_item()  {
+
+	$where = array(
+		'id_item_faktur' => $_POST['id'],
+	);
+	$data = array(
+		'state' => 'tidak',
+
+	);
+
+
+	 $this->M_faktur->edit_data($where,$data,'item_faktur');
+	
+}
+
+function count_item_faktur($id_faktur)  {
+	$where = array(
+		'id_faktur' => $id_faktur,
+		'state' => 'aktif'
+
+	);
+
+	$data = $this->M_faktur->get_cek('item_faktur',$where)->num_rows();
+	// echo '<span class="badge badge-light">'.$data.'</span>';
+	// return $data;
+
+	$respone  = array(
+		'respone' => '200',
+		'data' => $data
+	);
+
+header('Content-Type: application/json');
+echo json_encode($respone);
+
+
+}
+
+
+
 
 }

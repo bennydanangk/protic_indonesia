@@ -26,6 +26,8 @@
                   </thead>
                 <tbody>
                   <?php
+                  $jumlah_subtotal= 0;
+                  
                   $i =0;
                   foreach ($data as $k) {
                     $i++;
@@ -41,11 +43,13 @@
                       <td><?= $k->harga?> </td>
                       <td><?= $k->sub_total?></td>
                   
-                
+                <?php
+                $jumlah_subtotal += $k->sub_total;
+                ?>
                       <td>
 
                     <!-- <a  class="btn btn-sm btn-warning"  onclick='open_edit("<?= $k->id_faktur; ?>");'> edit <i class="fa fa-edit"></i></a> -->
-                    <a  class="btn btn-sm btn-danger"  onclick='hapus("<?= $k->id_faktur; ?>");'> hapus <i class="fa fa-ban"></i></a>
+                    <a  class="btn btn-sm btn-danger"  onclick='hapus_item("<?= $k->id_item_faktur; ?>");'> hapus <i class="fa fa-ban"></i></a>
 
                     </td>
 
@@ -69,7 +73,7 @@
                   </tfoot>
                 </table>
 
-                
+                <h5>Total : <?= $jumlah_subtotal; ?></h5>
               </div>
               <!-- /.card-body -->
 

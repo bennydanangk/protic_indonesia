@@ -119,7 +119,7 @@ $('.select2bs4').select2({
              data: $(this).serialize(),             
              success: function(data) {    
           var obj =JSON.parse(JSON.stringify(data));
-
+        
           // console.log(data);
            if(obj.respone != 201){
             Swal.fire({
@@ -128,8 +128,8 @@ $('.select2bs4').select2({
               text: obj.data,
 
               })
-
-      $('#tabel_item_faktur').load('<?= base_url("faktur/content_item/")?>'+id);
+              open_modal_faktur(id);
+      // $('#tabel_item_faktur').load('<?= base_url("faktur/content_item/")?>'+id);
 
               // content();
            }else{

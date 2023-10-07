@@ -38,7 +38,20 @@
                       <td><?= $k->nama_distributor?></td>
                       <td><?= $k->nama_sumber_dana?></td>
                       <td> 
-                      <a  class="btn btn-sm btn-info"  data-toggle="tooltip" data-placement="right" title="<?= $k->nama_pengguna?>"  onclick='open_modal_faktur("<?= $k->id_faktur; ?>");'>Item <span class="badge badge-light">9</span>
+                      <!-- <i id="count_<?= $k->id_faktur?>"></i> -->
+                      <a  class="btn btn-sm btn-info"  data-toggle="tooltip" data-placement="right" onclick='open_modal_faktur("<?= $k->id_faktur; ?>");'>Item <span class="badge badge-light">   <i id="count_<?= $k->id_faktur?>"></i></span>
+                         <script>
+                       $.ajax({
+    url: "<?= base_url('faktur/count_item_faktur/'.$k->id_faktur)?>",
+    type: 'GET',
+    success: function(res) {
+        // console.log(res.data);
+        $('#count_<?= $k->id_faktur?>').html(res.data);
+    }
+});
+                     
+                      </script>
+                  
  </a>    
                       <!-- <span class="badge badge-success"><?= $k->nama_pengguna?></span> </td> -->
                    
