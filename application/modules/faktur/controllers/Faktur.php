@@ -70,9 +70,11 @@ class faktur extends MY_Controller {
 		$this->load->view('back_end/edit_content',$data);
 	}
 //get Content table
-	function content()  {
+	function content($tgl_awal,$tgl_akhir)  {
 		$where = array(
-			'faktur.state' => 'aktif'
+			'faktur.state' => 'aktif',
+			'tgl_input >= ' => $tgl_awal,
+			'tgl_input <=' => $tgl_akhir
 		);	
 		$data['data'] = $this->M_faktur->get_data('faktur',$where);
 		$this->load->view('back_end/table_content',$data);

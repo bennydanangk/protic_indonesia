@@ -39,13 +39,13 @@
 
                 <form class="form-inline">
   <div class="form-group mb-2">
-    <label for="staticEmail2" class="sr-only">Email</label>
-    <input class="form-control form-control-sm" type="date" placeholder=".form-control-sm" aria-label=".form-control-sm example">
+    <!-- <label for="staticEmail2" class="sr-only">Email</label> -->
+    <input id='tgl_awal' class="form-control form-control-sm" type="date" placeholder=".form-control-sm" aria-label=".form-control-sm example">
 
   </div>
   <div class="form-group mx-sm-3 mb-2">
-    <label for="inputPassword2" class="sr-only">Password</label>
-    <input class="form-control form-control-sm" type="date" placeholder=".form-control-sm" aria-label=".form-control-sm example">
+    <!-- <label for="inputPassword2" class="sr-only">Password</label> -->
+    <input id='tgl_akhir' class="form-control form-control-sm" type="date" placeholder=".form-control-sm" aria-label=".form-control-sm example">
   
   </div>
  
@@ -56,7 +56,7 @@
   </div>
 
 
-  <button type="submit" class="btn btn-success  btn-sm mb-2"> <i class="fa fa-search"></i> Cari</button> &nbsp;
+  <a  onclick="content();" class="btn btn-success  btn-sm mb-2"> <i class="fa fa-search"></i> Cari</a> &nbsp;
   <a  class="btn btn-sm btn-primary mb-2" onclick="add();"> <i class="fa fa-plus"></i> Tambah</a>  &nbsp;
   <a  class="btn btn-sm btn-danger mb-2" onclick="data_sampah();"> <i class="fa fa-trash"></i>Sampah</a> <hr> 
 

@@ -87,10 +87,24 @@ select2add();
   get_menu(url);
   // $('#faktur_modal').modal('show');
 
-  content();
-  function content() {
-    $('#content').load('<?= base_url("faktur/content")?>')
+  content_awal();
+  function content_awal() {
+    $('#content').load('<?= base_url("faktur/content/".date('Y-m-d').'/'.date('Y-m-d'))?>')
   }
+
+
+  function content() {
+    tgl_awal = $('#tgl_awal').val();
+    tgl_akhir = $('#tgl_akhir').val();
+    if(tgl_awal == '' && tgl_akhir == ''){
+      $('#content').load('<?= base_url("faktur/content/".date('Y-m-d').'/'.date('Y-m-d'))?>')
+
+    }else{
+
+      $('#content').load('<?= base_url("faktur/content/")?>'+tgl_awal+'/'+tgl_akhir);
+    }
+  }
+
   function data_sampah() {
     $('#content').load('<?= base_url("faktur/data_sampah")?>')
   }
@@ -135,7 +149,7 @@ select2add();
              data: {id:id},            
              success: function(data) {  
               setTimeout(function() {
-            content();
+                content_awal();
             }, 500);
              
           
@@ -195,7 +209,7 @@ $("#form_add").submit(function(e) {
              data: {id:id},            
              success: function(data) {  
               setTimeout(function() {
-            content();
+                content_awal();
             }, 500);
              
             //console.log(data);
@@ -237,7 +251,7 @@ $("#form_add").submit(function(e) {
              data: {id:id},            
              success: function(data) {  
               setTimeout(function() {
-            content();
+                content_awal();
             }, 500);
              
           
