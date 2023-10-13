@@ -47,6 +47,13 @@ function edit_data($where,$data,$table){
   $this->db->update($table,$data);
 }
 
+
+function delete_data($where,$table){
+  // $this->db->where($where);
+  $this->db->delete($table,$where);
+}
+
+
 function get_state($table,$where){		
   $this->db->join('role_user', 'user.id_user = role_user.id_user');
   return $this->db->get_where($table,$where);

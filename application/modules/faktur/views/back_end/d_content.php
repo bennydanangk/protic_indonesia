@@ -58,7 +58,13 @@
 
   <a  onclick="content();" class="btn btn-success  btn-sm mb-2"> <i class="fa fa-search"></i> Cari</a> &nbsp;
   <a  class="btn btn-sm btn-primary mb-2" onclick="add();"> <i class="fa fa-plus"></i> Tambah</a>  &nbsp;
-  <a  class="btn btn-sm btn-danger mb-2" onclick="data_sampah();"> <i class="fa fa-trash"></i>Sampah</a> <hr> 
+  <a  class="btn btn-sm btn-danger mb-2" onclick="data_sampah();"> <i class="fa fa-trash"></i>Sampah</a> 
+  &nbsp;
+  <a  class="btn btn-sm btn-warning mb-2" onclick="data_item_sampah();"> <i class="fa fa-ban"></i>Sampah Item</a> 
+  &nbsp;
+  <a  class="btn btn-sm btn-success mb-2" onclick="reload();"> <i class="fa fa-spin fa-cog"></i>Refresh</a> 
+
+  <hr> 
 
   
 

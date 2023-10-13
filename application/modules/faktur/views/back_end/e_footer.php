@@ -109,6 +109,10 @@ select2add();
     $('#content').load('<?= base_url("faktur/data_sampah")?>')
   }
 
+  function data_item_sampah() {
+    $('#content').load('<?= base_url("faktur/data_item_sampah")?>')
+  }
+
 
 
   function add() {
@@ -227,6 +231,93 @@ $("#form_add").submit(function(e) {
   }
 })
   }
+
+
+
+
+  function restore_item(id) {
+    Swal.fire({
+  title: 'Apakah Anda Yakin?',
+  text: "Apakah Anda Akan Merestore Data Ini!",
+  icon: 'question',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, Restore it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+
+    $.ajax({
+    url: "<?= base_url('faktur/restore_item')?>",
+             type: 'POST',
+             data: {id:id},            
+             success: function(data) {  
+              setTimeout(function() {
+                data_sampah();
+            }, 500);
+             
+            //console.log(data);
+            // $('#password').val(data);
+            
+             }
+  });
+
+
+    Swal.fire(
+      'Restore!',
+      'Your file has been Restore.',
+      'success'
+    )
+  }
+})
+  }
+
+
+function reload() {
+  location.reload();
+}
+
+
+  function delete_item(id) {
+    Swal.fire({
+  title: 'Apakah Anda Yakin?',
+  text: "Apakah Anda Akan Hapus Permanen Data Ini!",
+  icon: 'question',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, Delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+
+    $.ajax({
+    url: "<?= base_url('faktur/delete_item')?>",
+             type: 'POST',
+             data: {id:id},            
+             success: function(data) {  
+              setTimeout(function() {
+                data_sampah();
+            }, 500);
+             
+            //console.log(data);
+            // $('#password').val(data);
+            
+             }
+  });
+
+
+    Swal.fire(
+      'Restore!',
+      'Your file has been Delete.',
+      'success'
+    )
+  }
+})
+  }
+
+
+
+
 
 
 

@@ -89,6 +89,18 @@ class faktur extends MY_Controller {
 		$this->load->view('back_end/table_content_sampah',$data);
 	}
 
+	//restore		
+	function data_item_sampah()  {
+		$where = array(
+			'item_faktur.state' => 'tidak'
+		);		
+		$data['data'] = $this->M_faktur->get_data_item('item_faktur',$where);
+		$this->load->view('back_end/table_content_sampah_item',$data);
+	}
+
+
+
+
 
 //prosess add
 	function add_p()  {
@@ -180,8 +192,15 @@ class faktur extends MY_Controller {
 	
 		);
 
+		$data2 = array(
+			'id_faktur' => $_POST['id'],
+			'state' => 'tidak',
+	
+		);
+
 
 		 $this->M_faktur->edit_data($where,$data,'faktur');
+		 $this->M_faktur->edit_data($where,$data2,'item_faktur');
 		
 	}
 
@@ -197,10 +216,52 @@ function restore()  {
 
 	);
 
+	$data2 = array(
+		'state' => 'aktif',
+		'id_faktur' => $_POST['id']
+
+	);
+
 
 	 $this->M_faktur->edit_data($where,$data,'faktur');
+	 $this->M_faktur->edit_data($where,$data2,'item_faktur');
 	
 }
+
+
+
+//proses restore
+function restore_item()  {
+
+	$where = array(
+		'id_item_faktur' => $_POST['id'],
+	);
+	$data = array(
+		'state' => 'aktif',
+
+	);
+
+	 $this->M_faktur->edit_data($where,$data,'item_faktur');
+	
+}
+
+
+//proses restore
+function delete_item()  {
+
+	$where = array(
+		'id_item_faktur' => $_POST['id'],
+	);
+	// $data = array(
+	// 	'state' => 'aktif',
+
+	// );
+
+	 $this->M_faktur->delete_data($where,'item_faktur');
+	
+}
+
+
 
 function add_item($id) {
 
