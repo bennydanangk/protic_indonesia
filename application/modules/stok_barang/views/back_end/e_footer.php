@@ -1,5 +1,3 @@
-
-
 <!-- Main Footer -->
 <footer class="main-footer">
     <strong>Create By Benny Danang Kurniawan <a href="#">@ <?= date('Y');?></a>.</strong>
@@ -14,7 +12,6 @@
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-
 <script src="<?php echo base_url('assets/template/') ?>plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="<?php echo base_url('assets/template/') ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -47,11 +44,6 @@
 <script src="<?php echo base_url('assets/js/') ?>bootstrap_menu.js"></script>
 <script src="<?php echo base_url('assets/template/') ?>plugins/select2/js/select2.full.min.js"></script>
 
-<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
-
-
 <script>
 
 select2add();
@@ -60,8 +52,8 @@ select2add();
     $('.select2bs4').select2({
           theme: 'bootstrap4'
         })
-    $("#id_barang_faktur").select2({
-    dropdownParent: $("#faktur_modal")
+    $("#stok_barang").select2({
+    dropdownParent: $("#modal_add")
   });
  }
 
@@ -85,51 +77,29 @@ select2add();
 
   url = '<?php echo base_url('rest_api/set_menu/')?>';
   get_menu(url);
-  // $('#faktur_modal').modal('show');
+  // $('#modal_add').modal('show');
 
-  content_awal();
-  function content_awal() {
-    $('#content').load('<?= base_url("faktur/content/".date('Y-m-d').'/'.date('Y-m-d'))?>')
-  }
-
-
+  content();
   function content() {
-    tgl_awal = $('#tgl_awal').val();
-    tgl_akhir = $('#tgl_akhir').val();
-    if(tgl_awal == '' && tgl_akhir == ''){
-      $('#content').load('<?= base_url("faktur/content/".date('Y-m-d').'/'.date('Y-m-d'))?>')
-
-    }else{
-
-      $('#content').load('<?= base_url("faktur/content/")?>'+tgl_awal+'/'+tgl_akhir);
-    }
+    $('#content').load('<?= base_url("stok_barang/content")?>')
   }
-
   function data_sampah() {
-    $('#content').load('<?= base_url("faktur/data_sampah")?>')
-  }
-
-  function data_item_sampah() {
-    $('#content').load('<?= base_url("faktur/data_item_sampah")?>')
+    $('#content').load('<?= base_url("stok_barang/data_sampah")?>')
   }
 
 
 
   function add() {
-    $('#content').load('<?= base_url("faktur/add")?>');
+    $('#content').load('<?= base_url("stok_barang/add")?>');
   }
 
   function open_edit(id) {
-    $('#content').load('<?= base_url("faktur/edit/")?>'+id);
+    $('#content').load('<?= base_url("stok_barang/edit/")?>'+id);
 
   }
 
- 
-
-
-
   function open_state(id) {
-    $('#content').load('<?= base_url("faktur/state/")?>'+id);
+    $('#content').load('<?= base_url("stok_barang/state/")?>'+id);
 
   }
 
@@ -148,12 +118,12 @@ select2add();
   if (result.isConfirmed) {
 
     $.ajax({
-    url: "<?= base_url('faktur/hapus')?>",
+    url: "<?= base_url('stok_barang/hapus')?>",
              type: 'POST',
              data: {id:id},            
              success: function(data) {  
               setTimeout(function() {
-                content_awal();
+            content();
             }, 500);
              
           
@@ -181,7 +151,7 @@ select2add();
 $("#form_add").submit(function(e) {
          e.preventDefault();
          $.ajax({
-          url: "<?= base_url('faktur/add')?>",
+          url: "<?= base_url('stok_barang/add')?>",
              type: 'POST',
              data: $(this).serialize(),             
              success: function(data) {    
@@ -208,12 +178,12 @@ $("#form_add").submit(function(e) {
   if (result.isConfirmed) {
 
     $.ajax({
-    url: "<?= base_url('faktur/restore')?>",
+    url: "<?= base_url('stok_barang/restore')?>",
              type: 'POST',
              data: {id:id},            
              success: function(data) {  
               setTimeout(function() {
-                content_awal();
+            content();
             }, 500);
              
             //console.log(data);
@@ -231,135 +201,6 @@ $("#form_add").submit(function(e) {
   }
 })
   }
-
-
-
-
-  function restore_item(id) {
-    Swal.fire({
-  title: 'Apakah Anda Yakin?',
-  text: "Apakah Anda Akan Merestore Data Ini!",
-  icon: 'question',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, Restore it!'
-}).then((result) => {
-  if (result.isConfirmed) {
-
-    $.ajax({
-    url: "<?= base_url('faktur/restore_item')?>",
-             type: 'POST',
-             data: {id:id},            
-             success: function(data) {  
-              setTimeout(function() {
-                data_sampah();
-            }, 500);
-             
-            //console.log(data);
-            // $('#password').val(data);
-            
-             }
-  });
-
-
-    Swal.fire(
-      'Restore!',
-      'Your file has been Restore.',
-      'success'
-    )
-  }
-})
-  }
-
-
-function reload() {
-  location.reload();
-}
-
-
-  function delete_item(id) {
-    Swal.fire({
-  title: 'Apakah Anda Yakin?',
-  text: "Apakah Anda Akan Hapus Permanen Data Ini!",
-  icon: 'question',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, Delete it!'
-}).then((result) => {
-  if (result.isConfirmed) {
-
-    $.ajax({
-    url: "<?= base_url('faktur/delete_item')?>",
-             type: 'POST',
-             data: {id:id},            
-             success: function(data) {  
-              setTimeout(function() {
-                data_sampah_item();
-            }, 500);
-             
-            //console.log(data);
-            // $('#password').val(data);
-            
-             }
-  });
-
-
-    Swal.fire(
-      'Restore!',
-      'Your file has been Delete.',
-      'success'
-    )
-  }
-})
-  }
-
-
-
-
-
-
-
-
-
-  function hapus_item(id) {
-    id_faktur = $('#id_faktur').val();
-    Swal.fire({
-  title: 'Apakah Anda Yakin?',
-  text: "Apakah Anda Akan Menghapus Data Ini!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, delete it!'
-}).then((result) => {
-  if (result.isConfirmed) {
-
-    $.ajax({
-    url: "<?= base_url('faktur/hapus_item')?>",
-             type: 'POST',
-             data: {id:id},            
-             success: function(data) {  
-              setTimeout(function() {
-                content_awal();
-            }, 500);
-             
-          
-             }
-  });
-
-  open_modal_faktur(id_faktur);
-    Swal.fire(
-      'Deleted!',
-      'Your file has been deleted.',
-      'success'
-    )
-  }
-})
-  }
-
-
 
 </script>
 

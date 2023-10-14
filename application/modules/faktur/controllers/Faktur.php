@@ -71,6 +71,9 @@ class faktur extends MY_Controller {
 	}
 //get Content table
 	function content($tgl_awal,$tgl_akhir)  {
+
+		$tgl_awal = $tgl_awal.' 00:00:00';
+		$tgl_akhir = $tgl_akhir.' 23:59:59';
 		$where = array(
 			'faktur.state' => 'aktif',
 			'tgl_input >= ' => $tgl_awal,
