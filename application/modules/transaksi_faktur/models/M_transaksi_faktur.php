@@ -36,6 +36,32 @@ function get_state($table,$where){
   return $this->db->get_where($table,$where);
 }	
 
+function stok_barang_masuk($table,$where){	
+  $this->db->select('SUM(qty) as total');	
+  $this->db->join('item_faktur', 'item_faktur.id_barang_faktur = barang_faktur.id_barang_faktur');
+  return $this->db->get_where($table,$where);
+}	
 
+function stok_barang_keluar($table,$where){	
+  $this->db->select('SUM(barang_bhp_keluar.qty) as total');	
+  $this->db->join('item_faktur', 'item_faktur.id_barang_faktur = barang_bhp_keluar.id_barang_faktur','left');
+  return $this->db->get_where($table,$where);
+}	
+
+
+function get_barang_bhp_keluar($table,$where){	
+  // $this->db->select('SUM(barang_bhp_keluar.qty) as total');	
+  $this->db->join('barang_faktur', 'barang_faktur.id_barang_faktur = barang_bhp_keluar.id_barang_faktur','left');
+  $this->db->join('user', 'user.id_user = barang_bhp_keluar.id_user','left');
+  $this->db->join('ruang', 'ruang.id_ruang = barang_bhp_keluar.id_ruang','left');
+  
+  return $this->db->get_where($table,$where);
+}	
+
+
+function hapus_data($where,$table){
+  // $this->db->where($where);
+  $this->db->delete($table,$where);
+}
 }
 ?>

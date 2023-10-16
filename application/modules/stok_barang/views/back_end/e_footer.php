@@ -83,6 +83,22 @@ select2add();
   function content() {
     $('#content').load('<?= base_url("stok_barang/content")?>')
   }
+
+
+  function content_transaksi() {
+    tgl_awal = $('#tgl_awal').val();
+    tgl_akhir = $('#tgl_akhir').val();
+    if(tgl_awal == '' && tgl_akhir == ''){
+      $('#content').load('<?= base_url("transaksi_faktur/content_transaksi/".date('Y-m-d').'/'.date('Y-m-d'))?>')
+
+    }else{
+
+      $('#content').load('<?= base_url("transaksi_faktur/content_transaksi/")?>'+tgl_awal+'/'+tgl_akhir);
+    }
+  }
+
+
+
   function data_sampah() {
     $('#content').load('<?= base_url("stok_barang/data_sampah")?>')
   }

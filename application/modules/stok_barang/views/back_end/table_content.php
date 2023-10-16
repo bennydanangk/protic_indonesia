@@ -7,8 +7,8 @@
   <div class="card">
   <div class="card-body">
    
-  <a  class="btn btn-sm btn-primary" onclick="add();"> <i class="fa fa-plus"></i> Tambah</a> 
-  <a  class="btn btn-sm btn-secondary" onclick="data_sampah();"> <i class="fa fa-trash"></i> Data Sampah</a> <hr>
+  <!-- <a  class="btn btn-sm btn-primary" onclick="add();"> <i class="fa fa-plus"></i> Tambah</a>  -->
+  <!-- <a  class="btn btn-sm btn-secondary" onclick="data_sampah();"> <i class="fa fa-trash"></i> Data Sampah</a> <hr> -->
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>

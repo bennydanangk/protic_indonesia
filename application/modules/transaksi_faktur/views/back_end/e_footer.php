@@ -79,9 +79,9 @@ select2add();
   get_menu(url);
   // $('#modal_add').modal('show');
 
-  content();
-  function content() {
-    $('#content').load('<?= base_url("transaksi_faktur/content")?>')
+  // content();
+  function content(id) {
+    $('#content').load('<?= base_url("transaksi_faktur/content/")?>'+id)
   }
   function data_sampah() {
     $('#content').load('<?= base_url("transaksi_faktur/data_sampah")?>')
@@ -106,6 +106,10 @@ select2add();
 
 
   function hapus(id) {
+    
+    kode_transaksi=$('#kode_transaksi').val();
+
+
     Swal.fire({
   title: 'Apakah Anda Yakin?',
   text: "Apakah Anda Akan Menghapus Data Ini!",
@@ -123,7 +127,7 @@ select2add();
              data: {id:id},            
              success: function(data) {  
               setTimeout(function() {
-            content();
+            content(kode_transaksi);
             }, 500);
              
           

@@ -7,8 +7,8 @@
   <div class="card">
   <div class="card-body">
    
-  <a  class="btn btn-sm btn-primary" onclick="add();"> <i class="fa fa-plus"></i> Tambah</a> 
-  <a  class="btn btn-sm btn-secondary" onclick="data_sampah();"> <i class="fa fa-trash"></i> Data Sampah</a> <hr>
+  <!-- <a  class="btn btn-sm btn-primary" onclick="add();"> <i class="fa fa-plus"></i> Tambah</a>  -->
+  <!-- <a  class="btn btn-sm btn-secondary" onclick="data_sampah();"> <i class="fa fa-trash"></i> Data Sampah</a> <hr> -->
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
@@ -16,8 +16,10 @@
                     <th>Kode Barang</th>
                     <th>Nama Barang</th>
                     <th>Kode PLU</th>
-                    <th>Sisa Stok</th>
-                    <th>Barang Keluar</th>
+                    <th>tgl Input</th>
+                    <th>Qty</th>
+                    <th>Penerima</th>
+                    <th>Ruangan</th>
                      <th>Tools</th>
                       
                   </tr>
@@ -34,13 +36,15 @@
                       <td><?= $k->kode_barang?></td>
                       <td><?= $k->kode_plu?></td>
                       <td><?= $k->nama_barang_faktur?></td>
-                      <td>0</td>
-                      <td>0</td>
+                      <td><?= $k->tgl_input?></td>
+                      <td><?= $k->qty?></td>
+                      <td><?= $k->nama_pengguna?></td>
+                      <td><?= $k->nama_ruangan?></td>
 
                     <td>
 
-                    <a  class="btn btn-sm btn-warning"  onclick='open_edit("<?= $k->id_transaksi_faktur; ?>");'> Set Real Stok <i class="fa fa-leaf"></i></a>
-                    <!-- <a  class="btn btn-sm btn-danger"  onclick='hapus("<?= $k->id_transaksi_faktur; ?>");'> <i class="fa fa-ban"></i></a> -->
+                    <!-- <a  class="btn btn-sm btn-warning"  onclick='open_edit("<?= $k->id_transaksi_faktur; ?>");'> Set Real Stok <i class="fa fa-leaf"></i></a> -->
+                    <a  class="btn btn-sm btn-danger"  onclick='hapus("<?= $k->id_barang_keluar; ?>");'> <i class="fa fa-ban"></i></a>
 
                     </td>
 
@@ -55,8 +59,10 @@
                     <th>Kode Barang</th>
                     <th>Nama Barang</th>
                     <th>Kode PLU</th>
-                    <th>Sisa Stok</th>
-                    <th>Barang Keluar</th>
+                    <th>tgl Input</th>
+                    <th>Qty</th>
+                    <th>Penerima</th>
+                    <th>Ruangan</th>
                      <th>Tools</th>
                   </tr>
                   </tfoot>
