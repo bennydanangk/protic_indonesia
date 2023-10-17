@@ -218,6 +218,47 @@ $("#form_add").submit(function(e) {
 })
   }
 
+
+  function get_stok(id,id_up) {
+      
+      $.ajax({
+    url: "<?= base_url('transaksi_faktur/cek_stok')?>",
+             type: 'POST',
+             data: {id_barang_faktur:id},            
+             success: function(data) {  
+            // console.log(data.data); 
+            n = data.data;
+            // console.log('#'+id_up);   
+             $('#'+id_up).html(n);
+          
+             }
+  });
+
+
+    }
+
+
+
+
+    function get_stok_keluar(id,id_up) {
+      
+      $.ajax({
+    url: "<?= base_url('transaksi_faktur/cek_stok_keluar')?>",
+             type: 'POST',
+             data: {id_barang_faktur:id},            
+             success: function(data) {  
+            // console.log(data.data); 
+            n = data.data;
+            // console.log('#'+id_up);   
+             $('#'+id_up).html(n);
+          
+             }
+  });
+
+
+    }
+
+
 </script>
 
 </body>

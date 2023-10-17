@@ -34,14 +34,31 @@
                       <td><?= $k->kode_barang?></td>
                       <td><?= $k->kode_plu?></td>
                       <td><?= $k->nama_barang_faktur?></td>
-                      <td>0</td>
-                      <td>0</td>
+                      <td>
+                  
+                      <i id='barang_<?= $k->id_barang_faktur ?>'> </i> 
+                        <script>
+                          id =<?= $k->id_barang_faktur ?>;
+                          id_up ='barang_<?= $k->id_barang_faktur ?>';
+                          get_stok(id,id_up);
+                        </script>
+                    </td>
+                      <td>
+
+                      <i id='barang_keluar<?= $k->id_barang_faktur ?>'> </i> 
+                        <script>
+                          id =<?= $k->id_barang_faktur ?>;
+                          id_up ='barang_keluar<?= $k->id_barang_faktur ?>';
+                          get_stok_keluar(id,id_up);
+                        </script>
+
+
+                      </td>
 
                     <td>
 
-                    <a  class="btn btn-sm btn-warning"  onclick='open_edit("<?= $k->id_stok_barang; ?>");'> Set Real Stok <i class="fa fa-leaf"></i></a>
-                    <!-- <a  class="btn btn-sm btn-danger"  onclick='hapus("<?= $k->id_stok_barang; ?>");'> <i class="fa fa-ban"></i></a> -->
-
+                    <a  class="btn btn-sm btn-success"  onclick='open_edit("<?= $k->id_stok_barang; ?>");'> Detail <i class="fa fa-eye"></i></a>
+                    
                     </td>
 
                   </tr>
@@ -102,6 +119,21 @@ $("#example1").DataTable({
       "responsive": true,
     });
 
+// get_stok(1);
 
+  //   function get_stok(id) {
+      
+  //     $.ajax({
+  //   url: "<?= base_url('transaksi_faktur/cek_stok')?>",
+  //            type: 'POST',
+  //            data: {id_barang_faktur:id},            
+  //            success: function(data) {  
+  //           console.log(data);      
+          
+  //            }
+  // });
+
+
+  //   }
 
       </script>

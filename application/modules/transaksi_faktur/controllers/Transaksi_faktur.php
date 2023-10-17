@@ -233,4 +233,33 @@ $total = ($stok_masuk[0]->total)- ($stok_keluar[0]->total);
 }
 
 
+
+
+function cek_stok_keluar(){
+	$id_barang = $_POST['id_barang_faktur'];
+
+	$where_stok_keluar = array(
+		'barang_bhp_keluar.state' => 'aktif',
+		'barang_bhp_keluar.id_barang_faktur' => $id_barang
+	);	
+	$stok_keluar = $this->M_transaksi_faktur->stok_barang_keluar('barang_bhp_keluar',$where_stok_keluar)->result();
+
+
+
+$total = ($stok_keluar[0]->total);
+
+	$respone  = array(
+		'respone' => '200',
+		'data' => $total
+	);
+
+	header('Content-Type: application/json');
+	echo json_encode($respone);
+
+	// echo json_encode($stok_masuk[0]);
+}
+
+
+
+
 }

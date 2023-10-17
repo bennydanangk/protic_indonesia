@@ -171,7 +171,7 @@ $('.select2bs4').select2({
 
               // $("#form_add")[0].reset();
               $('#sisa_stok').value ='0';
-              $('#qty')..value = '0';
+              $('#qty').value = '0';
               content(kode_transaksi);
 
               // console.log(kode_transaksi);
