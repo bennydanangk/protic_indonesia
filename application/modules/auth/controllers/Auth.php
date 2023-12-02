@@ -74,7 +74,7 @@ class Auth extends MY_Controller {
 										'status' => $status,
 										'x_token' => $x_token,
 										'ip' => $this->enc->get_client_ip(),
-										'mac' => $MAC = exec('getmac'),
+										'mac' => '',
 										'id_user' => $auth[0]->id_user,
 										'nama_user' => $auth[0]->username
 									);

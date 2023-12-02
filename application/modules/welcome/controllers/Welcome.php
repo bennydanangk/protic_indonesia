@@ -22,4 +22,14 @@ class Welcome extends MY_Controller {
 	{
 		$this->load->view('welcome_message');
 	}
+
+	function api() {
+		$data = array(
+			'status' => '0' 
+		);
+
+		header('Content-Type: application/json');
+		echo json_encode($data);
+		
+	}
 }
