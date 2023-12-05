@@ -1,92 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> <?= $conf[0]->nama_aplikasi?> | <?= $conf[0]->version?></title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title><?= $nama_aplikasi;?></title>
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?php echo base_url('assets/template/') ?>plugins/fontawesome-free/css/all.min.css">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="<?php echo base_url('assets/template/') ?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo base_url('assets/template/') ?>dist/css/adminlte.min.css">
+	<!-- Global stylesheets -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+	<link href="<?= base_url('assets/limitless/');?>assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+	<link href="<?= base_url('assets/limitless/');?>assets/css/minified/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="<?= base_url('assets/limitless/');?>assets/css/minified/core.min.css" rel="stylesheet" type="text/css">
+	<link href="<?= base_url('assets/limitless/');?>assets/css/minified/components.min.css" rel="stylesheet" type="text/css">
+	<link href="<?= base_url('assets/limitless/');?>assets/css/minified/colors.min.css" rel="stylesheet" type="text/css">
+	<!-- /global stylesheets -->
 
-<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.22/dist/sweetalert2.min.css" rel="stylesheet">
+	<!-- Core JS files -->
+	<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/plugins/loaders/pace.min.js"></script>
+	<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/core/libraries/jquery.min.js"></script>
+	<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/core/libraries/bootstrap.min.js"></script>
+	<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/plugins/loaders/blockui.min.js"></script>
+	<!-- /core JS files -->
+
+	<!-- Theme JS files -->
+	<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/plugins/forms/styling/uniform.min.js"></script>
+
+	<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/core/app.js"></script>
+	<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/pages/login.js"></script>
+	<!-- /theme JS files -->
+
 </head>
-<body class="hold-transition login-page">
-<div class="login-box">
-  <div class="login-logo">
-    <a href="<?php echo base_url('assets/template/') ?>index2.html"><b><?= $conf[0]->nama_aplikasi?></b> </a>
-  </div>
-  <!-- /.login-logo -->
-  <div class="card">
-    <div class="card-body login-card-body">
-      <p class="login-box-msg">Login to start your session</p>
 
-      <form id="login" method="POST">
+<body>
 
-        <div class="input-group mb-3">
-          <input type="username"  name="username" class="form-control" placeholder="Username" required>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" name="password" class="form-control" placeholder="Password" required>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="remember">
-              <label for="remember">
-                Remember Me
-              </label>
-            </div>
-          </div>
-          <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Login</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
+	<!-- Main navbar -->
+	<div class="navbar navbar-inverse">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="index.html"><img src="<?= base_url('assets/limitless/');?>assets/images/logo_light.png" alt=""></a>
 
-   
+			<ul class="nav navbar-nav pull-right visible-xs-block">
+				<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+			</ul>
+		</div>
 
-      <p class="mb-1">
-        Apabila Kesulitan Login Aplikasi Silahkan Hubungi <a href="mailto:bennydanangkurniawan@gmail.com">Admin</a>
-      </p>
-      <p class="mb-0">
-       
-      </p>
-    </div>
-    <!-- /.login-card-body -->
-  </div>
-</div>
-<!-- /.login-box -->
+		<div class="navbar-collapse collapse" id="navbar-mobile">
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a href="#">
+						<i class="icon-display4"></i> <span class="visible-xs-inline-block position-right"> Go to website</span>
+					</a>
+				</li>
 
-<!-- jQuery -->
-<script src="<?php echo base_url('assets/template/') ?>plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="<?php echo base_url('assets/template/') ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="<?php echo base_url('assets/template/') ?>dist/js/adminlte.min.js"></script>
-<script src="<?php echo base_url('assets/') ?>js/bootstrap_login.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.22/dist/sweetalert2.all.min.js"></script>
+				<li>
+					<a href="#">
+						<i class="icon-user-tie"></i> <span class="visible-xs-inline-block position-right"> Contact admin</span>
+					</a>
+				</li>
+
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown">
+						<i class="icon-cog3"></i>
+						<span class="visible-xs-inline-block position-right"> Options</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /main navbar -->
+
+
+	<!-- Page container -->
+	<div class="page-container login-container">
+
+		<!-- Page content -->
+		<div class="page-content">
+
+			<!-- Main content -->
+			<div class="content-wrapper">
+
+				<!-- Content area -->
+				<div class="content">
+
+					<!-- Advanced login -->
+					<form action="index.html">
+						<div class="login-form">
+							<div class="text-center">
+								<div class="icon-object border-warning-400 text-warning-400"><i class="icon-people"></i></div>
+								<h5 class="content-group-lg">Login to your account <small class="display-block">Enter your credentials</small></h5>
+							</div>
+
+							<div class="form-group has-feedback has-feedback-left">
+								<input type="text" class="form-control input-lg" placeholder="Username">
+								<div class="form-control-feedback">
+									<i class="icon-user text-muted"></i>
+								</div>
+							</div>
+
+							<div class="form-group has-feedback has-feedback-left">
+								<input type="text" class="form-control input-lg" placeholder="Password">
+								<div class="form-control-feedback">
+									<i class="icon-lock2 text-muted"></i>
+								</div>
+							</div>
+
+							<div class="form-group login-options">
+								<div class="row">
+									<div class="col-sm-6">
+										<label class="checkbox-inline">
+											<input type="checkbox" class="styled" checked="checked">
+											Remember
+										</label>
+									</div>
+
+									<div class="col-sm-6 text-right">
+										<a href="login_password_recover.html">Forgot password?</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<button type="submit" class="btn bg-blue btn-block btn-lg">Login <i class="icon-arrow-right14 position-right"></i></button>
+							</div>
+
+							<div class="content-divider text-muted form-group"><span>or sign in with</span></div>
+							<ul class="list-inline form-group list-inline-condensed text-center">
+								<li><a href="#" class="btn border-indigo text-indigo btn-flat btn-icon btn-rounded"><i class="icon-facebook"></i></a></li>
+								<li><a href="#" class="btn border-pink-300 text-pink-300 btn-flat btn-icon btn-rounded"><i class="icon-dribbble3"></i></a></li>
+								<li><a href="#" class="btn border-slate-600 text-slate-600 btn-flat btn-icon btn-rounded"><i class="icon-github"></i></a></li>
+								<li><a href="#" class="btn border-info text-info btn-flat btn-icon btn-rounded"><i class="icon-twitter"></i></a></li>
+							</ul>
+
+							<div class="content-divider text-muted form-group"><span>Don't have an account?</span></div>
+							<a href="login_registration.html" class="btn bg-slate btn-block btn-lg content-group">Register</a>
+							<span class="help-block text-center">By continuing, you're confirming that you've read and agree to our <a href="#">Terms and Conditions</a> and <a href="#">Cookie Policy</a></span>
+						</div>
+					</form>
+					<!-- /advanced login -->
+
+
+					<!-- Footer -->
+					<div class="footer text-muted">
+						&copy; 2015. <a href="#">Limitless Web App Kit</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
+					</div>
+					<!-- /footer -->
+
+				</div>
+				<!-- /content area -->
+
+			</div>
+			<!-- /main content -->
+
+		</div>
+		<!-- /page content -->
+
+	</div>
+	<!-- /page container -->
+
 </body>
 </html>
-<script>
-
-login ('<?php echo base_url('auth/login');?>');
-
-</script>
