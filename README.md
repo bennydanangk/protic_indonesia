@@ -35,6 +35,9 @@ User Gudang
 3.	Ceklis barang ready. (narik user id )
 Kembali ke sing bikin surat PO.
 
+![logo](https://github.com/bennydanangk/protic_indonesia/assets/141985161/ee31fb1a-a736-4cba-8893-f41038867304)
+
+
 
 
 
