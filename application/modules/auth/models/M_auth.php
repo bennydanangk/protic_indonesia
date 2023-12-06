@@ -2,7 +2,7 @@
 class M_auth extends CI_Model {
 
  function config(){
-   return $this->db->get('config')->result();
+   return $this->db->get('t_vendor')->result();
  }   
 
  function cek_login($table,$where){		

@@ -126,4 +126,21 @@ return json_encode($data);
 
 
 }
+
+function credensial($key)  {
+//    code : Benny Danang K & Setya Yuli
+$a = $this->out($key);
+$gen = 'ziNvHpAD7C5FoEBszDQ0N/NW1LalkeyrvT0w5sM5+ctpOPfXkgejAwYtxFpFFXj2+GJhhWDSRqS8AaQvEUX8M3IQJ03v1OMHO4mNF2wmmWg=';
+$b = $this->out($gen);
+
+if($a == $b ){
+    redirect('/auth/login/');
+
+}else{
+ 
+    redirect('/auth/fail/');
+}
+   
+
+}
 }

@@ -36,7 +36,7 @@
 	<!-- Main navbar -->
 	<div class="navbar navbar-inverse">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="index.html"><img src="<?= base_url('assets/limitless/');?>assets/images/logo_light.png" alt=""></a>
+			<a class="navbar-brand" href="#"><img src="<?= base_url('assets/limitless/');?>assets/images/logo_light.png" alt=""></a>
 
 			<ul class="nav navbar-nav pull-right visible-xs-block">
 				<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
@@ -85,7 +85,7 @@
 					<form action="index.html">
 						<div class="login-form">
 							<div class="text-center">
-								<div class="icon-object border-warning-400 text-warning-400"><i class="icon-people"></i></div>
+								<div class="icon-object border-warning-400 text-warning-400"><i class="icon-user"></i></div>
 								<h5 class="content-group-lg">Login to your account <small class="display-block">Enter your credentials</small></h5>
 							</div>
 
@@ -122,25 +122,25 @@
 								<button type="submit" class="btn bg-blue btn-block btn-lg">Login <i class="icon-arrow-right14 position-right"></i></button>
 							</div>
 
-							<div class="content-divider text-muted form-group"><span>or sign in with</span></div>
+							<!-- <div class="content-divider text-muted form-group"><span>or sign in with</span></div>
 							<ul class="list-inline form-group list-inline-condensed text-center">
 								<li><a href="#" class="btn border-indigo text-indigo btn-flat btn-icon btn-rounded"><i class="icon-facebook"></i></a></li>
 								<li><a href="#" class="btn border-pink-300 text-pink-300 btn-flat btn-icon btn-rounded"><i class="icon-dribbble3"></i></a></li>
 								<li><a href="#" class="btn border-slate-600 text-slate-600 btn-flat btn-icon btn-rounded"><i class="icon-github"></i></a></li>
 								<li><a href="#" class="btn border-info text-info btn-flat btn-icon btn-rounded"><i class="icon-twitter"></i></a></li>
-							</ul>
+							</ul> -->
 
-							<div class="content-divider text-muted form-group"><span>Don't have an account?</span></div>
+							<!-- <div class="content-divider text-muted form-group"><span>Don't have an account?</span></div>
 							<a href="login_registration.html" class="btn bg-slate btn-block btn-lg content-group">Register</a>
 							<span class="help-block text-center">By continuing, you're confirming that you've read and agree to our <a href="#">Terms and Conditions</a> and <a href="#">Cookie Policy</a></span>
 						</div>
-					</form>
+					</form> -->
 					<!-- /advanced login -->
 
 
 					<!-- Footer -->
 					<div class="footer text-muted">
-						&copy; 2015. <a href="#">Limitless Web App Kit</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
+						&copy; <?= date('Y')?>. <a href="#">Protic Id</a> by <a href="#" target="_blank">Benny & Setya</a>
 					</div>
 					<!-- /footer -->
 
