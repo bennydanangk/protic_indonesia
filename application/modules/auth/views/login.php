@@ -113,7 +113,7 @@
 									</div>
 
 									<div class="col-sm-6 text-right">
-										<a href="login_password_recover.html">Forgot password?</a>
+										
 									</div>
 								</div>
 							</div>
@@ -122,21 +122,7 @@
 								<button type="submit" class="btn bg-blue btn-block btn-lg">Login <i class="icon-arrow-right14 position-right"></i></button>
 							</div>
 
-							<!-- <div class="content-divider text-muted form-group"><span>or sign in with</span></div>
-							<ul class="list-inline form-group list-inline-condensed text-center">
-								<li><a href="#" class="btn border-indigo text-indigo btn-flat btn-icon btn-rounded"><i class="icon-facebook"></i></a></li>
-								<li><a href="#" class="btn border-pink-300 text-pink-300 btn-flat btn-icon btn-rounded"><i class="icon-dribbble3"></i></a></li>
-								<li><a href="#" class="btn border-slate-600 text-slate-600 btn-flat btn-icon btn-rounded"><i class="icon-github"></i></a></li>
-								<li><a href="#" class="btn border-info text-info btn-flat btn-icon btn-rounded"><i class="icon-twitter"></i></a></li>
-							</ul> -->
-
-							<!-- <div class="content-divider text-muted form-group"><span>Don't have an account?</span></div>
-							<a href="login_registration.html" class="btn bg-slate btn-block btn-lg content-group">Register</a>
-							<span class="help-block text-center">By continuing, you're confirming that you've read and agree to our <a href="#">Terms and Conditions</a> and <a href="#">Cookie Policy</a></span>
-						</div>
-					</form> -->
-					<!-- /advanced login -->
-
+							
 
 					<!-- Footer -->
 					<div class="footer text-muted">

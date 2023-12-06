@@ -28,7 +28,10 @@ class Auth extends MY_Controller {
 		$set = $this->M_auth->config();
 		$data['nama_aplikasi'] = $set[0]->nama_vendor;
 		$data['nama_user'] = 'Administrator';
-		$this->load->view('backend/index',$data);
+		// $this->load->view('backend/index',$data);
+		$this->load->view('backend/a_header',$data);
+		$this->load->view('backend/b_main',$data);
+		$this->load->view('backend/c_footer',$data);
 	
 	}
 
@@ -37,6 +40,10 @@ class Auth extends MY_Controller {
 		$key_app = $get[0]->key_app;
 	 	$this->enc->credensial($key_app);
 		
+	}
+
+	function key()  {
+		echo $this->enc->in('password');
 	}
 
 }
