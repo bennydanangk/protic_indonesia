@@ -1,5 +1,5 @@
 <?php
-class M_auth extends CI_Model {
+class M_Dashboard extends CI_Model {
 
  function config(){
    return $this->db->get('t_vendor')->result();

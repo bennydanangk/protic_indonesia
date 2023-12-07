@@ -28,7 +28,6 @@ class Auth extends MY_Controller {
 		$set = $this->M_auth->config();
 		$data['nama_aplikasi'] = $set[0]->nama_vendor;
 		$data['nama_user'] = 'Administrator';
-		// $this->load->view('backend/index',$data);
 		$this->load->view('backend/a_header',$data);
 		$this->load->view('backend/b_main',$data);
 		$this->load->view('backend/c_footer',$data);
@@ -42,8 +41,100 @@ class Auth extends MY_Controller {
 		
 	}
 
-	function key()  {
-		echo $this->enc->in('password');
+	function login_auth(){
+	$username = $_POST['username'];
+	$password = $_POST['password'];
+
+	$where_username = array(
+		'username' => $username
+	);
+$cek_username = $this->M_auth->cek_where('t_user',$where_username)->num_rows();
+
+if($cek_username > 0 ){
+	$where_username = array(
+		'username' => $username
+	);
+
+	$cek_password = $this->M_auth->cek_where('t_user',$where_username)->result();
+	$password_ = $cek_password[0]->password;
+	$password_ = $this->enc->out($password_);
+	// print_r($password_);
+
+	if($password_ == $password){
+		$data = $this->M_auth->cek_where('t_user',$where_username)->result();
+		// print_r($data);
+
+
+		$data_session = array(
+			'nama_user' => $data[0]->nama_user,
+			'id_hak_akses' => $this->enc->in($data[0]->id_hak_akses),
+			'status' => "login"
+			);
+
+			// print_r($data_session);
+		$this->session->set_userdata($data_session);
+
+		$kirim = array(
+			'data' => $data[0]->nama_user,
+			'status' => 'login',
+			'date_input' => date('Y-m-d H:i:s')
+		);
+
+		$this->M_auth->insert('log',$kirim);
+
+		redirect(base_url('dashboard'));
+
+
+	}else {
+
+		redirect(base_url('auth/index'));
 	}
+	
+
+
+}else{
+
+	redirect(base_url('auth/index'));
+	
+}
+
+	}
+
+
+
+
+
+
+function get_hak_akses()  {
+
+	$data = $this->M_auth->get('t_menu');
+	foreach ($data as $k) {
+		
+		$kirim = array(
+			'id_menu' => $k->id_menu,
+			'id_hak_akses' => '1',
+			'status_role' => 'aktif'
+		);
+	$this->M_auth->insert('role_tabel',$kirim);
+	}
+	
+}
+
+
+
+function logout(){
+	$this->session->sess_destroy();
+
+	$kirim = array(
+		'data' => $this->session->set_userdata($nama_user),
+		'status' => 'logout',
+		'date_input' => date('Y-m-d H:i:s')
+	);
+
+	$this->M_auth->insert('log',$kirim);
+	redirect(base_url('auth/index'));
+}
+
+
 
 }
