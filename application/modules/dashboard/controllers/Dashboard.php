@@ -57,7 +57,7 @@ class Dashboard extends MY_Controller {
 		$menu .='<a href="#"><i class="'.$k->icon.'"></i> <span>'.$k->nama_menu.'</span></a>';
 		$menu .='<ul>';
 
-			// $id_hak_akses = 1;
+	
 		$where_child = array(
 			'id_hak_akses' => $id_hak_akses,
 			'status_role' => 'aktif',
@@ -67,7 +67,7 @@ class Dashboard extends MY_Controller {
 		);
 			$menu_child = $this->M_Dashboard->get_parent('role_tabel',$where_child)->result();
 			foreach ($menu_child as $y) {
-				$menu .=	'<li><a href="'.$y->link.'">'.$y->nama_menu.'</a></li>';
+				$menu .=	'<li><a href="'.base_url($y->link).'">'.$y->nama_menu.'</a></li>';
 			}
 
 			$menu .='</ul>';
