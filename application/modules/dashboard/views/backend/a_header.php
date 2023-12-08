@@ -33,7 +33,7 @@
 	<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/plugins/pickers/daterangepicker.js"></script>
 
 	<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/core/app.js"></script>
-	<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/pages/dashboard.js"></script>
+	<!-- <script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/pages/dashboard.js"></script> -->
 	<!-- /theme JS files -->
 
 </head>

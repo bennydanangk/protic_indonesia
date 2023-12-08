@@ -9,6 +9,10 @@ class Auth extends MY_Controller {
         parent::__construct();
 		$this->load->library('enc'); 
         $this->load->model("M_auth"); //load model m auth
+
+		if($this->session->userdata('status') == "login"){
+			redirect(base_url("dashboard"));
+		}
     }
 
 
@@ -22,16 +26,6 @@ class Auth extends MY_Controller {
 
 	function fail()  {
 		$this->load->view('fail');
-	}
-	public function template()
-	{
-		$set = $this->M_auth->config();
-		$data['nama_aplikasi'] = $set[0]->nama_vendor;
-		$data['nama_user'] = 'Administrator';
-		$this->load->view('backend/a_header',$data);
-		$this->load->view('backend/b_main',$data);
-		$this->load->view('backend/c_footer',$data);
-	
 	}
 
 	function index() {
@@ -123,14 +117,14 @@ function get_hak_akses()  {
 
 
 function logout(){
-	$this->session->sess_destroy();
+
 
 	$kirim = array(
 		'data' => $this->session->set_userdata($nama_user),
 		'status' => 'logout',
 		'date_input' => date('Y-m-d H:i:s')
 	);
-
+	$this->session->sess_destroy();
 	$this->M_auth->insert('log',$kirim);
 	redirect(base_url('auth/index'));
 }

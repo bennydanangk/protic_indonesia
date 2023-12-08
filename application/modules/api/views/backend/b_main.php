@@ -80,8 +80,6 @@
 					<!-- Main navigation -->
 					<div class="sidebar-category sidebar-category-visible">
 						<div class="category-content no-padding">
-					
-						
 							<ul class="navigation navigation-main navigation-accordion">
 
 								<!-- Main -->
@@ -89,15 +87,16 @@
 								<li class="active"><a href="<?= base_url('dashboard')?>"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
 								
                                 
-                            								
-
-								<div id='menu_output'></div>
-								<?= $menu?>
-						
-                              
-
-								<!-- <li><a href="#"><i class	="icon-cube3"></i> <span>Adminstrator</span></a><ul><li><a href="user">User</a></li><li><a href="setting">Setting</a></li></ul></li><li><a href="#"><i class="icon-box-add"></i> <span>Master Barang</span></a><ul><li><a href="jenis">jenis</a></li><li><a href="satuan">satuan</a></li><li><a href="kategori">kategori</a></li><li><a href="distributor">distributor</a></li><li><a href="customer">customer</a></li><li><a href="data_barang">data barang</a></li></ul></li><li><a href="#"><i class="icon-stack2"></i> <span>Transaksi faktur</span></a><ul><li><a href="faktur">Faktur</a></li><li><a href="item_faktur">Item faktur</a></li><li><a href="laporan_faktur">Laporan faktur</a></li></ul></li><li><a href="#"><i class="icon-store2"></i> <span>Penjualan</span></a><ul><li><a href="surat_penawaran_harga">Surat Penawaran Harga</a></li><li><a href="sales_order">Sales order</a></li><li><a href="konfirmasi_order">Konfirmasi Order</a></li><li><a href="permintaan_barang">Permintaan Barang</a></li><li><a href="tagihan">Tagihan / invocie</a></li><li><a href="kwitansi">Kwintasi</a></li><li><a href="permohonan_pembayaran">Permohonan Pembayaran</a></li><li><a href="pembayaran">Pembayaran</a></li></ul></li><li><a href="#"><i class="icon-cart-add"></i> <span>Pembelian</span></a><ul><li><a href="permohonan_informasi_harga">Permohonan Informasi Harga</a></li><li><a href="request_order">Request Order</a></li><li><a href="penerimaan_barang">Penerimaan Barang</a></li><li><a href="request_payment">Request Payment</a></li></ul></li><li><a href="#"><i class="icon-truck"></i> <span>Sales & Marketing</span></a><ul><li><a href="pengajuan_diskon">Pengajuan Diskon</a></li></ul></li><li><a href="#"><i class="icon-user"></i> <span>SDM</span></a><ul><li><a href="data_pegawai">Data Pegawai</a></li><li><a href="pengajuan_cuti">Pengajuan Cuti</a></li></ul></li><li><a href="#"><i class="icon-price-tags2"></i> <span>Keuangan</span></a><ul><li><a href="laba">Laba</a></li><li><a href="piutang">Piutang</a></li><li><a href="realisasi_pengadaan">Realisasi Pengadaan</a></li><li><a href="sudah_lunas">Sudah Lunas</a></li><li><a href="belum_lunas">Belum Lunas</a></li></ul></li> -->
-
+                                <li>
+									<a href="#"><i class="icon-stack2"></i> <span>Page layouts</span></a>
+									<ul>
+										<li><a href="layout_navbar_fixed.html">Fixed navbar</a></li>
+										<li><a href="layout_navbar_sidebar_fixed.html">Fixed navbar &amp; sidebar</a></li>
+										<li><a href="layout_sidebar_fixed_native.html">Fixed sidebar native scroll</a></li>
+									
+									</ul>
+								</li>
+							
 
 							</ul>
 						</div>
