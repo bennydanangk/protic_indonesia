@@ -97,17 +97,15 @@ $db['default'] = array(
 );
 
 
-
 // $db['default'] = array(
 // 	'dsn'	=> '',
 // 	'hostname' => 'localhost',
-// 	'username' => 'benf1469_root',
-// 	'password' => 'benf1469_root',
-// 	'database' => 'benf1469_app',
+// 	'username' => 'pron5781_sim_protic',
+// 	'password' => 'Simprotic123',
+// 	'database' => 'pron5781_sim_protic',
 // 	'dbdriver' => 'mysqli',
 // 	'dbprefix' => '',
 // 	'pconnect' => FALSE,
-// 	// 'db_debug' => FALSE,
 // 	'db_debug' => (ENVIRONMENT !== 'production'),
 // 	'cache_on' => FALSE,
 // 	'cachedir' => '',

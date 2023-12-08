@@ -20,6 +20,9 @@ class Dashboard extends MY_Controller {
 
 	public function index()
 	{
+		//set .inv
+		$id_menu = 1;
+		$this->cek_hak_akses($id_menu);
 		$set = $this->M_Dashboard->config();
 		$data['nama_aplikasi'] = $set[0]->nama_vendor;
 		$data['token'] = $this->session->userdata('id_hak_akses');
@@ -34,30 +37,27 @@ class Dashboard extends MY_Controller {
 	}
 
 
+//Menu Function
 	public function get_menu($id_hak_akses)
 	{
-		// $id_hak_akses = $_POST['token'];
-			
-			$id_hak_akses =$id_hak_akses;
-
+				
+		$id_hak_akses =$id_hak_akses;
 		$id_hak_akses = $this->enc->out($id_hak_akses);
-		// $id_hak_akses = 1;
-		$where_parent = array(
+			$where_parent = array(
 			'id_hak_akses' => $id_hak_akses,
 			'status_role' => 'aktif',
 			'state_orgin' => 'parent'
 
 		);
-$menu_parent = $this->M_Dashboard->get_parent('role_tabel',$where_parent)->result();
+		$menu_parent = $this->M_Dashboard->get_parent('role_tabel',$where_parent)->result();
+		$menu = '';
 
-$menu = '';
+		foreach ($menu_parent as $k) {
+		$menu .= '<li>';
+		$menu .='<a href="#"><i class="'.$k->icon.'"></i> <span>'.$k->nama_menu.'</span></a>';
+		$menu .='<ul>';
 
-foreach ($menu_parent as $k) {
-	$menu .= '<li>';
-$menu .='<a href="#"><i class="'.$k->icon.'"></i> <span>'.$k->nama_menu.'</span></a>';
-$menu .='<ul>';
-
-$id_hak_akses = 1;
+			// $id_hak_akses = 1;
 		$where_child = array(
 			'id_hak_akses' => $id_hak_akses,
 			'status_role' => 'aktif',
@@ -65,27 +65,43 @@ $id_hak_akses = 1;
 			'id_parent' => $k->id_menu
 
 		);
+			$menu_child = $this->M_Dashboard->get_parent('role_tabel',$where_child)->result();
+			foreach ($menu_child as $y) {
+				$menu .=	'<li><a href="'.$y->link.'">'.$y->nama_menu.'</a></li>';
+			}
+
+			$menu .='</ul>';
+			$menu .='</li>';
+				
+			}
+
+			return $menu;
+
+					
+	}
+//end Menu 
 
 
+function cek_hak_akses($id_menu)  {
+	$id_menu =$id_menu;
 
-$menu_child = $this->M_Dashboard->get_parent('role_tabel',$where_child)->result();
+	$id_hak_akses = $this->enc->out($this->session->userdata('id_hak_akses'));
+		$where = array(
+		'id_hak_akses' => $id_hak_akses,
+		'status_role' => 'aktif',
+		'role_tabel.id_menu' => $id_menu
 
-foreach ($menu_child as $y) {
-	$menu .=	'<li><a href="'.$y->link.'">'.$y->nama_menu.'</a></li>';
-}
+	);
 
-$menu .='</ul>';
-$menu .='</li>';
+	$menu_cek = $this->M_Dashboard->get_parent('role_tabel',$where)->num_rows();
+
+	if($menu_cek > 0 ){
+
+	}else{
+		redirect(base_url('auth/logout'));
+	}
 	
 }
-
-return $menu;
-
-		
-	}
-
-
-
 
 
 
