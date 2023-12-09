@@ -48,10 +48,13 @@
 
 
 
-<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/plugins/notifications/pnotify.min.js"></script>
-<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/pages/components_notifications_pnotify.js"></script>
+
 
 	<!-- /theme JS files -->
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.2.1/pnotify.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.2.1/pnotify.buttons.css"/>
+
 
 
 </head>

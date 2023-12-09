@@ -163,7 +163,9 @@
 						</div>
 
 						<div class="panel-body">
+						<button type="button" class="btn btn-default btn-sm" id="pnotify-progress">Launch <i class="icon-play3 position-right"></i></button>
 						<div id="tabel_content">
+
 						</div>
 
 					

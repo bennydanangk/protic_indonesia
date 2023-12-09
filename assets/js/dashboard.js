@@ -5,7 +5,6 @@ function connecting(url) {
            data: {} ,
            success: function (response) {
          var x = JSON.parse(response);
-         console.log(x['data']);
          if(x.data != 'online'){
            $('#status_aplikasi').html('<p class="navbar-text"><span class="label bg-danger-400">Ofline</span></p>');
            $('#main_app').hide();
