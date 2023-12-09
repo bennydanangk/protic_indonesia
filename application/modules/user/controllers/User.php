@@ -4,13 +4,13 @@
 // require_once(APPPATH.'modules\api\models\M_api.php'); 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dashboard extends MY_Controller {
+class User extends MY_Controller {
 
 	public function __construct()
     {
         parent::__construct();
 		$this->load->library('enc'); 
-        $this->load->model("M_Dashboard"); //load model m Dashboard
+        $this->load->model("M_user"); //load model m user
 
 		if($this->session->userdata('status') != "login"){
 			redirect(base_url("auth"));
@@ -22,9 +22,9 @@ class Dashboard extends MY_Controller {
 	{
 		//set .inv
 		$id_menu = 1;
-		$data['nama_menu'] = 'Dashboard';
+		$data['nama_menu'] = 'User';
 		$this->cek_hak_akses($id_menu);
-		$set = $this->M_Dashboard->config();
+		$set = $this->M_user->config();
 		$data['nama_aplikasi'] = $set[0]->nama_vendor;
 		$data['token'] = $this->session->userdata('id_hak_akses');
 		$data['nama_user'] = $this->session->userdata('nama_user');
@@ -50,7 +50,7 @@ class Dashboard extends MY_Controller {
 			'state_orgin' => 'parent'
 
 		);
-		$menu_parent = $this->M_Dashboard->get_parent('role_tabel',$where_parent)->result();
+		$menu_parent = $this->M_user->get_parent('role_tabel',$where_parent)->result();
 		$menu = '';
 
 		foreach ($menu_parent as $k) {
@@ -66,7 +66,7 @@ class Dashboard extends MY_Controller {
 			'id_parent' => $k->id_menu
 
 		);
-			$menu_child = $this->M_Dashboard->get_parent('role_tabel',$where_child)->result();
+			$menu_child = $this->M_user->get_parent('role_tabel',$where_child)->result();
 			foreach ($menu_child as $y) {
 				$menu .=	'<li><a href="'.base_url($y->link).'">'.$y->nama_menu.'</a></li>';
 			}
@@ -82,7 +82,7 @@ class Dashboard extends MY_Controller {
 	}
 //end Menu 
 
-
+//hak akses
 function cek_hak_akses($id_menu)  {
 	$id_menu =$id_menu;
 
@@ -94,7 +94,7 @@ function cek_hak_akses($id_menu)  {
 
 	);
 
-	$menu_cek = $this->M_Dashboard->get_parent('role_tabel',$where)->num_rows();
+	$menu_cek = $this->M_user->get_parent('role_tabel',$where)->num_rows();
 
 	if($menu_cek > 0 ){
 
@@ -103,7 +103,13 @@ function cek_hak_akses($id_menu)  {
 	}
 	
 }
+//end hak akses
 
+
+function tabel_content(){
+	$this->load->view('backend/page/tabel');
+	
+}
 
 
 

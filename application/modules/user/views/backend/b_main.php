@@ -89,7 +89,7 @@
 
 								<!-- Main -->
 								<li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
-								<li class="active"><a href="<?= base_url('dashboard')?>"><i class="icon-home4"></i> <span><?= $nama_menu?></span></a></li>
+								<li class="active"><a href="<?= base_url('user')?>"><i class="icon-home4"></i> <span><?= $nama_menu?></span></a></li>
 								
                                 
                             								
@@ -127,7 +127,7 @@
 
 					<div class="breadcrumb-line">
 						<ul class="breadcrumb">
-							<li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>
+							<li><a href="#"><i class="icon-home2 position-left"></i> Home</a></li>
 							<li class="active"><?= $nama_menu?></li>
 						</ul>
 
@@ -142,10 +142,42 @@
 				<!-- Content area -->
 				<div class="content">
 
-		<div id="main_app">
+		<div id="main_app" >
 
-		<h1>MAIN</h1>
 
+
+			<!-- Pagination types -->
+					<div class="panel panel-flat">
+						<div class="panel-heading">
+						<a href="" class="btn btn-sm btn-primary"> <span class="icon-plus3"></span> Tambah</a>
+						<a href="" class="btn btn-sm btn-success"> <span class="icon-cog"></span> Reload</a>
+
+							<!-- <h5 class="panel-title"><a href="" class="btn btn-sm btn-primary"> <span class="icon-plus3"></span> Tambah</a></h5> -->
+							<div class="heading-elements">
+								<ul class="icons-list">
+			                		<li><a data-action="collapse"></a></li>
+			                		<li><a data-action="reload"></a></li>
+			                		<li><a data-action="close"></a></li>
+			                	</ul>
+		                	</div>
+						</div>
+
+						<div class="panel-body">
+						<div id="tabel_content">
+						</div>
+
+					
+					
+					
+
+</div>
+
+
+
+						
+					</div>
+					<!-- /pagination types -->
+					
 		</div>
 
 					<!-- Footer -->
