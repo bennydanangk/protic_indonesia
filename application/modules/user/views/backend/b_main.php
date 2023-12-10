@@ -149,8 +149,10 @@
 			<!-- Pagination types -->
 					<div class="panel panel-flat">
 						<div class="panel-heading">
-						<a href="" class="btn btn-sm btn-primary"> <span class="icon-plus3"></span> Tambah</a>
-						<a href="" class="btn btn-sm btn-success"> <span class="icon-cog"></span> Reload</a>
+						<a href="#"  onclick='open_add();' class="btn btn-sm btn-primary"> <span class="icon-plus3"></span> Tambah</a>
+						<a href="#"  onclick='tabel_content();'  class="btn btn-sm btn-success"> <span class="icon-cog"></span> Reload</a>
+						<a href="#"  onclick='open_sampah();'  class="btn btn-sm btn-danger"> <span class="icon-trash"></span> Sampah</a>
+
 
 							<!-- <h5 class="panel-title"><a href="" class="btn btn-sm btn-primary"> <span class="icon-plus3"></span> Tambah</a></h5> -->
 							<div class="heading-elements">
@@ -163,7 +165,6 @@
 						</div>
 
 						<div class="panel-body">
-						<button type="button" class="btn btn-default btn-sm" id="pnotify-progress">Launch <i class="icon-play3 position-right"></i></button>
 						<div id="tabel_content">
 
 						</div>

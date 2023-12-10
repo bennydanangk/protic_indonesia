@@ -24,7 +24,17 @@ function get_parent($table,$where)  {
   $this->db->join('t_menu', 't_menu.id_menu = role_tabel.id_menu', 'left');
   return $this->db->get_where($table,$where);
 }
+//==========CRUD===
 
+function get_user($tabel,$where) {
+  $this->db->join('t_hak_akses','t_user.id_hak_akses = t_hak_akses.id_hak_akses','left');
+  return $this->db->get_where($tabel,$where);
+}
+
+function update_data($where,$data,$table){
+  $this->db->where($where);
+  $this->db->update($table,$data);
+}
 
 }
 ?>

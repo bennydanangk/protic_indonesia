@@ -1,7 +1,4 @@
 <?php
-
-// require_once(APPPATH.'modules\api\controllers\Api.php'); 
-// require_once(APPPATH.'modules\api\models\M_api.php'); 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User extends MY_Controller {
@@ -33,8 +30,7 @@ class User extends MY_Controller {
 		$this->load->view('backend/a_header',$data);
 		$this->load->view('backend/b_main',$data);
 		$this->load->view('backend/c_footer',$data);
-		// print_r($data);
-	
+		
 	}
 
 
@@ -107,7 +103,131 @@ function cek_hak_akses($id_menu)  {
 
 
 function tabel_content(){
-	$this->load->view('backend/page/tabel');
+
+	$where = array(
+		't_user.state' => 'aktif'
+	);
+
+	$data['data'] = $this->M_user->get_user('t_user',$where)->result();
+	$this->load->view('backend/page/tabel',$data);
+	
+}
+
+function tabel_sampah(){
+
+	$where = array(
+		't_user.state' => 'tidak'
+	);
+
+	$data['data'] = $this->M_user->get_user('t_user',$where)->result();
+	$this->load->view('backend/page/tabel_sampah',$data);
+	
+}
+
+
+//===========ADD 
+function form_add() {
+	$data['nama_menu'] = 'User';
+	$where = array(
+		'state'=> 'aktif'
+	);
+
+	$data['hak_akses'] = $this->M_user->cek_where('t_hak_akses',$where)->result();
+	$this->load->view('backend/page/from_add',$data);
+}
+
+function p_add() {
+	$data = array(
+		'nama_user' => $_POST['nama_user'],
+		'username' =>$_POST['username'],
+		'password' => $this->enc->in($_POST['password']),
+		'state' => 'aktif',
+		'id_hak_akses' => $_POST['id_hak_akses']
+	);
+
+	$this->M_user->insert('t_user',$data);
+}
+
+//============= END ADD==
+
+//============EDIT
+function form_edit($id) {
+	$id= $id;
+	$data['nama_menu'] = 'User';
+	$where_hak_akses = array(
+		'state'=> 'aktif'
+	);
+
+	$data['hak_akses'] = $this->M_user->cek_where('t_hak_akses',$where_hak_akses)->result();
+	//where data
+	$where = array(
+		'state'=> 'aktif',
+		'id_user' => $id
+	);
+
+	$data['data'] = $this->M_user->cek_where('t_user',$where	)->result();
+
+	// print_r($data);
+	$this->load->view('backend/page/from_edit',$data);
+}
+
+function p_edit() {
+	$id = $_POST['id'];
+	$data = array(
+		'nama_user' => $_POST['nama_user'],
+		'username' =>$_POST['username'],
+		'password' => $this->enc->in($_POST['password']),
+		'state' => 'aktif',
+		'id_hak_akses' => $_POST['id_hak_akses']
+	);
+
+	$where = array(
+		'id_user' => $id
+	);
+
+	$this->M_user->update_data($where,$data,'t_user');
+}
+
+
+//=====================END EDIT
+//================== Delete
+function p_delete() {
+	$id = $_POST['id'];
+	$data = array(
+		'state' => 'tidak',
+		
+	);
+	$where = array(
+		'id_user' => $id
+	);
+
+	$this->M_user->update('t_user',$data,$where);
+}
+
+//=====================END Delete
+
+//================== Delete
+function p_restore() {
+	$id = $_POST['id'];
+	$data = array(
+		'state' => 'aktif',
+		
+	);
+	$where = array(
+		'id_user' => $id
+	);
+
+	$this->M_user->update('t_user',$data,$where);
+}
+//=====================END Delete
+
+
+function cek_pass()  {
+
+	// print_r($_POST);
+	$pass = $_POST['enc'];
+	$x = $this->enc->out($pass);
+	echo '=> '.$x.'<=';
 	
 }
 

@@ -2,17 +2,34 @@
 </html>
 
 <script>
-var url = '<?= base_url('api/cek_koneksi')?>';
-var url_app = '<?= base_url('user/')?>';
+//.inv module
+var url = '<?= base_url()?>';
+var app= 'user';
+//end
 
-connecting(url);
+connecting(url+'api/cek_koneksi');
 
-tabel_content(url_app);
-function tabel_content(url_app) {
-    $('#tabel_content').load(url_app+'/tabel_content');
+tabel_content();
+function tabel_content() {
+    $('#tabel_content').load(url+'/'+app+'/tabel_content');
 }
 
-//=========TEst
+//=========add==
+function open_add() {
+    $('#tabel_content').load(url+'/'+app+'/form_add');
+    
+}
+//======= Edit===
+
+function open_edit(id) {
+    $('#tabel_content').load(url+'/'+app+'/form_edit/'+id);
+    
+}
+
+
+
+
+
 
 
 

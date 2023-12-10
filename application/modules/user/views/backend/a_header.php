@@ -38,23 +38,4 @@
 	<!-- <script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/pages/dashboard.js"></script> -->
 	<!-- /theme JS files -->
 
-
-		<!-- Theme JS files -->
-		<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/plugins/tables/datatables/datatables.min.js"></script>
-	<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/plugins/forms/selects/select2.min.js"></script>
-
-	<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/core/app.js"></script>
-	<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/pages/datatables_basic.js"></script>
-
-
-
-
-
-	<!-- /theme JS files -->
-
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.2.1/pnotify.css"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.2.1/pnotify.buttons.css"/>
-
-
-
 </head>
