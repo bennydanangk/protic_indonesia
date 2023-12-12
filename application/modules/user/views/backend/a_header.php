@@ -38,4 +38,5 @@
 	<!-- <script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/pages/dashboard.js"></script> -->
 	<!-- /theme JS files -->
 
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>

@@ -201,7 +201,7 @@ function p_delete() {
 		'id_user' => $id
 	);
 
-	$this->M_user->update('t_user',$data,$where);
+	$this->M_user->update_data($where,$data,'t_user');
 }
 
 //=====================END Delete
@@ -217,7 +217,7 @@ function p_restore() {
 		'id_user' => $id
 	);
 
-	$this->M_user->update('t_user',$data,$where);
+	$this->M_user->update_data($where,$data,'t_user');
 }
 //=====================END Delete
 
@@ -231,6 +231,19 @@ function cek_pass()  {
 	
 }
 
+//================== Delete Permanent
+function p_delete_permanen() {
+	$id = $_POST['id'];
+	
+	$where = array(
+		'id_user' => $id,
+		'state' => 'tidak'
+	);
+
+	$this->M_user->delete_data('t_user',$where);
+}
+
+//=====================END Delete Permanen
 
 
 	

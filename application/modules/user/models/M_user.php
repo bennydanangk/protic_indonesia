@@ -36,5 +36,11 @@ function update_data($where,$data,$table){
   $this->db->update($table,$data);
 }
 
+function delete_data($table,$where){
+
+  return $this->db->delete($table, $where);
+
+}
+
 }
 ?>

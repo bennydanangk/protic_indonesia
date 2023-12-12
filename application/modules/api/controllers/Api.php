@@ -35,5 +35,20 @@ function cek_koneksi()  {
 }
 
 
+function logout(){
+
+
+	$kirim = array(
+		'data' => $this->session->userdata('nama_user'),
+		'status' => 'logout',
+		'date_input' => date('Y-m-d H:i:s')
+	);
+	$this->session->sess_destroy();
+	$this->M_api->insert('log',$kirim);
+	redirect(base_url('auth/index'));
+}
+
+
+
 	
 }
