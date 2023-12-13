@@ -62,6 +62,7 @@ if($cek_username > 0 ){
 		$data_session = array(
 			'nama_user' => $data[0]->nama_user,
 			'id_hak_akses' => $this->enc->in($data[0]->id_hak_akses),
+			'id_user' => $data[0]->id_user,
 			'status' => "login"
 			);
 

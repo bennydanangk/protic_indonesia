@@ -1,0 +1,94 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="panel-body">
+							
+<form id="form_edit" method="POST" enctype="multipart/form-data" class="form-horizontal" >
+
+
+							<!-- <form  id="form_add" method="POST" class="form-horizontal" > -->
+								<fieldset class="content-group">
+									<legend class="text-bold">Form Edit <?= $nama_menu;?></legend>
+
+									<div class="form-group">
+										<label class="control-label col-lg-2">Nama distributor</label>
+										<div class="col-lg-10">
+											<input type="text" name="nama_distributor" value="<?= $data[0]->nama_distributor?>" placeholder="Masukan Nama distributor" class="form-control" required>
+											<input type="hidden" name="id" value="<?= $data[0]->id_distributor?>" placeholder="Masukan Nama Pengguna" class="form-control" required >
+										
+										</div>
+									</div>
+
+                                    <div class="form-group">
+										<label class="control-label col-lg-2">No HP</label>
+										<div class="col-lg-10">
+											<input type="text" name="no_wa"  value="<?= $data[0]->no_wa?>" placeholder="Masukan Nomor Aktif Whatsapp" class="form-control" required>
+										</div>
+									</div>
+                                    <div class="form-group">
+										<label class="control-label col-lg-2">Alamat</label>
+										<div class="col-lg-10">
+											<input type="text" name="alamat"  value="<?= $data[0]->alamat?>" placeholder="Masukan Alamat " class="form-control" required>
+										</div>
+									</div>
+                                    <div class="form-group">
+										<label class="control-label col-lg-2">Nama Pimpinan</label>
+										<div class="col-lg-10">
+											<input type="text" name="nama_pimpinan"  value="<?= $data[0]->nama_pimpinan?>" placeholder="Masukan Nama Pimpinan" class="form-control" required>
+										</div>
+									</div>
+
+
+                                
+									
+								<div class="text-right">
+                 <button type="submit"  id="submit_add" class="btn btn-primary btn-sm"> <i class="icon-check"></i> Simpan</button>
+
+									<!-- <button type="submit"  id="submit_add" class="btn btn-primary">Submit <i class="icon-arrow-right14 position-right"></i></button> -->
+								</div>
+							</form>
+						</div>
+
+
+                        <script>
+
+var url = '<?= base_url()?>';
+var app= 'distributor';
+
+$("#form_edit").submit(function(e) {
+         e.preventDefault();
+         $.ajax({
+          url: url+"/"+app+"/p_edit",
+             type: 'POST',
+             data: $(this).serialize(),             
+             success: function(data) {    
+			
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your work has been Edit",
+                    showConfirmButton: false,
+                    timer: 1500
+                    });
+
+                    tabel_content();
+             }
+         });
+     });
+
+
+
+	 function cek_pass() {
+		enc =  $('#password').val();
+
+		$.ajax({
+          url: url+"/"+app+"/cek_pass",
+             type: 'POST',
+             data: {enc:enc} ,             
+             success: function(data) {    
+			
+                $('#show_password').html(data);
+             }
+         });
+		
+	 }
+                        </script>
