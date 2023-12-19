@@ -195,25 +195,7 @@
 </tr>
 
 						</table>
-						<!-- <div class="form-row">
-    <div class="col-md-4 mb-3">
-      <label for="validationDefault01">Tanggal Awal</label>
-      <input type="date" class="form-control" id="tgl_awal" name="tgl_awal">
-    </div>
-
-    <div class="col-md-4 mb-3">
-      <label for="validationDefault02">Tanggal Akhir</label>
-      <input type="date" class="form-control" id="tgl_akhir" name="tgl_akhir">
-    </div>
-
-    <div class="col-md-4 mb-3">
-      <label for="validationDefaultUsername">Action</label>
-     <a onclick="cari_data();" class="btn btn-secondary"> <span class="icon-search4"></span> Cari </a>
-   
-    </div>
-  </div> -->
-
-			
+		
 
 							<div id="tabel_content">
 
@@ -221,7 +203,8 @@
 
 					
 					
-					
+
+				
 
 </div>
 

@@ -29,9 +29,11 @@ connecting(url+'api/cek_koneksi');
 
 
 tabel_content();
-// function tabel_content() {
-//     $('#tabel_content').load(url+'/'+app+'/tabel_content');
-// }
+
+
+function open_item(id) {
+    $('#tabel_content').load(url+'/'+app+'/open_item/'+id);
+}
 
 //========Open SAmpah
 

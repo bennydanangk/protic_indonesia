@@ -280,5 +280,40 @@ function get_detail($id)  {
 	
 }
 
+//tabel Faktur
+function open_tabel_item($id)  {
+
+	$where = array(
+		'state' => 'aktif',
+		'id_faktur' => $id
+	);
+
+	$data['item'] = $this->M_faktur->cek_where('t_item',$where)->result();
+
+}
+
+
+function open_item($id) {
+
 	
+	$id= $id;
+	$data['nama_menu'] = 'Item Faktur';
+
+		$where = array(
+		'state' => 'aktif',
+		'id_faktur' => $id
+	);
+
+
+	$where_barang = array(
+		'state' => 'aktif',
+		);
+		$data['id_faktur'] = $id;
+	$data['faktur'] = $this->M_faktur->cek_where('item_faktur',$where)->result();
+	$data['data_barang'] = $this->M_faktur->cek_where('data_barang',$where_barang)->result();
+	$data['satuan'] = $this->M_faktur->cek_where('t_satuan',$where_barang)->result();
+
+
+	$this->load->view('backend/page/from_add_item',$data);
+}
 }
