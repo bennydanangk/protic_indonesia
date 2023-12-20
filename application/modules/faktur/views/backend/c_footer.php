@@ -35,6 +35,13 @@ function open_item(id) {
     $('#tabel_content').load(url+'/'+app+'/open_item/'+id);
 }
 
+
+function open_tabel_list(id) {
+    $('#tabel_content_item').load(url+'/'+app+'/tabel_list/'+id);
+}
+
+
+
 //========Open SAmpah
 
 function open_sampah() {
@@ -199,6 +206,8 @@ tgl_akhir = tgl_akhir;
   $('#tabel_content').load(url+'/'+app+'/tabel_content/'+tgl_awal+'/'+tgl_akhir);
 
 }
+
+
 
 
 

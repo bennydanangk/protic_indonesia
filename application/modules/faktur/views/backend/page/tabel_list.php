@@ -24,10 +24,12 @@ function rupiah($angka){
 							<thead>
 								<tr>
 									<th>No</th>
-									<th>Nomor Faktur</th>
-									<th>Nama Distributor</th>
-									<th>Tgl Faktur</th>
-									<th>Tgl Input</th>
+									<th>Nama Barang</th>
+									<th>QTY</th>
+									<th>Disc</th>
+									<th>Tax/Pajak</th>
+									<th>Harga</th>
+									<th>Sub Harga</th>
 									<th>User Input</th>
 									<th>Tools</th>
 									
@@ -37,25 +39,28 @@ function rupiah($angka){
 							<tbody>
                                 <?php 
                                 $no= 0;
-                                foreach ($data as $k) { $no++;?>
+								$sub_jumlah= 0;
+                                foreach ($data as $k) { $no++;
+								
+								$sub_jumlah += $k->jumlah;
+								?>
 
 <tr>
 									<td><?= $no;?></td>
-									<td><?= $k->nomor_faktur;?></td>
-									<td><?= $k->nama_distributor;?></td>
-									<td><?= $k->tgl_faktur;?> </td>
+									<td><?= $k->nama_data_barang;?></td>
+									<td><?= $k->qty;?></td>
+									<td><?= $k->disc;?> % </td>
+									<td><?= $k->pajak;?> % </td>
+									<td><?= rupiah($k->harga);?> </td>
+									<td><?= rupiah($k->jumlah);?> </td>
+
 									<td><?= $k->tgl_input;?> </td>
 									<td> <span class="badge badge-info"><?= $k->nama_user;?></span> </td>
 
-									<td><button onclick="open_item(<?= $k->id_faktur?>)" type="button" class="btn btn-success">
-  Item 
-  
-  <!-- <span class="badge badge-light">0</span> -->
-</button></td>
 									<td>
 									<ul class="icons-list">
-												<li onclick="open_edit(<?= $k->id_faktur;?>)" class="text-primary-600"><a href="#"><i class="icon-pencil7"></i></a></li>
-												<li onclick="hapus_data(<?= $k->id_faktur;?>)" class="text-danger-600"><a href="#"><i class="icon-trash"></i></a></li>
+												<!-- <li onclick="open_edit(<?= $k->id_faktur;?>)" class="text-primary-600"><a href="#"><i class="icon-pencil7"></i></a></li> -->
+												<li onclick="hapus_item_data(<?= $k->id_item_faktur;?>)" class="text-danger-600"><a href="#"><i class="icon-trash"></i></a></li>
 												<!-- <li class="text-teal-600"><a href="#"><i class="icon-cog7"></i></a></li> -->
 												<!-- <li onclick="open_detail(<?= $k->id_faktur;?>)" class="text-success-600"><a href="#"><i class="icon-eye"></i></a></li> -->
 
@@ -71,6 +76,13 @@ function rupiah($angka){
                                 ?>
 			            	
 							</tbody>
+						</table>
+
+						<table class="table">
+							<tr>
+								<td>Jumlah</td>
+								<td><?= rupiah($sub_jumlah);?></td>
+							</tr>
 						</table>
 
                         </div>

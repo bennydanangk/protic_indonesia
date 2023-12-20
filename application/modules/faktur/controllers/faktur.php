@@ -219,6 +219,8 @@ function p_delete() {
 	);
 
 	$this->M_faktur->update_data($where,$data,'faktur');
+	$this->M_faktur->update_data($where,$data,'item_faktur');
+
 }
 
 //=====================END Delete
@@ -235,6 +237,9 @@ function p_restore() {
 	);
 
 	$this->M_faktur->update_data($where,$data,'faktur');
+
+	$this->M_faktur->update_data($where,$data,'item_faktur');
+
 }
 //=====================END Delete
 
@@ -248,7 +253,13 @@ function p_delete_permanen() {
 		'state' => 'tidak'
 	);
 
+	$where_item = array(
+		'id_faktur' => $id,
+		// 'state' => 'tidak'
+	);
+
 	$this->M_faktur->delete_data('faktur',$where);
+	$this->M_faktur->delete_data('item_faktur',$where_item);
 }
 
 //=====================END Delete Permanen
@@ -309,11 +320,67 @@ function open_item($id) {
 		'state' => 'aktif',
 		);
 		$data['id_faktur'] = $id;
-	$data['faktur'] = $this->M_faktur->cek_where('item_faktur',$where)->result();
+	$data['faktur'] = $this->M_faktur->cek_where('faktur',$where)->result();
 	$data['data_barang'] = $this->M_faktur->cek_where('data_barang',$where_barang)->result();
 	$data['satuan'] = $this->M_faktur->cek_where('t_satuan',$where_barang)->result();
 
 
 	$this->load->view('backend/page/from_add_item',$data);
 }
+
+//=========== ADD Item _faktur
+
+
+function p_add_item() {
+
+	$data = array(
+		'id_faktur' => $_POST['id_faktur'],
+		'id_barang' => $_POST['id_barang'],
+		// 'id_distributor' => $_POST['id_distributor'],
+		'id_satuan' => $_POST['id_satuan'],
+		'qty' => $_POST['qty'],
+		'disc' => $_POST['disc'],
+		'pajak' => $_POST['pajak'],
+		'harga' => $_POST['harga'],
+		'jumlah' => $_POST['jumlah'],
+		'state' => 'aktif',
+		'id_user_input' => $this->session->userdata('id_user'),
+		'tgl_input'=> date('Y-m-d H:i:s'),	
+	);
+
+	$this->M_faktur->insert('item_faktur',$data);
+}
+
+// get item list
+
+
+function tabel_list($id_faktur){
+
+	$where = array(
+		'item_faktur.state' => 'aktif',
+		'item_faktur.id_faktur' => $id_faktur,
+		
+	);
+
+	$data['data'] = $this->M_faktur->ambil_item_faktur('item_faktur',$where)->result();
+	$this->load->view('backend/page/tabel_list',$data);
+	
+}
+
+
+//================== Delete Permanent
+function p_delete_item() {
+	$id = $_POST['id'];
+	
+	$where = array(
+		'id_item_faktur' => $id,
+		// 'state' => 'tidak'
+	);
+
+	$this->M_faktur->delete_data('item_faktur',$where);
+}
+
+//=====================END Delete Permanen
+
+
 }

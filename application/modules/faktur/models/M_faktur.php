@@ -68,5 +68,19 @@ function ambil_faktur($table,$where)  {
   return $this->db->get_where($table,$where);
 }
 
+
+function ambil_item_faktur($table,$where)  {
+  $this->db->join('data_barang', 'data_barang.id_barang = item_faktur.id_barang', 'left');
+  // $this->db->join('data_barang', 'data_barang.id_barang = item_faktur.id_barang', 'left');
+  $this->db->join('faktur', 'faktur.id_faktur = item_faktur.id_faktur', 'left');
+  $this->db->join('t_satuan', 't_satuan.id_satuan = item_faktur.id_satuan', 'left');
+  $this->db->join('t_user', 't_user.id_user = item_faktur.id_user_input', 'left');
+
+
+
+
+  return $this->db->get_where($table,$where);
+}
+
 }
 ?>
