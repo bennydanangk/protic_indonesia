@@ -18,10 +18,10 @@
 
 
 									<div class="form-group">
-										<label class="control-label col-lg-2">Nomor Faktur </label>
+										<label class="control-label col-lg-2">Nomor Item </label>
 										<div class="col-lg-10">
-											<input type="number" value="<?= $faktur[0]->nomor_faktur?>" name="no_faktur" placeholder="Diskon %" class="form-control" readonly>
-											<input type="hidden" value="<?= $faktur[0]->id_distributor?>" name="id_distributor" placeholder="Diskon %" class="form-control" readonly>
+											<input type="text" value="<?= $surat_penawaran[0]->nomor_surat?>" name="nomor_surat" placeholder="Diskon %" class="form-control" readonly>
+											<input type="hidden" value="<?= $surat_penawaran[0]->id_surat_penawaran?>" name="id_surat_penawaran" placeholder="Diskon %" class="form-control" readonly>
 										
 										</div>
 									</div>
@@ -54,7 +54,7 @@
 													
 
 
-									<div class="form-group">
+									<!-- <div class="form-group">
 										<label class="control-label col-lg-2">Nama Satuan</label>
 										<div class="col-lg-10">
                                         <div class="form-group">
@@ -71,13 +71,13 @@
 
 										</div>
 
-                                        </div>
+                                        </div> -->
 
 
 										<div class="form-group">
 										<label class="control-label col-lg-2">qty</label>
 										<div class="col-lg-10">
-										<input type="hidden" name="id_faktur" value="<?= $id_faktur; ?>" placeholder="Masukan Nomor Faktur" class="form-control" required>
+										<!-- <input type="hidden" name="id_faktur" value="<?= $id_faktur; ?>" placeholder="Masukan Nomor Faktur" class="form-control" required> -->
 
 											<input type="number" id="qty" name="qty"   onkeyup="cek_jumlah()"placeholder="Masukan Jumlah Barang" class="form-control" required>
 										</div>
@@ -86,33 +86,13 @@
 
      
 
-                                    <div class="form-group">
-										<label class="control-label col-lg-2">Disc </label>
-										<div class="col-lg-10">
-											<input type="number" id="disc" name="disc"  onkeyup="cek_jumlah()" placeholder="Diskon ex. 0,00 %" step="0.01" min="0" max="100" class="form-control" required>
-										</div>
-									</div>
-
-
-									
-                                    <div class="form-group">
-										<label class="control-label col-lg-2">Tax/ Pajak </label>
-										<div class="col-lg-10">
-											<input type="number" id="pajak" name="pajak"  onkeyup="cek_jumlah()" placeholder="Pajak ex, 0,00 %" step="0.01" min="0" max="100" class="form-control" required>
-										</div>
-									</div>
+                                
 
 
   
-									<div class="form-group">
-										<label class="control-label col-lg-2">Harga </label>
-										<div class="col-lg-10">
-											<input type="number" id="harga" onkeyup="cek_jumlah()" name="harga" placeholder="Harga Barang" class="form-control" required>
-										</div>
-									</div>
                                     
 									<div class="form-group">
-										<label class="control-label col-lg-2">Jumlah </label>
+										<label class="control-label col-lg-2">Stok </label>
 										<div class="col-lg-10">
 											<input type="number" id="jumlah" name="jumlah" placeholder="Jumlah" class="form-control" required readonly>
 										</div>
@@ -143,7 +123,7 @@
        
         
 var url = '<?= base_url()?>';
-var app= 'faktur';
+var app= 'surat_penawaran';
 
 $("#form_add").submit(function(e) {
          e.preventDefault();
@@ -161,7 +141,7 @@ $("#form_add").submit(function(e) {
                     timer: 1500
                     });
 
-                    open_tabel_list(<?= $faktur[0]->id_faktur?>);
+                    open_tabel_list(<?= $surat_penawaran[0]->id_surat_penawaran?>);
              }
          });
      });
@@ -171,26 +151,26 @@ $("#form_add").submit(function(e) {
 
 		
 	
-		var disc =$('#disc').val();
-		var pajak = $('#pajak').val();
-		var harga = $('#harga').val();
-		var qty = $('#qty').val();
+		// var disc =$('#disc').val();
+		// var pajak = $('#pajak').val();
+		// var harga = $('#harga').val();
+		// var qty = $('#qty').val();
 
 		// console.log(disc);
 		// console.log(pajak);
 		// console.log(harga);
 		// console.log(qty);
 
-		jumlah = (harga - (disc/100 * harga) + (pajak/100 * harga) ) * qty;
+		// jumlah = (harga - (disc/100 * harga) + (pajak/100 * harga) ) * qty;
 
 		// console.log(jumlah);
 
-		$('#jumlah').val(jumlah);
+		// $('#jumlah').val(jumlah);
 	 }
 
 
 
-	 open_tabel_list(<?= $faktur[0]->id_faktur?>);
+	 open_tabel_list(<?= $surat_penawaran[0]->id_surat_penawaran?>);
 
 
 
@@ -216,7 +196,7 @@ function hapus_item_data(id) {
              data: {id:id} ,             
              success: function(data) {    
 			
-              open_tabel_list(<?= $faktur[0]->id_faktur?>)
+              open_tabel_list(<?= $surat_penawaran[0]->id_surat_penawaran?>)
              }
          });
 
