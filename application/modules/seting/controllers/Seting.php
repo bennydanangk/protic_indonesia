@@ -27,6 +27,14 @@ class Seting extends MY_Controller {
 		$data['nama_user'] = $this->session->userdata('nama_user');
 		$data['menu'] = $this->get_menu($this->session->userdata('id_hak_akses'));
 		
+		$where = array(
+		
+			'id_vendor' => '1'
+		);
+	
+		$data['data'] = $this->M_seting->cek_where('t_vendor',$where	)->result();
+
+
 		$this->load->view('backend/a_header',$data);
 		$this->load->view('backend/b_main',$data);
 		$this->load->view('backend/c_footer',$data);
@@ -162,6 +170,43 @@ function p_edit() {
 
 	$this->M_seting->update_data($where,$data,'t_vendor');
 }
+
+
+function app_online() {
+	// $id = $_POST['id'];
+	$data = array(
+		'status_aplikasi' => 'offline',
+	
+		);
+
+	$where = array(
+		'id_vendor' => '1'
+	);
+
+	$this->M_seting->update_data($where,$data,'t_vendor');
+
+	redirect(base_url('seting/index'));
+}
+
+
+function app_offline() {
+	// $id = $_POST['id'];
+	$data = array(
+		'status_aplikasi' => 'online',
+	
+		);
+
+	$where = array(
+		'id_vendor' => '1'
+	);
+
+	$this->M_seting->update_data($where,$data,'t_vendor');
+
+	redirect(base_url('seting/index'));
+}
+
+
+
 
 
 public function backup()

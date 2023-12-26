@@ -174,11 +174,57 @@
 
 
 
+
 						
 					</div>
+
+					
+
+
+
+						<div>
+	
+
+</div>
+
+
 					<!-- /pagination types -->
 					
-		</div>
+					</div>
+
+
+		<div class="panel panel-flat">
+						<div class="panel-heading">
+						<legend class="text-bold">Swicth Aplication</legend>
+							
+
+											<div class="panel-body">
+
+											<?php
+											if($data[0]->status_aplikasi != 'online'){
+?>
+
+
+<a href="<?= base_url('seting/app_offline') ?>"  class="btn btn-danger"><i class="icon-shield-check"></i> TURN ON APPLICATION</a>
+
+
+<?php
+											}else{
+?>
+
+
+<a href="<?= base_url('seting/app_online') ?>"  class="btn btn-danger"><i class="icon-shield-notice"></i> SHUTDOWN APPLICATION</a>
+
+
+<?php
+											}
+											?>
+											
+
+		<hr>
+		<br>									
+</div>
+
 
 					<!-- Footer -->
 					<div class="footer text-muted">
