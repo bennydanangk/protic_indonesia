@@ -24,7 +24,7 @@
 									</div>
 
                                     <div class="form-group">
-										<label class="control-label col-lg-2">Distributor</label>
+										<label class="control-label col-lg-2">Cusutomer</label>
 										<div class="col-lg-10">
                                         <div class="form-group">
 										<select class="select-search" name="id_customer" required>
@@ -35,6 +35,15 @@
                                                 <?php   }     ?>
 		
 										</select>
+
+										<p class="text-danger">*Jika Cusutomer Tidak Ada Silahkan Input data customer</p>
+										<!-- <label for="control-label col-lg-2">Jika Cusutomer Tidak Ada Silahkan Input Data customer</label> -->
+
+										<a class="btn btn-warning" href="http://kanishkkunal.com" 
+  target="popup" 
+  onclick="window.open('<?= base_url('customer')?>','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
+   <span class="icon icon-user"></span> Input Customer
+</a>
 									</div>
 										</div>
 

@@ -35,6 +35,15 @@
                                                 <?php   }     ?>
 		
 										</select>
+
+										<p class="text-warning">*Input Data Barang Jika Tidak Ada</p>
+										<a class="btn btn-success" 
+  target="popup" 
+  onclick="window.open('<?= base_url('distributor')?>','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
+   <span class="icon icon-cog"></span> Input Data Distributor
+</a>
+
+
 									</div>
 										</div>
 

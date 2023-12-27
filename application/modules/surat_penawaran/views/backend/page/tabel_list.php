@@ -26,8 +26,8 @@ function rupiah($angka){
 									<th>No</th>
 									<th>Nama Barang</th>
 									<th>QTY</th>
-									<th>Disc</th>
-									<th>Tax/Pajak</th>
+									<!-- <th>Disc</th> -->
+									<!-- <th>Tax/Pajak</th> -->
 									<th>Harga</th>
 									<th>Sub Harga</th>
 									<th>User Input</th>
@@ -49,8 +49,8 @@ function rupiah($angka){
 									<td><?= $no;?></td>
 									<td><?= $k->nama_data_barang;?></td>
 									<td><?= $k->qty;?></td>
-									<td><?= $k->disc;?> % </td>
-									<td><?= $k->pajak;?> % </td>
+									<!-- <td><?= $k->disc;?> % </td> -->
+									<!-- <td><?= $k->pajak;?> % </td> -->
 									<td><?= rupiah($k->harga);?> </td>
 									<td><?= rupiah($k->jumlah);?> </td>
 
@@ -60,7 +60,7 @@ function rupiah($angka){
 									<td>
 									<ul class="icons-list">
 												<!-- <li onclick="open_edit(<?= $k->id_faktur;?>)" class="text-primary-600"><a href="#"><i class="icon-pencil7"></i></a></li> -->
-												<li onclick="hapus_item_data(<?= $k->id_item_faktur;?>)" class="text-danger-600"><a href="#"><i class="icon-trash"></i></a></li>
+												<li onclick="hapus_item_data(<?= $k->id_item_surat_penawaran;?>)" class="text-danger-600"><a href="#"><i class="icon-trash"></i></a></li>
 												<!-- <li class="text-teal-600"><a href="#"><i class="icon-cog7"></i></a></li> -->
 												<!-- <li onclick="open_detail(<?= $k->id_faktur;?>)" class="text-success-600"><a href="#"><i class="icon-eye"></i></a></li> -->
 

@@ -201,8 +201,7 @@ tgl_akhir = '<?= date("Y-m-d")?>';
 tgl_akhir = tgl_akhir;
 
   }
-  console.log(tgl_awal);
-  console.log(tgl_akhir);
+ 
   $('#tabel_content').load(url+'/'+app+'/tabel_content/'+tgl_awal+'/'+tgl_akhir);
 
 }

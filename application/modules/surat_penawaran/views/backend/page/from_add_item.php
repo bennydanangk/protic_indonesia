@@ -34,7 +34,7 @@
 										<label class="control-label col-lg-2">Nama Barang</label>
 										<div class="col-lg-10">
                                         <div class="form-group">
-										<select class="select-search" name="id_barang" required>
+										<select  onchange="get_barang()" class="select-search"  id='id_barang' name="id_barang" required>
 											        <option value="">= Pilih Salah Satu =</option>
                                                 <?php 
                                                 foreach ($data_barang as $k) {?>
@@ -87,16 +87,30 @@
      
 
                                 
-
+									<div class="form-group">
+										<label class="control-label col-lg-2">Harga </label>
+										<div class="col-lg-10">
+											<input type="number" onkeyup="cek_jumlah()" id="harga" name="harga" placeholder="harga"  class="form-control" required readonly>
+										</div>
+									</div>
 
   
                                     
 									<div class="form-group">
 										<label class="control-label col-lg-2">Stok </label>
 										<div class="col-lg-10">
+											<input type="number" id="stok" name="stok" placeholder="stok" class="form-control" required readonly>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-2">Jumlah </label>
+										<div class="col-lg-10">
 											<input type="number" id="jumlah" name="jumlah" placeholder="Jumlah" class="form-control" required readonly>
 										</div>
 									</div>
+
+
 
                                    
 									
@@ -153,19 +167,19 @@ $("#form_add").submit(function(e) {
 	
 		// var disc =$('#disc').val();
 		// var pajak = $('#pajak').val();
-		// var harga = $('#harga').val();
-		// var qty = $('#qty').val();
+		var harga = $('#harga').val();
+		var qty = $('#qty').val();
 
 		// console.log(disc);
 		// console.log(pajak);
 		// console.log(harga);
 		// console.log(qty);
 
-		// jumlah = (harga - (disc/100 * harga) + (pajak/100 * harga) ) * qty;
+		jumlah = (harga  * qty);
 
-		// console.log(jumlah);
+	
 
-		// $('#jumlah').val(jumlah);
+		$('#jumlah').val(jumlah);
 	 }
 
 
@@ -212,6 +226,36 @@ function hapus_item_data(id) {
 
 }
 
+
+
+
+
+function get_barang() {
+var id = $('#id_barang option:selected').val();
+
+// console.log(id);
+
+	$.ajax({
+          url: url+"/"+app+"/get_barang/"+id,
+             type: 'GET',
+             data: $(this).serialize(),             
+             success: function(data) {  
+				
+				var obj = jQuery.parseJSON(data);
+				// console.log(obj);
+				// console.log(obj.harga_jual);
+
+				$('#harga').val(obj.harga_jual);
+
+
+             }
+         });
+
+
+
+	
+	
+}
 
 
 	

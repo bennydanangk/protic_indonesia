@@ -287,7 +287,7 @@ function get_detail($id)  {
 		'id_surat_penawaran' => $id
 	);
 
-	$data['data'] = $this->M_surat_penawaran->ambil_barang('t_surat_penawaran',$where	)->result();
+	$data['data'] = $this->M_surat_penawaran->ambil_barang('t_surat_penawaran',$where)->result();
 
 	// print_r($data);
 	$this->load->view('backend/page/detail',$data);
@@ -341,10 +341,10 @@ function p_add_item() {
 		'id_surat_penawaran' => $_POST['id_surat_penawaran'],
 		'id_barang' => $_POST['id_barang'],
 		// 'id_distributor' => $_POST['id_distributor'],
-		'id_satuan' => $_POST['id_satuan'],
+		// 'id_satuan' => $_POST['id_satuan'],
 		'qty' => $_POST['qty'],
-		'disc' => $_POST['disc'],
-		'pajak' => $_POST['pajak'],
+		// 'disc' => $_POST['disc'],
+		// 'pajak' => $_POST['pajak'],
 		'harga' => $_POST['harga'],
 		'jumlah' => $_POST['jumlah'],
 		'state' => 'aktif',
@@ -385,6 +385,22 @@ function p_delete_item() {
 }
 
 //=====================END Delete Permanen
+
+
+function get_barang($id) {
+	
+	$where = array(
+		'id_barang' => $id,
+		'state' => 'aktif'
+	);
+
+
+	$data = $this->M_surat_penawaran->cek_where('data_barang',$where)->result();
+	echo json_encode($data[0]);
+
+
+	
+}
 
 
 }

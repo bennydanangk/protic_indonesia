@@ -48,8 +48,8 @@ function rupiah($angka){
 									<!-- <td><?= $k->tgl_input;?> </td> -->
 									<td> <span class="badge badge-info"><?= $k->nama_user;?></span> </td>
 
-									<td><button onclick="open_item(<?= $k->id_surat_penawaran?>)" type="button" class="btn btn-success">
-  Item Pesanan
+									<td><button onclick="open_item(<?= $k->id_surat_penawaran?>)" type="button" class="btn btn-sm btn-secondary">
+  <span class="icon icon-user" ></span> Item Pesanan
   
   <!-- <span class="badge badge-light">0</span> -->
 </button></td>

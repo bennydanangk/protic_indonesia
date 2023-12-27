@@ -123,8 +123,26 @@ function data_faktur($id_barang) {
 	);
 	
 	$data = $this->M_stok_barang->get_data_faktur('item_faktur',$where)->result();
-	print_r($data);
+
+	echo json_encode($data);
+	// print_r($data);
 }
+
+
+function data_keluar($id_barang) {
+
+	$where = array(
+		'id_barang' => $id_barang,
+		'state' => 'aktif'
+	);
+	
+	$data = $this->M_stok_barang->get_data_faktur('item_faktur',$where)->result();
+
+	echo json_encode($data);
+	// print_r($data);
+}
+
+
 
 
 
