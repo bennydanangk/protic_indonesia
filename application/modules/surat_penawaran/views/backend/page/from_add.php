@@ -52,6 +52,25 @@
                                       
 
 
+										<div class="form-group">
+										<label class="control-label col-lg-2">PPN </label>
+										<div class="col-lg-10">
+                                        <div class="form-group">
+										<select class="select-search" name="ppn" required>
+											        <option value="">= Pilih Salah  Satu =</option>
+                                                     <option value="ya">ya</option>
+													<option value="tidak">tidak</option>
+		
+										</select>
+	
+									</div>
+										</div>
+
+                                        </div>
+
+
+
+
 
 
 

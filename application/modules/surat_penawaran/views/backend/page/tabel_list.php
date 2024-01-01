@@ -40,8 +40,12 @@ function rupiah($angka){
                                 <?php 
                                 $no= 0;
 								$sub_jumlah= 0;
+
+							
+
+
                                 foreach ($data as $k) { $no++;
-								
+							
 								$sub_jumlah += $k->jumlah;
 								?>
 
@@ -85,4 +89,17 @@ function rupiah($angka){
 							</tr>
 						</table>
 
+						<hr>
+					
+						<!-- <?= $id_surat_penawaran?> -->
+						<!-- <a href="<?= base_url('surat_penawaran/cetak_dokumen/'.$id_surat_penawaran)?>" class="btn btn-block btn-success"> <span class="icon-file-text2"></span> Cetak Surat</a> -->
+
+
+
+
+						<a class="btn btn-block btn-success" href="" 
+  target="popup" 
+  onclick="window.open('<?= base_url('surat_penawaran/cetak_dokumen/'.$id_surat_penawaran)?>','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
+  <span class="icon-file-text2"></span>Input Customer
+</a>
                         </div>

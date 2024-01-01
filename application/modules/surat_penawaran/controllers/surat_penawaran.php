@@ -152,12 +152,16 @@ function p_add() {
 		'id_customer' => $_POST['id_customer'],
 		'tgl_surat' => $_POST['tgl_surat'],
 		'catatan' => $_POST['catatan'],
+		'ppn' => $_POST['ppn'],
 		'state' => 'aktif',
 		'flag' => 'input',
 		'id_user_input' => $this->session->userdata('id_user'),
 		'tgl_input'=> date('Y-m-d H:i:s'),	
 	);
 
+	$barcode = $_POST['nomor_surat'];
+	$barcode = strtr( $barcode, "/", "_" );
+	$this->qrcode($barcode);
 	$this->M_surat_penawaran->insert('t_surat_penawaran',$data);
 }
 
@@ -195,6 +199,7 @@ function p_edit() {
 		'id_customer' => $_POST['id_customer'],
 		'tgl_surat' => $_POST['tgl_surat'],
 		'catatan' => $_POST['catatan'],
+		'ppn' => $_POST['ppn'],
 		'state' => 'aktif',
 		'flag' => 'input',
 		'id_user_input' => $this->session->userdata('id_user'),
@@ -312,6 +317,8 @@ function open_item($id) {
 
 	
 	$id= $id;
+
+	$data['id_surat_penawaran'] = $id;
 	$data['nama_menu'] = 'Item surat_penawaran';
 
 		$where = array(
@@ -323,7 +330,7 @@ function open_item($id) {
 	$where_barang = array(
 		'state' => 'aktif',
 		);
-		$data['id_surat_penawaran'] = $id;
+	
 	$data['surat_penawaran'] = $this->M_surat_penawaran->cek_where('t_surat_penawaran',$where)->result();
 	$data['data_barang'] = $this->M_surat_penawaran->cek_where('data_barang',$where_barang)->result();
 	$data['satuan'] = $this->M_surat_penawaran->cek_where('t_satuan',$where_barang)->result();
@@ -359,7 +366,7 @@ function p_add_item() {
 
 
 function tabel_list($id_surat_penawaran){
-
+	$data['id_surat_penawaran'] = $id_surat_penawaran;
 	$where = array(
 		'item_surat_penawaran.state' => 'aktif',
 		'item_surat_penawaran.id_surat_penawaran' => $id_surat_penawaran,
@@ -401,6 +408,77 @@ function get_barang($id) {
 
 	
 }
+
+
+function qrcode($kode){
+	// $id_barang = 'BR00001';
+
+	$this->load->library('enc');
+	$kode_barang = $this->enc->in($kode);
+
+
+	$this->load->library('Ciqrcode'); //pemanggilan library QR CODE
+
+			$config['cacheable']    = true; //boolean, the default is true
+			$config['cachedir']             = './assets/'; //string, the default is application/cache/
+			$config['errorlog']             = './assets/'; //string, the default is application/logs/
+			$config['imagedir']             = './assets/qr/'; //direktori penyimpanan qr code
+			$config['quality']              = true; //boolean, the default is true
+			$config['size']                 = '1024'; //interger, the default is 1024
+			$config['black']                = array(224,255,255); // array, default is array(255,255,255)
+			$config['white']                = array(70,130,180); // array, default is array(0,0,0)
+			$this->ciqrcode->initialize($config);
+
+			$image_name=$kode.'.png'; //buat name dari qr code sesuai dengan nim
+
+			$params['data'] = $kode; //data yang akan di jadikan QR CODE
+			$params['level'] = 'H'; //H=High
+			$params['size'] = 10;
+			$params['savename'] = FCPATH.$config['imagedir'].$image_name; //simpan image QR CODE ke folder assets/images/
+			$this->ciqrcode->generate($params); // fungsi untuk generate QR CODE
+}
+
+
+
+function cetak_dokumen($id) {
+
+
+
+	$data['id_surat_penawaran'] = $id;
+	$where = array(
+		'item_surat_penawaran.state' => 'aktif',
+		'item_surat_penawaran.id_surat_penawaran' => $id,
+		
+	);
+
+	$data['data'] = $this->M_surat_penawaran->ambil_item_surat_penawaran('item_surat_penawaran',$where)->result();
+
+
+	$where_ = array(
+		't_surat_penawaran.state'=> 'aktif',
+		'id_surat_penawaran' => $id
+	);
+
+	$data['data_surat'] = $this->M_surat_penawaran->ambil_surat_penawaran('t_surat_penawaran',$where_)->result();
+
+
+
+	$data['conf'] = $this->M_surat_penawaran->config();
+	$this->load->library('pdfgenerator');
+	$data['title'] = "Surat Penawaran";
+	$file_pdf = $data['title'];
+	$paper = 'A4';
+	// $paper = array(0,0,125,250);
+	$orientation = "portaid";
+	$html = $this->load->view('backend/page/surat_penawaran', $data, true);
+	$this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
+	// $this->load->view('backend/page/surat_penawaran', $data);
+
+}
+
+
+
+
 
 
 }
