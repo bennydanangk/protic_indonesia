@@ -1,3 +1,6 @@
+<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/core/libraries/jquery.min.js"></script>
+
+
 <script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/plugins/tables/datatables/datatables.min.js"></script>
 	<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/plugins/forms/selects/select2.min.js"></script>
 
@@ -6,7 +9,6 @@
 
 
     <div class="container-fluid">
-
 
 
 <table class="table datatable-pagination">
@@ -29,9 +31,16 @@
 									<td><?= $no;?></td>
 									<td><?= $k->kode_barang;?></td>
 									<td><?= $k->nama_data_barang;?></td>
-									<td><?= $k->id_barang;?></td>
+									<td>
+							<script>
+								stok(<?=$k->id_barang;?>);
+			
+							</script>
+									
+									<span  id="stok_<?=$k->id_barang;?>"><?= $k->id_barang;?></span> </td>
 									
 								</tr>
+
 
 
 
@@ -44,3 +53,23 @@
 						</table>
 
                         </div>
+
+						<script>
+			
+
+function stok(id) {
+ 
+  $.ajax({
+          url: url+"/"+app+"/stok",
+             type: 'POST',
+             data: {id:id} ,             
+             success: function(data) {    
+			
+               console.log(data);
+             }
+         });
+
+}
+
+
+						</script>

@@ -19,7 +19,7 @@
 									<div class="form-group">
 										<label class="control-label col-lg-2">Nomor Surat</label>
 										<div class="col-lg-10">
-										<input type="hidden" name="id" placeholder="Masukan Nomor Faktur" value="<?= $data[0]->id_surat_pemesanan;?>" class="form-control" required>
+										<input type="hidden" name="id" placeholder="Masukan Nomor Faktur" value="<?= $data[0]->id_surat_order;?>" class="form-control" required>
 
 											<input type="text" name="nomor_surat" value="<?= $data[0]->nomor_surat;?>"  placeholder="Masukan Nomor Faktur" class="form-control" required readonly>
 										</div>
@@ -98,7 +98,7 @@
                         <script>
 
 var url = '<?= base_url()?>';
-var app= 'surat_pemesanan';
+var app= 'surat_order';
 
 $("#form_edit").submit(function(e) {
          e.preventDefault();

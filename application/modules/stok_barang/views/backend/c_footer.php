@@ -153,6 +153,22 @@ function permanent_hapus_data(id) {
 
 
 
+function stok(id) {
+  // console.log(id);
+  $.ajax({
+          url: url+"/"+app+"/stok",
+             type: 'POST',
+             data: {id:id} ,             
+             success: function(data) {    
+			
+              const obj = JSON.parse(data);
+              $('#stok_'+id).html(obj.qty);
+              //  console.log(obj.qty);
+             }
+         });
+
+}
+
 
 
 </script>

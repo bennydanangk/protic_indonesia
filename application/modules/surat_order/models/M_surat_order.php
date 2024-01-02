@@ -1,5 +1,5 @@
 <?php
-class M_surat_pemesanan extends CI_Model {
+class M_surat_order extends CI_Model {
 
  function config(){
    return $this->db->get('t_vendor')->result();
@@ -45,36 +45,38 @@ function delete_data($table,$where){
 
 
 public function CreateCode($kd){
-  $this->db->select('LEFT(t_surat_pemesanan.nomor_surat,4) as nomor_surat', FALSE);
+  $this->db->select('LEFT(t_surat_order.nomor_surat,4) as nomor_surat', FALSE);
   $this->db->order_by('nomor_surat','DESC');    
   $this->db->limit(1);    
-  $query = $this->db->get('t_surat_pemesanan');
+  $query = $this->db->get('t_surat_order');
       if($query->num_rows() <> 0){      
            $data = $query->row();
-           $kode = intval($data->nomor_surat) + 1; 
+           $order = intval($data->nomor_surat) + 1; 
       }
       else{      
-           $kode = 1;  
+           $order = 1;  
       }
-  $batas = str_pad($kode, 4, "0", STR_PAD_LEFT);    
-  $kodetampil = $batas."".$kd;
-  return $kodetampil;  
+  $batas = str_pad($order, 4, "0", STR_PAD_LEFT);    
+  $ordertampil = $batas."".$kd;
+  return $ordertampil;  
 }
 
 
-function ambil_surat_pemesanan($table,$where)  {
-  $this->db->join('t_customer', 't_customer.id_customer = t_surat_pemesanan.id_customer', 'left');
-  $this->db->join('t_user', 't_user.id_user = t_surat_pemesanan.id_user_input', 'left');
+function ambil_surat_order($table,$where)  {
+  $this->db->join('t_customer', 't_customer.id_customer = t_surat_order.id_customer', 'left');
+  $this->db->join('t_user', 't_user.id_user = t_surat_order.id_user_input', 'left');
   return $this->db->get_where($table,$where);
 }
 
 
-function ambil_item_surat_pemesanan($table,$where)  {
-  $this->db->join('data_barang', 'data_barang.id_barang = item_surat_pemesanan.id_barang', 'left');
-  // $this->db->join('data_barang', 'data_barang.id_barang = item_surat_pemesanan.id_barang', 'left');
-  $this->db->join('t_surat_pemesanan', 't_surat_pemesanan.id_surat_pemesanan = item_surat_pemesanan.id_surat_pemesanan', 'left');
-  // $this->db->join('t_satuan', 't_satuan.id_satuan = item_surat_pemesanan.id_satuan', 'left');
-  $this->db->join('t_user', 't_user.id_user = item_surat_pemesanan.id_user_input', 'left');
+function ambil_item_surat_order($table,$where)  {
+
+  $this->db->select('*, item_surat_order.ppn AS ppn_');
+  $this->db->join('data_barang', 'data_barang.id_barang = item_surat_order.id_barang', 'left');
+  // $this->db->join('data_barang', 'data_barang.id_barang = item_surat_order.id_barang', 'left');
+  $this->db->join('t_surat_order', 't_surat_order.id_surat_order = item_surat_order.id_surat_order', 'left');
+  // $this->db->join('t_satuan', 't_satuan.id_satuan = item_surat_order.id_satuan', 'left');
+  $this->db->join('t_user', 't_user.id_user = item_surat_order.id_user_input', 'left');
 
 
 

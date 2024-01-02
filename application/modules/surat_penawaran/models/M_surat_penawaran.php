@@ -70,6 +70,8 @@ function ambil_surat_penawaran($table,$where)  {
 
 
 function ambil_item_surat_penawaran($table,$where)  {
+
+  $this->db->select('*, item_surat_penawaran.ppn AS ppn_');
   $this->db->join('data_barang', 'data_barang.id_barang = item_surat_penawaran.id_barang', 'left');
   // $this->db->join('data_barang', 'data_barang.id_barang = item_surat_penawaran.id_barang', 'left');
   $this->db->join('t_surat_penawaran', 't_surat_penawaran.id_surat_penawaran = item_surat_penawaran.id_surat_penawaran', 'left');

@@ -109,7 +109,7 @@
        
         
 var url = '<?= base_url()?>';
-var app= 'surat_pemesanan';
+var app= 'surat_order';
 
 $("#form_add").submit(function(e) {
          e.preventDefault();

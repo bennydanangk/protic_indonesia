@@ -1,13 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Surat_pemesanan extends MY_Controller {
+class Surat_order extends MY_Controller {
 
 	public function __construct()
     {
         parent::__construct();
 		$this->load->library('enc'); 
-        $this->load->model("M_surat_pemesanan"); //load model m user
+        $this->load->model("M_surat_order"); //load model m user
 
 		if($this->session->userdata('status') != "login"){
 			redirect(base_url("auth"));
@@ -19,9 +19,9 @@ class Surat_pemesanan extends MY_Controller {
 	{
 		//set .inv
 		$id_menu = 1;
-		$data['nama_menu'] = 'Surat pemesanan';
+		$data['nama_menu'] = 'Surat order';
 		$this->cek_hak_akses($id_menu);
-		$set = $this->M_surat_pemesanan->config();
+		$set = $this->M_surat_order->config();
 		$data['nama_aplikasi'] = $set[0]->nama_vendor;
 		$data['token'] = $this->session->userdata('id_hak_akses');
 		$data['nama_user'] = $this->session->userdata('nama_user');
@@ -46,7 +46,7 @@ class Surat_pemesanan extends MY_Controller {
 			'state_orgin' => 'parent'
 
 		);
-		$menu_parent = $this->M_surat_pemesanan->get_parent('role_tabel',$where_parent)->result();
+		$menu_parent = $this->M_surat_order->get_parent('role_tabel',$where_parent)->result();
 		$menu = '';
 
 		foreach ($menu_parent as $k) {
@@ -62,7 +62,7 @@ class Surat_pemesanan extends MY_Controller {
 			'id_parent' => $k->id_menu
 
 		);
-			$menu_child = $this->M_surat_pemesanan->get_parent('role_tabel',$where_child)->result();
+			$menu_child = $this->M_surat_order->get_parent('role_tabel',$where_child)->result();
 			foreach ($menu_child as $y) {
 				$menu .=	'<li><a href="'.base_url($y->link).'">'.$y->nama_menu.'</a></li>';
 			}
@@ -90,7 +90,7 @@ function cek_hak_akses($id_menu)  {
 
 	);
 
-	$menu_cek = $this->M_surat_pemesanan->get_parent('role_tabel',$where)->num_rows();
+	$menu_cek = $this->M_surat_order->get_parent('role_tabel',$where)->num_rows();
 
 	if($menu_cek > 0 ){
 
@@ -105,12 +105,12 @@ function cek_hak_akses($id_menu)  {
 function tabel_content($tgl_awal, $tgl_akhir,){
 
 	$where = array(
-		't_surat_pemesanan.state' => 'aktif',
-		't_surat_pemesanan.tgl_input >= ' => $tgl_awal.' 00:00:00',
-		't_surat_pemesanan.tgl_input <= ' => $tgl_akhir.' 23:59:59'
+		't_surat_order.state' => 'aktif',
+		't_surat_order.tgl_input >= ' => $tgl_awal.' 00:00:00',
+		't_surat_order.tgl_input <= ' => $tgl_akhir.' 23:59:59'
 	);
 
-	$data['data'] = $this->M_surat_pemesanan->ambil_surat_pemesanan('t_surat_pemesanan',$where)->result();
+	$data['data'] = $this->M_surat_order->ambil_surat_order('t_surat_order',$where)->result();
 	$this->load->view('backend/page/tabel',$data);
 	
 }
@@ -118,10 +118,10 @@ function tabel_content($tgl_awal, $tgl_akhir,){
 function tabel_sampah(){
 
 	$where = array(
-		't_surat_pemesanan.state' => 'tidak'
+		't_surat_order.state' => 'tidak'
 	);
 
-	$data['data'] = $this->M_surat_pemesanan->ambil_surat_pemesanan('t_surat_pemesanan',$where)->result();
+	$data['data'] = $this->M_surat_order->ambil_surat_order('t_surat_order',$where)->result();
 
 	$this->load->view('backend/page/tabel_sampah',$data);
 	
@@ -135,11 +135,11 @@ function form_add() {
 		'state'=> 'aktif'
 	);
 
-	$kode_ = '/SHP/PROTIC/'.date('m/Y');
-	$data['nomor_surat'] = $this->M_surat_pemesanan->CreateCode($kode_);
-	$data['customer'] = $this->M_surat_pemesanan->cek_where('t_customer',$where)->result();
-	// $data['satuan'] = $this->M_surat_pemesanan->cek_where('t_satuan',$where)->result();
-	// $data['kategori'] = $this->M_surat_pemesanan->cek_where('t_kategori',$where)->result();
+	$kode_ = '/SPO/PROTIC/'.date('m/Y');
+	$data['nomor_surat'] = $this->M_surat_order->CreateCode($kode_);
+	$data['customer'] = $this->M_surat_order->cek_where('t_customer',$where)->result();
+	// $data['satuan'] = $this->M_surat_order->cek_where('t_satuan',$where)->result();
+	// $data['kategori'] = $this->M_surat_order->cek_where('t_kategori',$where)->result();
 
 
 	$this->load->view('backend/page/from_add',$data);
@@ -162,7 +162,7 @@ function p_add() {
 	$barcode = $_POST['nomor_surat'];
 	$barcode = strtr( $barcode, "/", "_" );
 	$this->qrcode($barcode);
-	$this->M_surat_pemesanan->insert('t_surat_pemesanan',$data);
+	$this->M_surat_order->insert('t_surat_order',$data);
 }
 
 //============= END ADD==
@@ -176,16 +176,16 @@ function form_edit($id) {
 		'state'=> 'aktif'
 	);
 
-	$data['customer'] = $this->M_surat_pemesanan->cek_where('t_customer',$where_)->result();
+	$data['customer'] = $this->M_surat_order->cek_where('t_customer',$where_)->result();
 
 
 	
 	$where = array(
-		't_surat_pemesanan.state'=> 'aktif',
-		'id_surat_pemesanan' => $id
+		't_surat_order.state'=> 'aktif',
+		'id_surat_order' => $id
 	);
 
-	$data['data'] = $this->M_surat_pemesanan->ambil_surat_pemesanan('t_surat_pemesanan',$where)->result();
+	$data['data'] = $this->M_surat_order->ambil_surat_order('t_surat_order',$where)->result();
 
 	// print_r($data);
 	$this->load->view('backend/page/from_edit',$data);
@@ -208,10 +208,10 @@ function p_edit() {
 
 
 	$where = array(
-		'id_surat_pemesanan' => $id
+		'id_surat_order' => $id
 	);
 
-	$this->M_surat_pemesanan->update_data($where,$data,'t_surat_pemesanan');
+	$this->M_surat_order->update_data($where,$data,'t_surat_order');
 }
 
 
@@ -224,11 +224,11 @@ function p_delete() {
 		
 	);
 	$where = array(
-		'id_surat_pemesanan' => $id
+		'id_surat_order' => $id
 	);
 
-	$this->M_surat_pemesanan->update_data($where,$data,'t_surat_pemesanan');
-	$this->M_surat_pemesanan->update_data($where,$data,'item_surat_pemesanan');
+	$this->M_surat_order->update_data($where,$data,'t_surat_order');
+	$this->M_surat_order->update_data($where,$data,'item_surat_order');
 
 }
 
@@ -242,12 +242,12 @@ function p_restore() {
 		
 	);
 	$where = array(
-		'id_surat_pemesanan' => $id
+		'id_surat_order' => $id
 	);
 
-	$this->M_surat_pemesanan->update_data($where,$data,'t_surat_pemesanan');
+	$this->M_surat_order->update_data($where,$data,'t_surat_order');
 
-	$this->M_surat_pemesanan->update_data($where,$data,'item_surat_pemesanan');
+	$this->M_surat_order->update_data($where,$data,'item_surat_order');
 
 }
 //=====================END Delete
@@ -258,17 +258,17 @@ function p_delete_permanen() {
 	$id = $_POST['id'];
 	
 	$where = array(
-		'id_surat_pemesanan' => $id,
+		'id_surat_order' => $id,
 		'state' => 'tidak'
 	);
 
 	$where_item = array(
-		'id_surat_pemesanan' => $id,
+		'id_surat_order' => $id,
 		// 'state' => 'tidak'
 	);
 
-	$this->M_surat_pemesanan->delete_data('t_surat_pemesanan',$where);
-	$this->M_surat_pemesanan->delete_data('item_surat_pemesanan',$where_item);
+	$this->M_surat_order->delete_data('t_surat_order',$where);
+	$this->M_surat_order->delete_data('item_surat_order',$where_item);
 }
 
 //=====================END Delete Permanen
@@ -277,7 +277,7 @@ function p_delete_permanen() {
 function kode_barang()  {
 
 	$kode_ = 'KD';
-	$kode_barang = $this->M_surat_pemesanan->CreateCode($kode_);
+	$kode_barang = $this->M_surat_order->CreateCode($kode_);
     echo $kode_barang; 
 }
 
@@ -288,11 +288,11 @@ function get_detail($id)  {
 
 
 	$where = array(
-		't_surat_pemesanan.state'=> 'aktif',
-		'id_surat_pemesanan' => $id
+		't_surat_order.state'=> 'aktif',
+		'id_surat_order' => $id
 	);
 
-	$data['data'] = $this->M_surat_pemesanan->ambil_barang('t_surat_pemesanan',$where)->result();
+	$data['data'] = $this->M_surat_order->ambil_barang('t_surat_order',$where)->result();
 
 	// print_r($data);
 	$this->load->view('backend/page/detail',$data);
@@ -300,15 +300,15 @@ function get_detail($id)  {
 	
 }
 
-//tabel surat_pemesanan
+//tabel surat_order
 function open_tabel_item($id)  {
 
 	$where = array(
 		'state' => 'aktif',
-		'id_surat_pemesanan' => $id
+		'id_surat_order' => $id
 	);
 
-	$data['item'] = $this->M_surat_pemesanan->cek_where('item_surat_pemesanan',$where)->result();
+	$data['item'] = $this->M_surat_order->cek_where('item_surat_order',$where)->result();
 
 }
 
@@ -318,12 +318,12 @@ function open_item($id) {
 	
 	$id= $id;
 
-	$data['id_surat_pemesanan'] = $id;
-	$data['nama_menu'] = 'Item surat_pemesanan';
+	$data['id_surat_order'] = $id;
+	$data['nama_menu'] = 'Item surat_order';
 
 		$where = array(
 		'state' => 'aktif',
-		'id_surat_pemesanan' => $id
+		'id_surat_order' => $id
 	);
 
 
@@ -331,21 +331,21 @@ function open_item($id) {
 		'state' => 'aktif',
 		);
 	
-	$data['surat_pemesanan'] = $this->M_surat_pemesanan->cek_where('t_surat_pemesanan',$where)->result();
-	$data['data_barang'] = $this->M_surat_pemesanan->cek_where('data_barang',$where_barang)->result();
-	$data['satuan'] = $this->M_surat_pemesanan->cek_where('t_satuan',$where_barang)->result();
+	$data['surat_order'] = $this->M_surat_order->cek_where('t_surat_order',$where)->result();
+	$data['data_barang'] = $this->M_surat_order->cek_where('data_barang',$where_barang)->result();
+	$data['satuan'] = $this->M_surat_order->cek_where('t_satuan',$where_barang)->result();
 
 
 	$this->load->view('backend/page/from_add_item',$data);
 }
 
-//=========== ADD Item _surat_pemesanan
+//=========== ADD Item _surat_order
 
 
 function p_add_item() {
 
 	$data = array(
-		'id_surat_pemesanan' => $_POST['id_surat_pemesanan'],
+		'id_surat_order' => $_POST['id_surat_order'],
 		'id_barang' => $_POST['id_barang'],
 		// 'id_distributor' => $_POST['id_distributor'],
 		// 'id_satuan' => $_POST['id_satuan'],
@@ -354,26 +354,28 @@ function p_add_item() {
 		// 'pajak' => $_POST['pajak'],
 		'harga' => $_POST['harga'],
 		'jumlah' => $_POST['jumlah'],
+		'ppn' => $_POST['ppn'],
+		'plus_minus' => $_POST['plus_minus'],
 		'state' => 'aktif',
 		'id_user_input' => $this->session->userdata('id_user'),
 		'tgl_input'=> date('Y-m-d H:i:s'),	
 	);
 
-	$this->M_surat_pemesanan->insert('item_surat_pemesanan',$data);
+	$this->M_surat_order->insert('item_surat_order',$data);
 }
 
 // get item list
 
 
-function tabel_list($id_surat_pemesanan){
-	$data['id_surat_pemesanan'] = $id_surat_pemesanan;
+function tabel_list($id_surat_order){
+	$data['id_surat_order'] = $id_surat_order;
 	$where = array(
-		'item_surat_pemesanan.state' => 'aktif',
-		'item_surat_pemesanan.id_surat_pemesanan' => $id_surat_pemesanan,
+		'item_surat_order.state' => 'aktif',
+		'item_surat_order.id_surat_order' => $id_surat_order,
 		
 	);
 
-	$data['data'] = $this->M_surat_pemesanan->ambil_item_surat_pemesanan('item_surat_pemesanan',$where)->result();
+	$data['data'] = $this->M_surat_order->ambil_item_surat_order('item_surat_order',$where)->result();
 	$this->load->view('backend/page/tabel_list',$data);
 	
 }
@@ -384,11 +386,11 @@ function p_delete_item() {
 	$id = $_POST['id'];
 	
 	$where = array(
-		'id_item_surat_pemesanan' => $id,
+		'id_item_surat_order' => $id,
 		// 'state' => 'tidak'
 	);
 
-	$this->M_surat_pemesanan->delete_data('item_surat_pemesanan',$where);
+	$this->M_surat_order->delete_data('item_surat_order',$where);
 }
 
 //=====================END Delete Permanen
@@ -402,7 +404,7 @@ function get_barang($id) {
 	);
 
 
-	$data = $this->M_surat_pemesanan->cek_where('data_barang',$where)->result();
+	$data = $this->M_surat_order->cek_where('data_barang',$where)->result();
 	echo json_encode($data[0]);
 
 
@@ -444,35 +446,35 @@ function cetak_dokumen($id) {
 
 
 
-	$data['id_surat_pemesanan'] = $id;
+	$data['id_surat_order'] = $id;
 	$where = array(
-		'item_surat_pemesanan.state' => 'aktif',
-		'item_surat_pemesanan.id_surat_pemesanan' => $id,
+		'item_surat_order.state' => 'aktif',
+		'item_surat_order.id_surat_order' => $id,
 		
 	);
 
-	$data['data'] = $this->M_surat_pemesanan->ambil_item_surat_pemesanan('item_surat_pemesanan',$where)->result();
+	$data['data'] = $this->M_surat_order->ambil_item_surat_order('item_surat_order',$where)->result();
 
 
 	$where_ = array(
-		't_surat_pemesanan.state'=> 'aktif',
-		'id_surat_pemesanan' => $id
+		't_surat_order.state'=> 'aktif',
+		'id_surat_order' => $id
 	);
 
-	$data['data_surat'] = $this->M_surat_pemesanan->ambil_surat_pemesanan('t_surat_pemesanan',$where_)->result();
+	$data['data_surat'] = $this->M_surat_order->ambil_surat_order('t_surat_order',$where_)->result();
 
 
 
-	$data['conf'] = $this->M_surat_pemesanan->config();
+	$data['conf'] = $this->M_surat_order->config();
 	$this->load->library('pdfgenerator');
-	$data['title'] = "Surat pemesanan";
+	$data['title'] = "Surat order";
 	$file_pdf = $data['title'];
 	$paper = 'A4';
 	// $paper = array(0,0,125,250);
 	$orientation = "portaid";
-	$html = $this->load->view('backend/page/surat_pemesanan', $data, true);
+	$html = $this->load->view('backend/page/surat_order', $data, true);
 	$this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
-	// $this->load->view('backend/page/surat_pemesanan', $data);
+	// $this->load->view('backend/page/surat_order', $data);
 
 }
 

@@ -29,7 +29,9 @@ function rupiah($angka){
 									<!-- <th>Disc</th> -->
 									<!-- <th>Tax/Pajak</th> -->
 									<th>Harga</th>
+									<th>PPN</th>
 									<th>Sub Harga</th>
+								
 									<th>User Input</th>
 									<th>Tools</th>
 									
@@ -56,6 +58,7 @@ function rupiah($angka){
 									<!-- <td><?= $k->disc;?> % </td> -->
 									<!-- <td><?= $k->pajak;?> % </td> -->
 									<td><?= rupiah($k->harga);?> </td>
+									<td><?= $k->ppn_;?> </td>
 									<td><?= rupiah($k->jumlah);?> </td>
 
 									<td><?= $k->tgl_input;?> </td>
@@ -64,7 +67,7 @@ function rupiah($angka){
 									<td>
 									<ul class="icons-list">
 												<!-- <li onclick="open_edit(<?= $k->id_faktur;?>)" class="text-primary-600"><a href="#"><i class="icon-pencil7"></i></a></li> -->
-												<li onclick="hapus_item_data(<?= $k->id_item_surat_pemesanan;?>)" class="text-danger-600"><a href="#"><i class="icon-trash"></i></a></li>
+												<li onclick="hapus_item_data(<?= $k->id_item_surat_order;?>)" class="text-danger-600"><a href="#"><i class="icon-trash"></i></a></li>
 												<!-- <li class="text-teal-600"><a href="#"><i class="icon-cog7"></i></a></li> -->
 												<!-- <li onclick="open_detail(<?= $k->id_faktur;?>)" class="text-success-600"><a href="#"><i class="icon-eye"></i></a></li> -->
 
@@ -91,15 +94,15 @@ function rupiah($angka){
 
 						<hr>
 					
-						<!-- <?= $id_surat_pemesanan?> -->
-						<!-- <a href="<?= base_url('surat_pemesanan/cetak_dokumen/'.$id_surat_pemesanan)?>" class="btn btn-block btn-success"> <span class="icon-file-text2"></span> Cetak Surat</a> -->
+						<!-- <?= $id_surat_order?> -->
+						<!-- <a href="<?= base_url('surat_order/cetak_dokumen/'.$id_surat_order)?>" class="btn btn-block btn-success"> <span class="icon-file-text2"></span> Cetak Surat</a> -->
 
 
 
 
-						<a class="btn btn-block btn-success" href="" 
+						<a class="btn btn-block btn-primary" href="" 
   target="popup" 
-  onclick="window.open('<?= base_url('surat_pemesanan/cetak_dokumen/'.$id_surat_pemesanan)?>','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
-  <span class="icon-file-text2"></span>Input Customer
+  onclick="window.open('<?= base_url('surat_order/cetak_dokumen/'.$id_surat_order)?>','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
+  <span class="icon-file-text2"></span> Cetak Surat order
 </a>
                         </div>

@@ -114,7 +114,6 @@ function tabel_content(){
 }
 
 
-
 function data_faktur($id_barang) {
 
 	$where = array(
@@ -124,7 +123,7 @@ function data_faktur($id_barang) {
 	
 	$data = $this->M_stok_barang->get_data_faktur('item_faktur',$where)->result();
 
-	echo json_encode($data);
+	return $data[0]->qty;
 	// print_r($data);
 }
 
@@ -136,15 +135,33 @@ function data_keluar($id_barang) {
 		'state' => 'aktif'
 	);
 	
-	$data = $this->M_stok_barang->get_data_faktur('item_faktur',$where)->result();
+	$data = $this->M_stok_barang->get_data_faktur('item_surat_order',$where)->result();
 
-	echo json_encode($data);
-	// print_r($data);
+// return $data->qty;
+	return $data[0]->qty;
 }
 
 
 
 
+
+function stok()  {
+	$id_barang = $_POST['id'];
+	$data_masuk = $this->data_faktur($id_barang);
+	$data_keluar = $this->data_keluar($id_barang);
+
+	$a = $data_masuk - $data_keluar;
+
+	$data = array (
+'qty' => $a
+
+	);
+	echo json_encode($data);
+
+	
+
+	
+}
 
 	
 }

@@ -29,7 +29,9 @@ function rupiah($angka){
 									<!-- <th>Disc</th> -->
 									<!-- <th>Tax/Pajak</th> -->
 									<th>Harga</th>
+									<th>PPN</th>
 									<th>Sub Harga</th>
+								
 									<th>User Input</th>
 									<th>Tools</th>
 									
@@ -56,6 +58,7 @@ function rupiah($angka){
 									<!-- <td><?= $k->disc;?> % </td> -->
 									<!-- <td><?= $k->pajak;?> % </td> -->
 									<td><?= rupiah($k->harga);?> </td>
+									<td><?= $k->ppn_;?> </td>
 									<td><?= rupiah($k->jumlah);?> </td>
 
 									<td><?= $k->tgl_input;?> </td>
@@ -97,9 +100,9 @@ function rupiah($angka){
 
 
 
-						<a class="btn btn-block btn-success" href="" 
+						<a class="btn btn-block btn-primary" href="" 
   target="popup" 
   onclick="window.open('<?= base_url('surat_penawaran/cetak_dokumen/'.$id_surat_penawaran)?>','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
-  <span class="icon-file-text2"></span>Input Customer
+  <span class="icon-file-text2"></span> Cetak Surat Penawaran
 </a>
                         </div>

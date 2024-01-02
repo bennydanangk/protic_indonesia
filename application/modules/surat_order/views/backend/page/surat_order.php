@@ -53,7 +53,7 @@
                         <tr>
                             <td>Prihal</td>
                             <td>:</td>
-                            <td> Surat pemesanan Harga</td>
+                            <td> Surat order Harga</td>
                         </tr>
 
                         <tr>
@@ -109,6 +109,7 @@ Informasi Harga Sebagai Berikut :</p>
                                     <th>Nama Barang</th>
                                     <th>Kode Barang</th>
                                     <th>Qty</th>
+                                    <th>PPN</th>
                                     <th>Harga</th>
                                     <th>Jumlah </th>
                                 </tr>
@@ -126,6 +127,9 @@ function rupiah($angka){
 
 
 $no = 0;
+$jumlah = 0;
+$jumlah_ppn = 0;
+$jumlah_harga = 0;
 foreach ($data as $k) {
     $no++;
   ?>
@@ -135,14 +139,29 @@ foreach ($data as $k) {
                                     <td> <?= $k->nama_data_barang?> </td>
                                     <td><?= $qty =$k->qty;?></td>
                                     <td><?= $k->kode_barang;?></td>
-                                    <td><?= rupiah($harga = $k->harga_jual);?></td>
-                                    <td><?= rupiah($qty * $harga)?></td>
+                                    <td><?= rupiah($ppn = $k->ppn_);?></td>
+                                    <td><?php $harga_fix = $k->jumlah;
+                                    echo  rupiah(( $harga = $k->jumlah)  - $ppn);?></td>
+                                    <td><?php
+                                    $jumlah_ppn += $ppn;
+                                    $jumlah_harga += $harga_fix - $ppn;
+                                   echo rupiah($qty * $harga_fix);
+                                    $jumlah += $qty * $harga_fix;
+                                    ?></td>
                                 </tr>
                                
 
   <?php
 }
                             ?>
+                            <tr>
+                                <td align="center" colspan ="4">
+                                    <b>Jumlah + PPN</b>
+                                </td>
+                                <td> <?= rupiah($jumlah_ppn);?></td>
+                                <td> <?= rupiah($jumlah_harga);?></td>
+                                <td> <?= rupiah($jumlah);?></td>
+                            </tr>
                                
                             </tbody>
                         </table>
@@ -168,7 +187,7 @@ Keterangan : <br>
   </li>
             
   <li>Free Biaya Pengiriman dan Instalasi </li>
-  <li>pemesanan ini Berlaku 14 (empat belas) Hari Sejak Surat Di Terbitkan :</li>
+  <li>order ini Berlaku 14 (empat belas) Hari Sejak Surat Di Terbitkan :</li>
 </ol>
 
    </td>

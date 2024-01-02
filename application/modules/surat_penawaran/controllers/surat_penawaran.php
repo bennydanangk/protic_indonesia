@@ -354,6 +354,8 @@ function p_add_item() {
 		// 'pajak' => $_POST['pajak'],
 		'harga' => $_POST['harga'],
 		'jumlah' => $_POST['jumlah'],
+		'ppn' => $_POST['ppn'],
+		'plus_minus' => $_POST['plus_minus'],
 		'state' => 'aktif',
 		'id_user_input' => $this->session->userdata('id_user'),
 		'tgl_input'=> date('Y-m-d H:i:s'),	

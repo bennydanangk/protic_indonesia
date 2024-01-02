@@ -20,8 +20,10 @@
 									<div class="form-group">
 										<label class="control-label col-lg-2">Nomor Item </label>
 										<div class="col-lg-10">
-											<input type="text" value="<?= $surat_pemesanan[0]->nomor_surat?>" name="nomor_surat" placeholder="Diskon %" class="form-control" readonly>
-											<input type="hidden" value="<?= $surat_pemesanan[0]->id_surat_pemesanan?>" name="id_surat_pemesanan" placeholder="Diskon %" class="form-control" readonly>
+											<input type="text" value="<?= $surat_order[0]->nomor_surat?>" name="nomor_surat" placeholder="Diskon %" class="form-control" readonly>
+											<input type="hidden" value="<?= $surat_order[0]->id_surat_order?>" name="id_surat_order" placeholder="Diskon %" class="form-control" readonly>
+											<input type="hidden" value="<?= $surat_order[0]->ppn?>" id="ppn_act" name="ppn_act" placeholder="Diskon %" class="form-control" readonly>
+											<input type="hidden" value="11" id="besaran_ppn" placeholder="Diskon %" class="form-control" readonly>
 										
 										</div>
 									</div>
@@ -80,21 +82,42 @@
 										<!-- <input type="hidden" name="id_faktur" value="<?= $id_faktur; ?>" placeholder="Masukan Nomor Faktur" class="form-control" required> -->
 
 											<input type="number" id="qty" name="qty"   onkeyup="cek_jumlah()"placeholder="Masukan Jumlah Barang" class="form-control" required>
+										<span id="notif"></span>
 										</div>
 									</div>
 
 
      
+					
+
 
                                 
 									<div class="form-group">
 										<label class="control-label col-lg-2">Harga </label>
 										<div class="col-lg-10">
-											<input type="number" onkeyup="cek_jumlah()" id="harga" name="harga" placeholder="harga"  class="form-control" required readonly>
+											<input type="number" onkeyup="cek_jumlah()" id="harga" name="harga" placeholder="harga"  class="form-control" required>
 										</div>
 									</div>
 
   
+									<div class="form-group">
+										<label class="control-label col-lg-2">Harga Dasar </label>
+										<div class="col-lg-10">
+											<input type="number" onkeyup="cek_jumlah()" id="harga_beli" name="harga" placeholder="harga_dasar"  class="form-control" required readonly>
+										</div>
+									</div>
+
+
+									<div class="form-group">
+										<label class="control-label col-lg-2">Harga Jual </label>
+										<div class="col-lg-10">
+											<input type="number" onkeyup="cek_jumlah()" id="harga_jual" name="harga" placeholder="harga_dasar"  class="form-control" required readonly>
+										</div>
+									</div>
+
+
+
+													
                                     
 									<div class="form-group">
 										<label class="control-label col-lg-2">Stok </label>
@@ -104,12 +127,29 @@
 									</div>
 
 									<div class="form-group">
+										<label class="control-label col-lg-2">PPN </label>
+										<div class="col-lg-10">
+											<input type="number" id="ppn" name="ppn" placeholder="ppn" class="form-control" required readonly>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-2">Plus Minus </label>
+										<div class="col-lg-10">
+											<input type="number" id="plus_minus" name="plus_minus" placeholder="stok" class="form-control" required readonly>
+										</div>
+									</div>
+
+
+
+									<div class="form-group">
 										<label class="control-label col-lg-2">Jumlah </label>
 										<div class="col-lg-10">
 											<input type="number" id="jumlah" name="jumlah" placeholder="Jumlah" class="form-control" required readonly>
 										</div>
 									</div>
 
+								
 
 
                                    
@@ -137,7 +177,7 @@
        
         
 var url = '<?= base_url()?>';
-var app= 'surat_pemesanan';
+var app= 'surat_order';
 
 $("#form_add").submit(function(e) {
          e.preventDefault();
@@ -155,7 +195,10 @@ $("#form_add").submit(function(e) {
                     timer: 1500
                     });
 
-                    open_tabel_list(<?= $surat_pemesanan[0]->id_surat_pemesanan?>);
+                    open_tabel_list(<?= $surat_order[0]->id_surat_order?>);
+
+
+					reset_form();
              }
          });
      });
@@ -168,6 +211,8 @@ $("#form_add").submit(function(e) {
 		// var disc =$('#disc').val();
 		// var pajak = $('#pajak').val();
 		var harga = $('#harga').val();
+		var harga_jual = $('#harga_jual').val();
+		var harga_beli = $('#harga_beli').val();
 		var qty = $('#qty').val();
 
 		// console.log(disc);
@@ -175,16 +220,38 @@ $("#form_add").submit(function(e) {
 		// console.log(harga);
 		// console.log(qty);
 
-		jumlah = (harga  * qty);
+		if(harga >= harga_jual){
+			// console.log('Good');
+			$('#notif').html('<span class="badge badge-success"> Suksess </span>');
+		} else
 
-	
+		if(harga >= harga_beli && harga < harga_jual){
+			$('#notif').html('<span class="badge badge-warning"> Warning </span>');
 
+		}else{
+			$('#notif').html('<span class="badge badge-danger"> Danger </span>');
+
+			// console.log('Danger');
+		}
+
+		ppn();
+
+		ppn_ = $('#ppn').val();
+		parseInt(ppn_);
+		jumlah = (harga  * qty) ;
+		jumlah  = parseInt(jumlah) + parseInt(ppn_);
+
+		
 		$('#jumlah').val(jumlah);
+
+		jumlah_ = (harga - harga_jual)  * qty;
+		$('#plus_minus').val(jumlah_);
+		console.log(jumlah_);
 	 }
 
 
 
-	 open_tabel_list(<?= $surat_pemesanan[0]->id_surat_pemesanan?>);
+	 open_tabel_list(<?= $surat_order[0]->id_surat_order?>);
 
 
 
@@ -210,7 +277,7 @@ function hapus_item_data(id) {
              data: {id:id} ,             
              success: function(data) {    
 			
-              open_tabel_list(<?= $surat_pemesanan[0]->id_surat_pemesanan?>)
+              open_tabel_list(<?= $surat_order[0]->id_surat_order?>)
              }
          });
 
@@ -244,7 +311,11 @@ var id = $('#id_barang option:selected').val();
 				var obj = jQuery.parseJSON(data);
 				// console.log(obj);
 				// console.log(obj.harga_jual);
+				stok(id);
 
+			
+				$('#harga_beli').val(obj.harga_beli);
+				$('#harga_jual').val(obj.harga_jual);
 				$('#harga').val(obj.harga_jual);
 
 
@@ -258,5 +329,58 @@ var id = $('#id_barang option:selected').val();
 }
 
 
+
+function stok(id) {
+//   console.log(id);
+  $.ajax({
+          url: url+"/stok_barang/stok",
+             type: 'POST',
+             data: {id:id} ,             
+             success: function(data) {    
+			
+              const obj = JSON.parse(data);
+
+			  $('#stok').val(obj.qty);
+            //   $('#stok').html(obj.qty);
+              //  console.log(obj.qty);
+             }
+         });
+
+}
+
+
+
+function ppn() {
+	x = $('#ppn_act').val()
+	var harga=	$('#harga').val();
+	var qty = $('#qty').val();
+	var besaran_ppn =$('#besaran_ppn').val();
+	var jumlah_ppn = 0;
+	if(x == 'ya'){
+		jumlah_ppn = (harga*qty)*besaran_ppn/100;
+	}else{
+		jumlah_ppn = 0;
+	}
+
+	// console.log(jumlah_ppn);
+	$('#ppn').val(jumlah_ppn);
+}
+
+
+
+function reset_form() {
+
+	$('#id_barang').val('');
+	$('#ppn').val('');
+	$('#harga').val('');
+	$('#harga_beli').val('');
+	$('#harga_jual').val('');
+	$('#stok').val('');
+	$('#plus_minus').val('');
+	$('#jumlah').val('');
+	$('#nama_barang').val('');
+	$('#qty').val('');
+	
+}
 	
                         </script>

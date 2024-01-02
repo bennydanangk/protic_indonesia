@@ -20,7 +20,7 @@ select2add();
   
   //.inv module
 var url = '<?= base_url()?>';
-var app= 'surat_penawaran';
+var app= 'surat_order';
 //end
 
 connecting(url+'api/cek_koneksi');
@@ -205,6 +205,7 @@ tgl_akhir = tgl_akhir;
   $('#tabel_content').load(url+'/'+app+'/tabel_content/'+tgl_awal+'/'+tgl_akhir);
 
 }
+
 
 
 
