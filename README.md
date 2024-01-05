@@ -6,18 +6,18 @@ Setya Benny Danang K
 2.	User (Hak Akses)
 
 DATA MASTER
-1.	Databarang  (%keuntungan )
-2.	Stok opname
-3.	Harga Barang (id_barang -> harga_barang )
-4.	Faktur pembelian ( harga terpisah - >stok )
-5.	Jenis barang
-6.	Satuan
-7.	Datadistributor
-8.	Datacustomer
+1.	Databarang  (%keuntungan ) (Sudah)
+2.	Stok opname (Sudah)
+3.	Harga Barang (id_barang -> harga_barang )(Sudah)
+4.	Faktur pembelian ( harga terpisah - >stok ) (sudah)
+5.	Jenis barang (SudaH)
+6.	Satuan (Sudah)
+7.	Datadistributor (Sudah)
+8.	Datacustomer (Sudah)
 DATA USER
-1.	Table User
-2.	Table Menu
-3.	Takble akses
+1.	Table User (sudah)
+2.	Table Menu (Sudah)
+3.	Takble akses (OTW)
 DATA MAIN
 1.	Surat Penawaran, format tulisan Custom. Tabel yang ditawarakn kuii neng tengah”. Insert option barang, input diskon, input harga manual(Ketika harga standar atau harga normal tidak memerlukan validasi, ketika ), input ppn(pajak)
 -	Jika harganya yang diinput < dari harga norval (memerlukan validasi atasan atau direksi)
