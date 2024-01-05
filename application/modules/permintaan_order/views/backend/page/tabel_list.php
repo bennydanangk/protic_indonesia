@@ -1,10 +1,6 @@
-<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/plugins/tables/datatables/datatables.min.js"></script>
+	<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/plugins/tables/datatables/datatables.min.js"></script>
 	<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/plugins/forms/selects/select2.min.js"></script>
-
-	<!-- <script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/core/app.js"></script> -->
 	<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/pages/datatables_basic.js"></script>
-
-
     <div class="container-fluid">
 
 <?php
@@ -86,7 +82,7 @@ function rupiah($angka){
 						</table>
 
 						<table class="table">
-							<tr>
+							<!-- <tr>
 								<td>Jumlah Cost Dasar</td>
 								<td><?= rupiah($sub_jumlah_dasar);?></td>
 							</tr>
@@ -95,7 +91,7 @@ function rupiah($angka){
 							<tr>
 								<td>Jumlah Real Cost + Profit Non PPN</td>
 								<td><?= rupiah($sub_jumlah_non_ppn);?></td>
-							</tr>
+							</tr> -->
 							<tr>
 								<td>Jumlah Order Sales</td>
 								<td> <b> <?= rupiah($sub_jumlah);?></b></td>
@@ -104,22 +100,14 @@ function rupiah($angka){
 
 						<hr>
 					
-						<!-- <?= $id_surat_order?> -->
-						<!-- <a href="<?= base_url('surat_order/cetak_dokumen/'.$id_surat_order)?>" class="btn btn-block btn-success"> <span class="icon-file-text2"></span> Cetak Surat</a> -->
+				
+
+	
 
 
-
-
-						<!-- <a class="btn btn-primary" href="" 
-  target="popup" 
-  onclick="window.open('<?= base_url('surat_order/cetak_dokumen/'.$id_surat_order)?>','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
-  <span class="icon-file-text2"></span> Cetak Surat order
-</a> -->
-
-
-<a class="btn btn-block btn-primary" onclick="aprove(<?= $id_surat_order; ?>)" > <span class="icon icon-checkmark4"></span> Aprove Order</a>
+<a class="btn btn-block btn-success" onclick="aprove(<?= $id_surat_order; ?>)" > <span class="icon icon-checkmark4"></span> Kirim Order</a>
 <br>
-<a class="btn btn-block btn-danger" onclick="cancel(<?= $id_surat_order; ?>)" > <span class="icon icon-cancel-circle2"></span> Tolak Order</a>
+<a class="btn btn-block btn-danger" onclick="cancel(<?= $id_surat_order; ?>)" > <span class="icon icon-cancel-circle2"></span> Kembaikan Ke Verifikator</a>
                         </div>
 
 <script>

@@ -20,7 +20,7 @@ select2add();
   
   //.inv module
 var url = '<?= base_url()?>';
-var app= 'konfirmasi_order';
+var app= 'permintaan_order';
 //end
 
 connecting(url+'api/cek_koneksi');

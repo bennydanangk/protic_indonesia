@@ -132,6 +132,7 @@ function data_keluar($id_barang) {
 
 	$where = array(
 		'id_barang' => $id_barang,
+		'flag'=> 'terkirim',
 		'state' => 'aktif'
 	);
 	

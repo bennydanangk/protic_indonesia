@@ -277,6 +277,7 @@ function get_detail($id)  {
 
 	$where = array(
 		'data_barang.state'=> 'aktif',
+		// 'data_barang.flag'=> 'terkirim',
 		'id_barang' => $id
 	);
 

@@ -323,6 +323,7 @@ function open_item($id) {
 
 		$where = array(
 		'state' => 'aktif',
+		// 'flag' => 'input',
 		'id_surat_order' => $id
 	);
 

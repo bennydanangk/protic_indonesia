@@ -25,8 +25,28 @@
 	<td>:</td>
 	<td><?= $surat_order[0]->tgl_input?></td>
 </tr>
+<tr>
+	<td>Status Berkas</td>
+	<td>:</td>
+	<td><span class="badge badge-pill badge-success"><?= $surat_order[0]->flag?></span> <span class="badge badge-pill badge-dark"><?= $surat_order[0]->nama_user?></span> </td>
+</tr>
+<tr>
+	<td>Alamat Pengiriman</td>
+	<td>:</td>
+	<td><?= $surat_order[0]->alamat?></td>
+</tr>
+<tr>
+	<td>Nama Pengorder</td>
+	<td>:</td>
+	<td><?= $surat_order[0]->nama_pimpinan?></td>
+</tr>
+<tr>
+	<td>Nomor Telp</td>
+	<td>:</td>
+	<td><?= $surat_order[0]->no_wa?></td>
+</tr>
 </table>
-							
+<p class="text-danger">* Apabila Alamat pengiriman Keliru Silahkan Hubungi Verifikator untuk membenahi di data Master</p>					
 <h6>List Order</h6>
 											
 											<div id="tabel_content_item">
@@ -41,7 +61,7 @@
        
         
 var url = '<?= base_url()?>';
-var app= 'konfirmasi_order';
+var app= 'permintaan_order';
 
 $("#form_add").submit(function(e) {
          e.preventDefault();
