@@ -21,9 +21,9 @@ class Dashboard extends MY_Controller {
 	public function index()
 	{
 		//set .inv
-		$id_menu = 1;
+		// $id_menu = 1;
 		$data['nama_menu'] = 'Dashboard';
-		$this->cek_hak_akses($id_menu);
+		$this->cek_hak_akses();
 		$set = $this->M_Dashboard->config();
 		$data['nama_aplikasi'] = $set[0]->nama_vendor;
 		$data['token'] = $this->session->userdata('id_hak_akses');
@@ -83,14 +83,14 @@ class Dashboard extends MY_Controller {
 //end Menu 
 
 
-function cek_hak_akses($id_menu)  {
-	$id_menu =$id_menu;
+function cek_hak_akses()  {
+	// $id_menu =$id_menu;
 
 	$id_hak_akses = $this->enc->out($this->session->userdata('id_hak_akses'));
 		$where = array(
 		'id_hak_akses' => $id_hak_akses,
 		'status_role' => 'aktif',
-		'role_tabel.id_menu' => $id_menu
+		// 'role_tabel.id_menu' => $id_menu
 
 	);
 

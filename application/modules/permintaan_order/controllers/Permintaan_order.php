@@ -253,6 +253,13 @@ function tabel_list($id_surat_order){
 		
 	);
 
+	$where_ = array(
+		'state' => 'aktif',
+		
+	);
+
+	$data['user'] = $this->M_permintaan_order->cek_where('t_user',$where_)->result();
+
 	$data['data'] = $this->M_permintaan_order->ambil_item_surat_order('item_surat_order',$where)->result();
 	$this->load->view('backend/page/tabel_list',$data);
 	
@@ -318,12 +325,13 @@ function cetak_dokumen($id) {
 
 
 
-function p_aprove() {
+function p_aprove($id_kurir) {
 	$id = $_POST['id'];
 
 	$data = array(
 		'flag' => 'terkirim',
-		'id_user_input' => $this->session->userdata('id_user'),	
+		'id_user_gudang' => $this->session->userdata('id_user'),	
+		'id_user_kurir' => $id_kurir
 	);
 
 
@@ -333,6 +341,20 @@ function p_aprove() {
 
 	$this->M_permintaan_order->update_data($where,$data,'t_surat_order');
 	$this->M_permintaan_order->update_data($where,$data,'item_surat_order');
+
+
+	$data_flag = array(
+		'id_surat_order' => $id,
+		'id_user' => $this->session->userdata('id_user'),	
+		'nama_flag' => 'terkirim_konsumen',
+		'date_create' => date('Y-m-d H:i:s')
+
+	);
+	$this->M_permintaan_order->insert('flag',$data_flag);
+
+	
+
+
 }
 
 
@@ -349,6 +371,19 @@ function p_cancel() {
 	$where = array(
 		'id_surat_order' => $id
 	);
+
+
+	$data_flag = array(
+		'id_surat_order' => $id,
+		'id_user' => $this->session->userdata('id_user'),	
+		'nama_flag' => 'ditolak_permintaan',
+		'date_create' => date('Y-m-d H:i:s')
+
+	);
+	$this->M_permintaan_order->insert('flag',$data_flag);
+
+
+	
 
 	$this->M_permintaan_order->update_data($where,$data,'t_surat_order');
 }

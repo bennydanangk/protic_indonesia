@@ -1,13 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Konfirmasi_order extends MY_Controller {
+class tagihan extends MY_Controller {
 
 	public function __construct()
     {
         parent::__construct();
 		$this->load->library('enc'); 
-        $this->load->model("M_konfirmasi_order"); //load model m user
+        $this->load->model("M_tagihan"); //load model m user
 
 		if($this->session->userdata('status') != "login"){
 			redirect(base_url("auth"));
@@ -19,9 +19,9 @@ class Konfirmasi_order extends MY_Controller {
 	{
 		//set .inv
 		$id_menu = 1;
-		$data['nama_menu'] = 'Konfirmasi Order';
+		$data['nama_menu'] = 'Tagihan Order';
 		$this->cek_hak_akses($id_menu);
-		$set = $this->M_konfirmasi_order->config();
+		$set = $this->M_tagihan->config();
 		$data['nama_aplikasi'] = $set[0]->nama_vendor;
 		$data['token'] = $this->session->userdata('id_hak_akses');
 		$data['nama_user'] = $this->session->userdata('nama_user');
@@ -46,7 +46,7 @@ class Konfirmasi_order extends MY_Controller {
 			'state_orgin' => 'parent'
 
 		);
-		$menu_parent = $this->M_konfirmasi_order->get_parent('role_tabel',$where_parent)->result();
+		$menu_parent = $this->M_tagihan->get_parent('role_tabel',$where_parent)->result();
 		$menu = '';
 
 		foreach ($menu_parent as $k) {
@@ -62,7 +62,7 @@ class Konfirmasi_order extends MY_Controller {
 			'id_parent' => $k->id_menu
 
 		);
-			$menu_child = $this->M_konfirmasi_order->get_parent('role_tabel',$where_child)->result();
+			$menu_child = $this->M_tagihan->get_parent('role_tabel',$where_child)->result();
 			foreach ($menu_child as $y) {
 				$menu .=	'<li><a href="'.base_url($y->link).'">'.$y->nama_menu.'</a></li>';
 			}
@@ -90,7 +90,7 @@ function cek_hak_akses($id_menu)  {
 
 	);
 
-	$menu_cek = $this->M_konfirmasi_order->get_parent('role_tabel',$where)->num_rows();
+	$menu_cek = $this->M_tagihan->get_parent('role_tabel',$where)->num_rows();
 
 	if($menu_cek > 0 ){
 
@@ -106,11 +106,11 @@ function tabel_content(){
 
 	$where = array(
 		't_surat_order.state' => 'aktif',
-		't_surat_order.flag' => 'input'
+		't_surat_order.flag' => 'terkirim'
 	
 	);
 
-	$data['data'] = $this->M_konfirmasi_order->ambil_surat_order('t_surat_order',$where)->result();
+	$data['data'] = $this->M_tagihan->ambil_surat_order('t_surat_order',$where)->result();
 	$this->load->view('backend/page/tabel',$data);
 	
 }
@@ -124,10 +124,10 @@ function form_add() {
 	);
 
 	$kode_ = '/SPO/PROTIC/'.date('m/Y');
-	$data['nomor_surat'] = $this->M_konfirmasi_order->CreateCode($kode_);
-	$data['customer'] = $this->M_konfirmasi_order->cek_where('t_customer',$where)->result();
-	// $data['satuan'] = $this->M_konfirmasi_order->cek_where('t_satuan',$where)->result();
-	// $data['kategori'] = $this->M_konfirmasi_order->cek_where('t_kategori',$where)->result();
+	$data['nomor_surat'] = $this->M_tagihan->CreateCode($kode_);
+	$data['customer'] = $this->M_tagihan->cek_where('t_customer',$where)->result();
+	// $data['satuan'] = $this->M_tagihan->cek_where('t_satuan',$where)->result();
+	// $data['kategori'] = $this->M_tagihan->cek_where('t_kategori',$where)->result();
 
 
 	$this->load->view('backend/page/from_add',$data);
@@ -150,7 +150,7 @@ function p_add() {
 	$barcode = $_POST['nomor_surat'];
 	$barcode = strtr( $barcode, "/", "_" );
 	$this->qrcode($barcode);
-	$this->M_konfirmasi_order->insert('t_surat_order',$data);
+	$this->M_tagihan->insert('t_surat_order',$data);
 }
 
 //============= END ADD==
@@ -164,7 +164,7 @@ function form_edit($id) {
 		'state'=> 'aktif'
 	);
 
-	$data['customer'] = $this->M_konfirmasi_order->cek_where('t_customer',$where_)->result();
+	$data['customer'] = $this->M_tagihan->cek_where('t_customer',$where_)->result();
 
 
 	
@@ -173,7 +173,7 @@ function form_edit($id) {
 		'id_surat_order' => $id
 	);
 
-	$data['data'] = $this->M_konfirmasi_order->ambil_surat_order('t_surat_order',$where)->result();
+	$data['data'] = $this->M_tagihan->ambil_surat_order('t_surat_order',$where)->result();
 
 	// print_r($data);
 	$this->load->view('backend/page/from_edit',$data);
@@ -183,36 +183,19 @@ function form_edit($id) {
 
 
 
-function get_detail($id)  {
 
-	$id= $id;
-	$data['nama_menu'] = 'Detail Data Barang';
-
-
-	$where = array(
-		't_surat_order.state'=> 'aktif',
-		'id_surat_order' => $id
-	);
-
-	$data['data'] = $this->M_konfirmasi_order->ambil_barang('t_surat_order',$where)->result();
-
-	// print_r($data);
-	$this->load->view('backend/page/detail',$data);
-
-	
-}
 
 //tabel surat_order
-function open_tabel_item($id)  {
+// function open_tabel_item($id)  {
 
-	$where = array(
-		'state' => 'aktif',
-		'id_surat_order' => $id
-	);
+// 	$where = array(
+// 		'state' => 'aktif',
+// 		'id_surat_order' => $id
+// 	);
 
-	$data['item'] = $this->M_konfirmasi_order->cek_where('iteM_konfirmasi_order',$where)->result();
+// 	$data['item'] = $this->M_tagihan->cek_where('iteM_tagihan',$where)->result();
 
-}
+// }
 
 
 function open_item($id) {
@@ -224,8 +207,8 @@ function open_item($id) {
 	$data['nama_menu'] = 'Item surat_order';
 
 		$where = array(
-		'state' => 'aktif',
-		'id_surat_order' => $id
+		't_surat_order.state' => 'aktif',
+		't_surat_order.id_surat_order' => $id
 	);
 
 
@@ -233,9 +216,22 @@ function open_item($id) {
 		'state' => 'aktif',
 		);
 	
-	$data['surat_order'] = $this->M_konfirmasi_order->cek_where('t_surat_order',$where)->result();
-	$data['data_barang'] = $this->M_konfirmasi_order->cek_where('data_barang',$where_barang)->result();
-	$data['satuan'] = $this->M_konfirmasi_order->cek_where('t_satuan',$where_barang)->result();
+	$data['surat_order'] = $this->M_tagihan->ambil_surat_order_('t_surat_order',$where)->result();
+
+	$da = $this->M_tagihan->ambil_surat_order_('t_surat_order',$where)->result();
+	$id_user_input = $da[0]->id_user_input;
+	$data['user_input'] = $this->get_pengguna($id_user_input);
+
+	$id_user_gudang = $da[0]->id_user_gudang;
+	$data['user_gudang'] = $this->get_pengguna($id_user_gudang);
+
+	$id_user_kurir = $da[0]->id_user_kurir;
+	$data['user_kurir'] = $this->get_pengguna($id_user_kurir);
+
+// print_r($data);
+
+	$data['data_barang'] = $this->M_tagihan->cek_where('data_barang',$where_barang)->result();
+	$data['satuan'] = $this->M_tagihan->cek_where('t_satuan',$where_barang)->result();
 
 
 	$this->load->view('backend/page/from_add_item',$data);
@@ -243,7 +239,15 @@ function open_item($id) {
 
 //=========== ADD Item _surat_order
 
+function get_pengguna($id)  {
+	$where = array(
+		'id_user' => $id
+	);
+	$data = $this->M_tagihan->cek_where('t_user',$where)->result();
 
+	$x = $data[0]->nama_user;
+	return $x;
+}
 
 function tabel_list($id_surat_order){
 	$data['id_surat_order'] = $id_surat_order;
@@ -253,7 +257,7 @@ function tabel_list($id_surat_order){
 		
 	);
 
-	$data['data'] = $this->M_konfirmasi_order->ambil_item_surat_order('item_surat_order',$where)->result();
+	$data['data'] = $this->M_tagihan->ambil_item_surat_order('item_surat_order',$where)->result();
 	$this->load->view('backend/page/tabel_list',$data);
 	
 }
@@ -269,7 +273,7 @@ function get_barang($id) {
 	);
 
 
-	$data = $this->M_konfirmasi_order->cek_where('data_barang',$where)->result();
+	$data = $this->M_tagihan->cek_where('data_barang',$where)->result();
 	echo json_encode($data[0]);
 
 
@@ -285,12 +289,12 @@ function cetak_dokumen($id) {
 
 	$data['id_surat_order'] = $id;
 	$where = array(
-		'iteM_konfirmasi_order.state' => 'aktif',
-		'iteM_konfirmasi_order.id_surat_order' => $id,
+		'iteM_tagihan.state' => 'aktif',
+		'iteM_tagihan.id_surat_order' => $id,
 		
 	);
 
-	$data['data'] = $this->M_konfirmasi_order->ambil_iteM_konfirmasi_order('iteM_konfirmasi_order',$where)->result();
+	$data['data'] = $this->M_tagihan->ambil_iteM_tagihan('iteM_tagihan',$where)->result();
 
 
 	$where_ = array(
@@ -298,11 +302,11 @@ function cetak_dokumen($id) {
 		'id_surat_order' => $id
 	);
 
-	$data['data_surat'] = $this->M_konfirmasi_order->ambil_surat_order('t_surat_order',$where_)->result();
+	$data['data_surat'] = $this->M_tagihan->ambil_surat_order('t_surat_order',$where_)->result();
 
 
 
-	$data['conf'] = $this->M_konfirmasi_order->config();
+	$data['conf'] = $this->M_tagihan->config();
 	$this->load->library('pdfgenerator');
 	$data['title'] = "Surat order";
 	$file_pdf = $data['title'];
@@ -322,7 +326,7 @@ function p_aprove() {
 	$id = $_POST['id'];
 
 	$data = array(
-		'flag' => 'terkonfirmasi',
+		'flag' => 'terkirim',
 		'id_user_input' => $this->session->userdata('id_user'),	
 	);
 
@@ -331,19 +335,21 @@ function p_aprove() {
 		'id_surat_order' => $id
 	);
 
+	$this->M_tagihan->update_data($where,$data,'t_surat_order');
+	$this->M_tagihan->update_data($where,$data,'item_surat_order');
+
+
 	$data_flag = array(
 		'id_surat_order' => $id,
 		'id_user' => $this->session->userdata('id_user'),	
-		'nama_flag' => 'terkonfirmasi',
+		'nama_flag' => 'terkirim_konsumen',
 		'date_create' => date('Y-m-d H:i:s')
 
 	);
-	$this->M_konfirmasi_order->insert('flag',$data_flag);
+	$this->M_tagihan->insert('flag',$data_flag);
 
 
-	$this->M_konfirmasi_order->update_data($where,$data,'t_surat_order');
 
-	
 }
 
 
@@ -352,7 +358,7 @@ function p_cancel() {
 	$id = $_POST['id'];
 
 	$data = array(
-		'flag' => 'ditolak',
+		'flag' => 'input',
 		'id_user_input' => $this->session->userdata('id_user'),	
 	);
 
@@ -361,17 +367,20 @@ function p_cancel() {
 		'id_surat_order' => $id
 	);
 
-	$this->M_konfirmasi_order->update_data($where,$data,'t_surat_order');
 
 	$data_flag = array(
 		'id_surat_order' => $id,
 		'id_user' => $this->session->userdata('id_user'),	
-		'nama_flag' => 'ditolak',
+		'nama_flag' => 'ditolak_permintaan',
 		'date_create' => date('Y-m-d H:i:s')
 
 	);
-	$this->M_konfirmasi_order->insert('flag',$data_flag);
+	$this->M_tagihan->insert('flag',$data_flag);
 
+
+	
+
+	$this->M_tagihan->update_data($where,$data,'t_surat_order');
 }
 
 

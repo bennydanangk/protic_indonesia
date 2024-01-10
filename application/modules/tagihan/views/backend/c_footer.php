@@ -20,7 +20,7 @@ select2add();
   
   //.inv module
 var url = '<?= base_url()?>';
-var app= 'permintaan_order';
+var app= 'tagihan';
 //end
 
 connecting(url+'api/cek_koneksi');
@@ -202,10 +202,6 @@ function tabel_content() {
 
 
 function aprove(id) {
-
-  var id_kurir = $('#id_user_kurir option:selected').val();
-
-
   Swal.fire({
   title: "Apa Kamu Yakin?",
   text: "Apakah Menyetujui Data Anda",
@@ -219,7 +215,7 @@ function aprove(id) {
 
 
 	$.ajax({
-          url: url+"/"+app+"/p_aprove/"+id_kurir,
+          url: url+"/"+app+"/p_aprove",
              type: 'POST',
              data: {id:id} ,             
              success: function(data) {    

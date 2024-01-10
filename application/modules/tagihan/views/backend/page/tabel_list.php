@@ -1,13 +1,7 @@
 	<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/plugins/tables/datatables/datatables.min.js"></script>
 	<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/plugins/forms/selects/select2.min.js"></script>
 	<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/pages/datatables_basic.js"></script>
-	<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/plugins/forms/selects/select2.min.js"></script>
-	<!-- <script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/core/app.js"></script> -->
-	<script type="text/javascript" src="<?= base_url('assets/limitless/');?>assets/js/pages/form_select2.js"></script>
-
-	
-	<div class="container-fluid">
-
+    <div class="container-fluid">
 
 <?php
 
@@ -107,19 +101,6 @@ function rupiah($angka){
 						<hr>
 					
 				
-						<div class="form-group">
-										<label class="control-label col-lg-2">Penanggung Jawab Pengiriman</label>
-										<div class="col-lg-10">
-                                        <div class="form-group">
-										<select class="select-search" id="id_user_kurir" name="id_user_kurir" required>
-											        <option value="">= Pilih Salah PJ  =</option>
-                                                <?php 
-                                                foreach ($user as $k) {?>
-	                                                <option value="<?= $k->id_user?>"><?= $k->nama_user?></option>
-                                                <?php   }     ?>
-		
-										</select>
-												</div>
 
 	
 
